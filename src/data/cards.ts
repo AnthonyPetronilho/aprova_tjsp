@@ -1,5 +1,10 @@
 import type { Flashcard } from '../types'
 import { QUESTIONS } from './questions'
+import { EXATAS_CARDS } from './exatas'
+import { PORT_CARDS } from './portugues'
+import { MAT2_CARDS } from './mat2'
+import { MAT3_CARDS } from './mat3'
+import { RL2_CARDS } from './rl2'
 // Flashcards autorais ligados às aulas (conteúdo inédito, baseado no tópico 12 do Anexo VIII – Crase).
 export const FLASHCARDS: Flashcard[] = [
   { id: 'fc-crase-1', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'O que é crase?', back: 'A fusão da preposição "a" com o artigo definido feminino "a(s)" (ou com aquele/aquela/aquilo). Ex.: Fui à escola.' },
@@ -18,6 +23,11 @@ export const FLASHCARDS: Flashcard[] = [
   { id: 'fc-pec-7', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Qual a diferença entre o caput e o § 1º do art. 312 quanto à posse do bem?', back: 'No caput o funcionário TEM a posse do bem em razão do cargo. No § 1º ele NÃO tem a posse e se vale da facilidade que o cargo lhe dá para subtrair.' },
   { id: 'fc-pec-8', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Quem é funcionário público para efeitos penais (art. 327, caput)?', back: 'Quem, embora transitoriamente ou sem remuneração, exerce cargo, emprego ou função pública.' },
   { id: 'fc-pec-9', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'O § 3º do art. 312 (reparação do dano) vale para qual modalidade de peculato?', back: 'Só para o peculato culposo: o texto diz "no caso do parágrafo anterior" (§ 2º).' },
+  ...EXATAS_CARDS,
+  ...PORT_CARDS,
+  ...MAT2_CARDS,
+  ...MAT3_CARDS,
+  ...RL2_CARDS,
 ]
 export const errCardId = (qid: string) => `err-${qid}`
 // Cards de erro são derivados da questão errada (não duplicam texto no armazenamento).

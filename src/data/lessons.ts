@@ -1,3 +1,8 @@
 import { CRASE_LESSON } from './crase'
 import { PECULATO_LESSON } from './peculato'
-export const LESSONS = [CRASE_LESSON, PECULATO_LESSON]
+import { EXATAS_LESSONS } from './exatas'
+import { PORT_LESSONS } from './portugues'
+import { MAT2_LESSONS } from './mat2'
+import { MAT3_LESSONS } from './mat3'
+import { RL2_LESSONS } from './rl2'
+export const LESSONS = [CRASE_LESSON, PECULATO_LESSON, ...EXATAS_LESSONS, ...PORT_LESSONS, ...MAT2_LESSONS, ...MAT3_LESSONS, ...RL2_LESSONS]

@@ -3,7 +3,7 @@ import type { XpSettings } from '../types'
 import { useContent, setEditor } from '../lib/content'
 import { useSyncState, authenticate, logout, deleteAccount, resolveConflict, syncNow } from '../lib/sync'
 import type { Store } from '../lib/useProgress'
-const FIELDS: [keyof XpSettings, string][] = [['lesson', 'Concluir uma aula'], ['question', 'Acertar uma questão (1ª vez que acerta)'], ['review', 'Concluir uma revisão (1x por dia)'], ['dailyMission', 'Completar as missões do dia'], ['mock', 'Finalizar um simulado (simulados ainda não existem)']]
+const FIELDS: [keyof XpSettings, string][] = [['lesson', 'Concluir uma aula'], ['question', 'Acertar uma questão (1ª vez que acerta)'], ['review', 'Concluir uma revisão (1x por dia)'], ['dailyMission', 'Completar as missões do dia'], ['mock', 'Finalizar um simulado (1x por dia)']]
 export default function Settings({ s }: { s: Store }) {
   const content = useContent(), sy = useSyncState(), [em, setEm] = useState(''), [pw, setPw] = useState(''), [delc, setDelc] = useState(false)
   const { p, setXp, resetXp, replaceAll, reset } = s, [msg, setMsg] = useState(''), [confirm, setConfirm] = useState(false), file = useRef<HTMLInputElement>(null)

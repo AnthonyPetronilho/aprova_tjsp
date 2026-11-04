@@ -70,3 +70,10 @@ O app continua funcionando 100% local. Com o servidor, você ganha conta e sincr
 **Testes:** `cd server && npm test` (7 testes de API contra o repositório em memória). O repositório MongoDB (`repo.mongo.js`) segue a mesma interface, mas **não pôde ser executado no ambiente de desenvolvimento (sem MongoDB)** — teste-o na sua máquina.
 
 **Ainda não implementado:** Tutora TJSP (IA), recuperação de senha por e-mail, importação de PDF.
+
+## Conteúdo
+- **Lote 1 – Matemática e Raciocínio Lógico:** MMC e MDC, Porcentagem, Estruturas lógicas, Diagramas lógicos.
+- **Lote 2 – Língua Portuguesa:** Concordância verbal e nominal, Regência verbal e nominal, Colocação pronominal, Pontuação (a aula de Crase já existia).
+- **Lote 3 – Matemática (restante) e Raciocínio Lógico:** Operações, Razão/proporção, Regra de três, Médias, Juros simples, Equações, Sistemas, Grandezas/tabelas/gráficos, Medidas, Geometria, Situações-problema, Lógicas de argumentação, Sequências. **Matemática (13/13) e Raciocínio Lógico (4/4) completos.**
+- Cada aula: explicação, exemplos, tabela-resumo, 5 questões comentadas por alternativa e 6 flashcards. Contas conferidas por cálculo; casos de Português em que as gramáticas divergem foram evitados. Conteúdo gerado por IA: **revise antes de estudar**.
+- Banco: 115 questões, 23 aulas, 142 flashcards. Cobertura para o simulado completo (70): Matemática 65/4 ✅, Raciocínio Lógico 20/7 ✅, Português 25/16 ✅, Direito 5/30, Informática 0/9, Atualidades 0/4 — o completo segue bloqueado até todas as áreas atingirem o mínimo.
