@@ -1,21 +1,28 @@
-# Aprova TJSP — Fases 1 e 2
+# Aprova TJSP
+
 Plataforma de estudos gamificada para Escrevente Técnico Judiciário TJSP (Edital 02/2026, VUNESP).
 
 ## Rodar no VS Code
+
 ```bash
 npm install
 npm run dev      # http://localhost:5173
 npm run build
 ```
+
 ## Estrutura
+
 - `src/data/edital.ts` — catálogo fiel ao Anexo VIII · `src/data/crase.ts` — 1ª aula + 5 questões inéditas (IA)
 - `src/config.ts` — XP, níveis, data da prova · `src/lib/useProgress.ts` — persistência (localStorage), XP, missões, sequência
 - Para o backend (Node/Express/MongoDB), substitua `load`/`save` em `useProgress.ts` por chamadas à API.
+
 ## Limitações
+
 - Dados só no localStorage do navegador (no Claude Artifacts o armazenamento pode não persistir; localmente persiste).
 - Não implementado: ver página "Em breve".
 
 ## Fase 2 (aprendizagem)
+
 - `src/lib/srs.ts` — repetição espaçada (estilo SM-2, em dias; teto de 60 dias). Esqueci/Difícil/Bom/Fácil.
 - `src/data/cards.ts` — flashcards das aulas; cards de erro são derivados da questão errada.
 - Páginas: Revisões (Central), Questões (banco com filtros), Erros (Caderno de Erros).
@@ -23,6 +30,7 @@ npm run build
 - XP de revisão: +15 uma vez por dia ao concluir uma sessão (configurável em `src/config.ts`).
 
 ## Fase 3 (gamificação e anotações)
+
 - **Anotações** (`NoteBox`, `lib/notes.ts`): por card (durante a revisão), por questão (depois de responder) e por tópico/aula. Card de erro e questão compartilham a mesma anotação. Tela "Anotações" com busca, edição e exclusão. Salvam sozinhas.
 - **Missões diárias** (`lib/missions.ts`): 3 a 5, geradas 1x por dia conforme pendências, desempenho e ritmo recente; +XP ao completar todas.
 - **Conquistas** (`lib/gamification.ts`): as 6 da especificação, com progresso real e data de desbloqueio. "Mente brilhante" e "Dominando o Direito" dependem de mais conteúdo.
@@ -32,12 +40,14 @@ npm run build
 - Dados das fases anteriores são migrados automaticamente.
 
 ## Aulas jurídicas (Peculato)
+
 - `src/data/peculato.ts` — aula do art. 312 do CP (tópico `dpenal-2`), 5 questões inéditas e, em `data/cards.ts`, 9 flashcards.
 - O Direito Penal do edital foi dividido em 5 módulos com exatamente os mesmos artigos do Anexo VIII (nenhum incluído ou removido). Só o módulo do art. 312 tem aula; os demais aparecem como "Sem aula ainda".
 - Aulas aceitam `quotes` (citação da lei) e `table` (comparação) em cada etapa. Para criar nova aula: adicionar em `data/`, registrar em `data/lessons.ts` e `data/questions.ts`.
 - A redação do art. 312 foi conferida em fontes públicas (o site do Planalto bloqueou o acesso automatizado). Confirme a redação vigente em planalto.gov.br.
 
 ## Fase 4 – Cronograma, Simulados, Estatísticas e Redação
+
 - **Cronograma** (`/Cronograma`): 5 perguntas (horas/dia, dias da semana, matérias difíceis, ritmo) → plano até 14/03/2027 com blocos de 30 min, pesos pelo nº de questões do edital (os 30 de Direito divididos igualmente entre as 6 disciplinas jurídicas — premissa declarada), intercalação, revisão geral semanal e reta final (14 dias) de simulados/erros. Dias perdidos não punem; "Recalcular" reorganiza a partir de hoje.
 - **Simulados**: rápido (5/10/15/20 questões, automático ou por disciplina) e completo (70 questões, 5 h). O completo só libera quando o banco tiver a distribuição do edital (16/30/4/4/9/7) — hoje o banco tem 10 questões, então fica bloqueado.
 - **Evolução**: abas Visão geral / Estatísticas / Conquistas.
@@ -45,6 +55,7 @@ npm run build
 - Menu reorganizado (Estudar / Praticar / Planejar / Mais).
 
 ## Fase 4b – Administração de conteúdo (modo editor local)
+
 - Ative em **Configurações → Modo editor**. Aparece **Admin** no menu (grupo "Mais"). Sem senha: é um modo local, o conteúdo fica no navegador (`aprova-tjsp:content:v1`).
 - Crie/edite/exclua **aulas** (etapas, texto, "Não entendi", questões do teste), **questões** (A–E com comentário por alternativa e gabarito) e **flashcards** (ligados a uma aula).
 - **Rascunho × Publicado**: só o publicado entra no app. Para publicar é preciso passar na validação e marcar "Conferi o conteúdo" (conteúdo de IA deve ser revisado por você).
@@ -54,9 +65,11 @@ npm run build
 - Arquitetura: `src/lib/content.ts` reconstrói em memória os arrays `LESSONS/QUESTIONS/FLASHCARDS` (embutido + publicado), então o resto do app não mudou.
 
 ## Fase 5a – Servidor (Express + MongoDB + JWT) e sincronização
+
 O app continua funcionando 100% local. Com o servidor, você ganha conta e sincronização entre aparelhos.
 
 **Rodar o servidor** (pasta `server/`):
+
 1. `cd server && npm install`
 2. Copie `.env.example` para `.env` e preencha `MONGODB_URI` (Atlas ou local) e `JWT_SECRET` (comando para gerar está no arquivo). Para testar sem banco: `STORE=memory` (dados somem ao reiniciar).
 3. `npm run dev` → API em http://localhost:3001 (`/api/health` para conferir).
@@ -72,6 +85,7 @@ O app continua funcionando 100% local. Com o servidor, você ganha conta e sincr
 **Ainda não implementado:** Tutora TJSP (IA), recuperação de senha por e-mail, importação de PDF.
 
 ## Conteúdo
+
 - **Lote 1 – Matemática e Raciocínio Lógico:** MMC e MDC, Porcentagem, Estruturas lógicas, Diagramas lógicos.
 - **Lote 2 – Língua Portuguesa:** Concordância verbal e nominal, Regência verbal e nominal, Colocação pronominal, Pontuação (a aula de Crase já existia).
 - **Lote 3 – Matemática (restante) e Raciocínio Lógico:** Operações, Razão/proporção, Regra de três, Médias, Juros simples, Equações, Sistemas, Grandezas/tabelas/gráficos, Medidas, Geometria, Situações-problema, Lógicas de argumentação, Sequências. **Matemática (13/13) e Raciocínio Lógico (4/4) completos.**
