@@ -36,3 +36,10 @@ npm run build
 - O Direito Penal do edital foi dividido em 5 módulos com exatamente os mesmos artigos do Anexo VIII (nenhum incluído ou removido). Só o módulo do art. 312 tem aula; os demais aparecem como "Sem aula ainda".
 - Aulas aceitam `quotes` (citação da lei) e `table` (comparação) em cada etapa. Para criar nova aula: adicionar em `data/`, registrar em `data/lessons.ts` e `data/questions.ts`.
 - A redação do art. 312 foi conferida em fontes públicas (o site do Planalto bloqueou o acesso automatizado). Confirme a redação vigente em planalto.gov.br.
+
+## Fase 4 – Cronograma, Simulados, Estatísticas e Redação
+- **Cronograma** (`/Cronograma`): 5 perguntas (horas/dia, dias da semana, matérias difíceis, ritmo) → plano até 14/03/2027 com blocos de 30 min, pesos pelo nº de questões do edital (os 30 de Direito divididos igualmente entre as 6 disciplinas jurídicas — premissa declarada), intercalação, revisão geral semanal e reta final (14 dias) de simulados/erros. Dias perdidos não punem; "Recalcular" reorganiza a partir de hoje.
+- **Simulados**: rápido (5/10/15/20 questões, automático ou por disciplina) e completo (70 questões, 5 h). O completo só libera quando o banco tiver a distribuição do edital (16/30/4/4/9/7) — hoje o banco tem 10 questões, então fica bloqueado.
+- **Evolução**: abas Visão geral / Estatísticas / Conquistas.
+- **Redação**: 4 temas originais, cronômetro, rascunho automático, histórico, autoavaliação pelos critérios do edital. Os "pontos de atenção" são heurísticas, **não nota**. Análise por IA e OCR de manuscrito: em breve.
+- Menu reorganizado (Estudar / Praticar / Planejar / Mais).

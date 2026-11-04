@@ -8,6 +8,7 @@ import { missionDone, missionProgress } from '../lib/missions'
 import { isDue } from '../lib/srs'
 import { todayStr } from '../lib/dates'
 import { suggestLesson } from '../lib/study'
+import { dayBlocks, discName } from '../lib/plan'
 import type { Progress } from '../types'
 import Bar from '../components/Bar'
 export const fmtTime = (sec: number) => { const m = Math.floor(sec / 60); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min` }
@@ -38,5 +39,6 @@ export default function Dashboard({ p, go }: { p: Progress; go: (page: string, l
       <div className="card"><h2 className="font-bold mb-3">📊 Desempenho por disciplina</h2>{perf.length ? perf.map(({ d, n, ok }) => <div key={d.id} className="mb-2"><div className="flex justify-between text-sm"><span>{d.name}</span><span>{ok}/{n} acertos</span></div><Bar pct={Math.round((ok / n) * 100)} color="bg-emerald-500" /></div>) : <p className="text-slate-500 text-sm">Sem respostas registradas ainda. Resolva as questões da primeira aula.</p>}
         <button className="underline text-sm text-indigo-600 mt-3" onClick={() => go('progress')}>Ver evolução e conquistas →</button></div>
     </div>
+    <div className="card"><h2 className="font-bold mb-2">📅 Cronograma de hoje</h2>{!p.plan ? <><p className="text-sm text-slate-500 mb-2">Você ainda não tem um cronograma. Responda 5 perguntas e eu monto um plano até a prova.</p><button className="btn-p" onClick={() => go('plan')}>Criar cronograma</button></> : (() => { const bl = dayBlocks(p.plan, t); return bl ? <><ul className="text-sm space-y-1">{bl.map((b, i) => <li key={i} className={p.planMarks[t]?.[i] === 'done' ? 'line-through opacity-60' : ''}>{p.planMarks[t]?.[i] === 'done' ? '✓' : '•'} {b.disc === 'geral' ? 'Revisão geral' : discName(b.disc)} ({b.kind === 'estudo' ? 'estudo' : b.kind === 'questoes' ? 'questões' : b.kind}) · {b.min} min</li>)}</ul><button className="underline text-sm text-indigo-600 mt-2" onClick={() => go('plan')}>Abrir cronograma →</button></> : <p className="text-sm text-slate-500">Hoje é dia de descanso no seu plano 🌿. <button className="underline text-indigo-600" onClick={() => go('plan')}>Ver cronograma</button></p> })()}</div>
     <div className="card"><h2 className="font-bold mb-3">📝 Regras da prova (edital)</h2><ul className="text-sm space-y-1 list-disc ml-5"><li>70 questões, 5 alternativas, mesmo peso; objetiva e redação no mesmo dia, até 5 h.</li>{([1, 2, 3] as const).map(b => <li key={b}>{BLOCKS[b]}{b < 3 ? ' – eliminatório (mín. 50% de acertos)' : ' – classificatório'}</li>)}<li>Nota mínima na objetiva: 5,0. Redação: 0 a 40 pontos, mínimo 24.</li></ul></div></div>
 }
