@@ -4,6 +4,7 @@ import { LESSONS } from '../data/lessons'
 import { FLASHCARDS } from '../data/cards'
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import QuestionCard from '../components/QuestionCard'
+import VideoPlayer from '../components/VideoPlayer'
 import NoteBox from '../components/NoteBox'
 import { topicNoteKey } from '../lib/notes'
 import type { Store } from '../lib/useProgress'
@@ -20,6 +21,7 @@ export default function Lesson({ s, lessonId, onPick }: { s: Store; lessonId: st
   return <div className="space-y-4 max-w-3xl">
     <div className="flex gap-2 flex-wrap">{LESSONS.map(l => <button key={l.id} onClick={() => onPick(l.id)} className={`px-3 py-1 rounded-full text-sm border ${l.id === L.id ? 'bg-indigo-600 text-white border-indigo-600' : 'border-slate-300 dark:border-slate-600'}`}>{p.completed[l.id] ? '✅ ' : ''}{l.title}</button>)}</div>
     <div><p className="text-sm text-slate-500">{disc?.name} › {topic?.title}</p><h1 className="text-2xl font-bold">Aula: {L.title} {isDone && '✅'}</h1></div>
+    {L.video && <details className="card"><summary className="cursor-pointer font-semibold">🎬 Reforço em vídeo (opcional)</summary><div className="mt-3"><VideoPlayer video={L.video} /></div></details>}
     <div className="flex gap-1 flex-wrap">{names.map((n, k) => <button key={n} onClick={() => go(k)} className={`px-3 py-1 rounded-full text-sm ${k === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700'}`}>{k + 1}. {n}</button>)}</div>
     {step ? <div className="card space-y-3"><h2 className="font-bold text-lg">{step.title}</h2>
       {(alt && step.alt ? [step.alt] : step.body).map((t, k) => <p key={k} className={alt ? 'bg-amber-50 dark:bg-amber-900/30 p-3 rounded-xl' : ''}>{t}</p>)}

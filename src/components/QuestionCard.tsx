@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import type { Answer, OptId, Question } from '../types'
 import NoteBox from './NoteBox'
+const ORIGIN: Record<Question['origin'], string> = { 'inedita-ia': 'Inédita (gerada por IA, não é de prova anterior)', 'prova-anterior': 'Prova anterior', autoral: 'Autoral (cadastrada por você)', 'ia-revisada': 'Gerada por IA e revisada por você' }
 interface Props { q: Question; n?: number; answer?: Answer; fav: boolean; onAnswer: (q: string, c: OptId, ok: boolean) => void; onFav: (q: string) => void; startRedo?: boolean; label?: string; xpQuestion: number; note?: string; onNote: (key: string, text: string) => void }
 export default function QuestionCard({ q, n, answer, fav, onAnswer, onFav, startRedo, label, xpQuestion, note, onNote }: Props) {
   const [redo, setRedo] = useState(!!startRedo)
   const a = redo ? undefined : answer
   const pick = (id: OptId) => { onAnswer(q.id, id, id === q.answer); setRedo(false) }
   return <div className="card">
-    <div className="flex justify-between gap-2 mb-1"><p className="text-xs text-slate-500">{n ? `Questão ${n} · ` : ''}{q.difficulty} · {q.origin === 'inedita-ia' ? 'Inédita (gerada por IA, não é de prova anterior)' : 'Prova anterior'}{label ? ` · ${label}` : ''}</p>
+    <div className="flex justify-between gap-2 mb-1"><p className="text-xs text-slate-500">{n ? `Questão ${n} · ` : ''}{q.difficulty} · {ORIGIN[q.origin]}{label ? ` · ${label}` : ''}</p>
       <button aria-label={fav ? 'Remover dos favoritos' : 'Favoritar'} title="Favoritar" onClick={() => onFav(q.id)} className="text-lg leading-none">{fav ? '⭐' : '☆'}</button></div>
     <p className="font-medium mb-3">{q.stem}</p>
     <div className="space-y-2">{q.options.map(op => { const sel = a?.chosen === op.id, right = a && op.id === q.answer

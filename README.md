@@ -43,3 +43,12 @@ npm run build
 - **Evolução**: abas Visão geral / Estatísticas / Conquistas.
 - **Redação**: 4 temas originais, cronômetro, rascunho automático, histórico, autoavaliação pelos critérios do edital. Os "pontos de atenção" são heurísticas, **não nota**. Análise por IA e OCR de manuscrito: em breve.
 - Menu reorganizado (Estudar / Praticar / Planejar / Mais).
+
+## Fase 4b – Administração de conteúdo (modo editor local)
+- Ative em **Configurações → Modo editor**. Aparece **Admin** no menu (grupo "Mais"). Sem senha: é um modo local, o conteúdo fica no navegador (`aprova-tjsp:content:v1`).
+- Crie/edite/exclua **aulas** (etapas, texto, "Não entendi", questões do teste), **questões** (A–E com comentário por alternativa e gabarito) e **flashcards** (ligados a uma aula).
+- **Rascunho × Publicado**: só o publicado entra no app. Para publicar é preciso passar na validação e marcar "Conferi o conteúdo" (conteúdo de IA deve ser revisado por você).
+- **Reforço em vídeo**: cole um link (YouTube é incorporado via `youtube-nocookie`; Vimeo também; outros https viram link externo; http é recusado). Vale para suas aulas e para as aulas do app. O app nunca sugere ou inventa links.
+- Conteúdo do app (Crase, Peculato) é somente leitura (exceto vídeo). **Exportar/Importar conteúdo** em JSON (aba Backup) — será a base da migração para o servidor.
+- Não implementado: login/permissões reais, importação de PDF, geração de rascunhos por IA (dependem do backend).
+- Arquitetura: `src/lib/content.ts` reconstrói em memória os arrays `LESSONS/QUESTIONS/FLASHCARDS` (embutido + publicado), então o resto do app não mudou.

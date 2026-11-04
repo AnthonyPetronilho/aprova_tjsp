@@ -1,7 +1,8 @@
 export type OptId = 'A' | 'B' | 'C' | 'D' | 'E'
-export interface Question { id: string; topicId: string; stem: string; options: { id: OptId; text: string; why: string }[]; answer: OptId; difficulty: 'Fácil' | 'Médio' | 'Difícil'; origin: 'inedita-ia' | 'prova-anterior' }
+export interface Question { id: string; topicId: string; stem: string; options: { id: OptId; text: string; why: string }[]; answer: OptId; difficulty: 'Fácil' | 'Médio' | 'Difícil'; origin: 'inedita-ia' | 'prova-anterior' | 'autoral' | 'ia-revisada' }
 export interface Step { title: string; body: string[]; alt?: string; quotes?: { ref: string; text: string }[]; table?: { caption?: string; head: string[]; rows: string[][] } }
-export interface Lesson { id: string; topicId: string; title: string; steps: Step[]; questionIds: string[] }
+export interface Video { url: string; title?: string }
+export interface Lesson { id: string; topicId: string; title: string; steps: Step[]; questionIds: string[]; video?: Video }
 export interface Topic { id: string; title: string }
 export interface Discipline { id: string; name: string; block: 1 | 2 | 3; questions?: number; emoji: string; topics: Topic[] }
 export interface Answer { chosen: OptId; correct: boolean; everCorrect: boolean; at: string }
