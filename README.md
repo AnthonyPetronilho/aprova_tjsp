@@ -1,4 +1,4 @@
-# Aprova TJSP — MVP (Fase 1)
+# Aprova TJSP — Fases 1 e 2
 Plataforma de estudos gamificada para Escrevente Técnico Judiciário TJSP (Edital 02/2026, VUNESP).
 
 ## Rodar no VS Code
@@ -14,3 +14,10 @@ npm run build
 ## Limitações
 - Dados só no localStorage do navegador (no Claude Artifacts o armazenamento pode não persistir; localmente persiste).
 - Não implementado: ver página "Em breve".
+
+## Fase 2 (aprendizagem)
+- `src/lib/srs.ts` — repetição espaçada (estilo SM-2, em dias; teto de 60 dias). Esqueci/Difícil/Bom/Fácil.
+- `src/data/cards.ts` — flashcards das aulas; cards de erro são derivados da questão errada.
+- Páginas: Revisões (Central), Questões (banco com filtros), Erros (Caderno de Erros).
+- Dados da Fase 1 já salvos no navegador são migrados automaticamente (cards das aulas concluídas e erros antigos).
+- XP de revisão: +15 uma vez por dia ao concluir uma sessão (configurável em `src/config.ts`).
