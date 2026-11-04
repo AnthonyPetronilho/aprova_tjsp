@@ -1,0 +1,6 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased}
+.card{@apply rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 p-5}
+.btn{@apply rounded-xl px-4 py-2 font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed}
+.btn-p{@apply btn bg-indigo-600 text-white hover:bg-indigo-700}
+.btn-s{@apply btn bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600}
