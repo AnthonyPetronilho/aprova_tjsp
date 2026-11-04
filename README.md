@@ -21,3 +21,12 @@ npm run build
 - Páginas: Revisões (Central), Questões (banco com filtros), Erros (Caderno de Erros).
 - Dados da Fase 1 já salvos no navegador são migrados automaticamente (cards das aulas concluídas e erros antigos).
 - XP de revisão: +15 uma vez por dia ao concluir uma sessão (configurável em `src/config.ts`).
+
+## Fase 3 (gamificação e anotações)
+- **Anotações** (`NoteBox`, `lib/notes.ts`): por card (durante a revisão), por questão (depois de responder) e por tópico/aula. Card de erro e questão compartilham a mesma anotação. Tela "Anotações" com busca, edição e exclusão. Salvam sozinhas.
+- **Missões diárias** (`lib/missions.ts`): 3 a 5, geradas 1x por dia conforme pendências, desempenho e ritmo recente; +XP ao completar todas.
+- **Conquistas** (`lib/gamification.ts`): as 6 da especificação, com progresso real e data de desbloqueio. "Mente brilhante" e "Dominando o Direito" dependem de mais conteúdo.
+- **Sequência tolerante**: 1 dia de folga não quebra; hoje só conta como perdido depois de passar.
+- **Tempo ativo de estudo**: soma 15 s por intervalo com a aba visível e interação no último minuto.
+- **Configurações**: XP editável, backup (baixar/restaurar JSON) e zerar progresso.
+- Dados das fases anteriores são migrados automaticamente.
