@@ -5,6 +5,8 @@ import { PORT_CARDS } from './portugues'
 import { MAT2_CARDS } from './mat2'
 import { MAT3_CARDS } from './mat3'
 import { RL2_CARDS } from './rl2'
+import { INFO_CARDS } from './info'
+import { PORT2_CARDS } from './port2'
 // Flashcards autorais ligados às aulas (conteúdo inédito, baseado no tópico 12 do Anexo VIII – Crase).
 export const FLASHCARDS: Flashcard[] = [
   { id: 'fc-crase-1', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'O que é crase?', back: 'A fusão da preposição "a" com o artigo definido feminino "a(s)" (ou com aquele/aquela/aquilo). Ex.: Fui à escola.' },
@@ -28,6 +30,8 @@ export const FLASHCARDS: Flashcard[] = [
   ...MAT2_CARDS,
   ...MAT3_CARDS,
   ...RL2_CARDS,
+  ...INFO_CARDS,
+  ...PORT2_CARDS,
 ]
 export const errCardId = (qid: string) => `err-${qid}`
 // Cards de erro são derivados da questão errada (não duplicam texto no armazenamento).

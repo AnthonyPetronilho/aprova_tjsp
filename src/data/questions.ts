@@ -6,4 +6,6 @@ import { PORT_QUESTIONS } from './portugues'
 import { MAT2_QUESTIONS } from './mat2'
 import { MAT3_QUESTIONS } from './mat3'
 import { RL2_QUESTIONS } from './rl2'
-export const QUESTIONS: Question[] = [...CRASE_QUESTIONS, ...PECULATO_QUESTIONS, ...EXATAS_QUESTIONS, ...PORT_QUESTIONS, ...MAT2_QUESTIONS, ...MAT3_QUESTIONS, ...RL2_QUESTIONS]
+import { INFO_QUESTIONS } from './info'
+import { PORT2_QUESTIONS } from './port2'
+export const QUESTIONS: Question[] = [...CRASE_QUESTIONS, ...PECULATO_QUESTIONS, ...EXATAS_QUESTIONS, ...PORT_QUESTIONS, ...MAT2_QUESTIONS, ...MAT3_QUESTIONS, ...RL2_QUESTIONS, ...INFO_QUESTIONS, ...PORT2_QUESTIONS]
