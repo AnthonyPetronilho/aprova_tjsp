@@ -7,4 +7,7 @@ import { MAT3_LESSONS } from './mat3'
 import { RL2_LESSONS } from './rl2'
 import { INFO_LESSONS } from './info'
 import { PORT2_LESSONS } from './port2'
-export const LESSONS = [CRASE_LESSON, PECULATO_LESSON, ...EXATAS_LESSONS, ...PORT_LESSONS, ...MAT2_LESSONS, ...MAT3_LESSONS, ...RL2_LESSONS, ...INFO_LESSONS, ...PORT2_LESSONS]
+import { ATUAL_LESSONS } from './atual'
+import { DCONST_LESSONS } from './dconst'
+import { DPENAL_LESSONS } from './dpenal'
+export const LESSONS = [CRASE_LESSON, PECULATO_LESSON, ...EXATAS_LESSONS, ...PORT_LESSONS, ...MAT2_LESSONS, ...MAT3_LESSONS, ...RL2_LESSONS, ...INFO_LESSONS, ...PORT2_LESSONS, ...ATUAL_LESSONS, ...DCONST_LESSONS, ...DPENAL_LESSONS]
