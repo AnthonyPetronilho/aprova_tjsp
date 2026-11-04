@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useProgress } from './lib/useProgress'
 import { suggestLesson } from './lib/study'
 import Dashboard from './pages/Dashboard'
@@ -15,6 +15,8 @@ import Mocks from './pages/Mocks'
 import Essay from './pages/Essay'
 import Admin from './pages/Admin'
 import { useContent } from './lib/content'
+import { setAdapters, scheduleSync, syncNow, isLoggedIn } from './lib/sync'
+import { contentForSync, contentIsEmpty, replaceContent } from './lib/content'
 import Toasts from './components/Toasts'
 import Soon from './pages/Soon'
 const BASE: { title: string; items: [string, string, string][] }[] = [
@@ -28,6 +30,11 @@ const MAIN = ['home', 'lesson', 'review', 'mocks']
 const ALL = [...BASE.flatMap(g => g.items), ADMIN]
 export default function App() {
   const s = useProgress(), { p, toggleDark, toasts, dismiss } = s, content = useContent()
+  const pRef = useRef(p); pRef.current = p
+  const firstP = useRef(true), firstC = useRef(true)
+  useEffect(() => { setAdapters({ progress: { get: () => pRef.current, set: d => s.replaceAll(d), isEmpty: () => pRef.current.xp === 0 && !Object.keys(pRef.current.answers).length && !Object.keys(pRef.current.completed).length }, content: { get: contentForSync, set: replaceContent, isEmpty: contentIsEmpty } }); if (isLoggedIn()) syncNow() }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (firstP.current) { firstP.current = false; return } scheduleSync('progress') }, [p])
+  useEffect(() => { if (firstC.current) { firstC.current = false; return } scheduleSync('content') }, [content.lessons, content.questions, content.cards, content.videos])
   const GROUPS = content.editor ? BASE.map(g => g.title === 'Mais' ? { ...g, items: [ADMIN, ...g.items] } : g) : BASE
   const [page, setPage] = useState('home'), [lessonId, setLessonId] = useState<string | null>(null), [more, setMore] = useState(false)
   const go = (pg: string, id?: string) => { if (pg === 'lesson' && (id || !lessonId)) setLessonId(id ?? suggestLesson(p)); setPage(pg); setMore(false); window.scrollTo?.(0, 0) }

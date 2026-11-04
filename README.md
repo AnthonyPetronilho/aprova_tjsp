@@ -52,3 +52,21 @@ npm run build
 - Conteúdo do app (Crase, Peculato) é somente leitura (exceto vídeo). **Exportar/Importar conteúdo** em JSON (aba Backup) — será a base da migração para o servidor.
 - Não implementado: login/permissões reais, importação de PDF, geração de rascunhos por IA (dependem do backend).
 - Arquitetura: `src/lib/content.ts` reconstrói em memória os arrays `LESSONS/QUESTIONS/FLASHCARDS` (embutido + publicado), então o resto do app não mudou.
+
+## Fase 5a – Servidor (Express + MongoDB + JWT) e sincronização
+O app continua funcionando 100% local. Com o servidor, você ganha conta e sincronização entre aparelhos.
+
+**Rodar o servidor** (pasta `server/`):
+1. `cd server && npm install`
+2. Copie `.env.example` para `.env` e preencha `MONGODB_URI` (Atlas ou local) e `JWT_SECRET` (comando para gerar está no arquivo). Para testar sem banco: `STORE=memory` (dados somem ao reiniciar).
+3. `npm run dev` → API em http://localhost:3001 (`/api/health` para conferir).
+
+**Ligar o front-end:** na raiz, copie `.env.example` para `.env` (`VITE_API_URL=http://localhost:3001`) e reinicie `npm run dev`. Em Configurações aparece "Conta e sincronização" (criar conta, entrar, sair, apagar conta).
+
+**Como sincroniza:** progresso e conteúdo do Admin são enviados ~3 s após cada mudança. Cada documento tem número de versão: se outro aparelho salvou antes, o app avisa e você escolhe manter o do servidor ou o deste navegador (nada é sobrescrito em silêncio). No primeiro login, se só um lado tem dados, ele é usado; se os dois têm, você escolhe.
+
+**Segurança implementada:** senha com bcrypt (custo 12), JWT HS256 com expiração de 7 dias, mensagem de login genérica, limite de tentativas, helmet, CORS restrito a `CORS_ORIGIN`, validação de entrada, limite de tamanho, isolamento por usuário. Em produção use HTTPS e um `JWT_SECRET` forte.
+
+**Testes:** `cd server && npm test` (7 testes de API contra o repositório em memória). O repositório MongoDB (`repo.mongo.js`) segue a mesma interface, mas **não pôde ser executado no ambiente de desenvolvimento (sem MongoDB)** — teste-o na sua máquina.
+
+**Ainda não implementado:** Tutora TJSP (IA), recuperação de senha por e-mail, importação de PDF.

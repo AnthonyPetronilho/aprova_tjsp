@@ -118,3 +118,6 @@ export function importContent(raw: unknown): { ok: boolean; added: number } {
   emit(); return { ok: true, added }
 }
 export function resetContent() { state = { ...empty(), editor: state.editor }; emit() }
+export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length
+export function replaceContent(raw: unknown): boolean { const c = sanitize(raw); if (!c) return false; state = { ...c, editor: state.editor }; emit(); return true }
+export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos })
