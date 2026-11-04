@@ -1,5 +1,5 @@
 import type { Flashcard } from '../types'
-import { QUESTIONS } from './crase'
+import { QUESTIONS } from './questions'
 // Flashcards autorais ligados às aulas (conteúdo inédito, baseado no tópico 12 do Anexo VIII – Crase).
 export const FLASHCARDS: Flashcard[] = [
   { id: 'fc-crase-1', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'O que é crase?', back: 'A fusão da preposição "a" com o artigo definido feminino "a(s)" (ou com aquele/aquela/aquilo). Ex.: Fui à escola.' },
@@ -9,6 +9,15 @@ export const FLASHCARDS: Flashcard[] = [
   { id: 'fc-crase-5', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'Teste do "da": como saber se há crase antes de nome de lugar?', back: 'Se "volto DA" → há crase ("Vou à Bahia"). Se "volto DE" → não há ("Vou a Roma").' },
   { id: 'fc-crase-6', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'Há crase em expressões com palavra repetida (ex.: frente a frente)?', back: 'Não. Ex.: "frente a frente", "cara a cara", "gota a gota".' },
   { id: 'fc-crase-7', topicId: 'pt-12', lessonId: 'pt-crase', origin: 'aula', front: 'Quando a crase é facultativa?', back: 'Antes de pronome possessivo feminino singular e de nome próprio feminino de pessoa. Ex.: "Entreguei a/à Maria."' },
+  { id: 'fc-pec-1', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Qual é a conduta do peculato previsto no caput do art. 312 do CP?', back: 'O funcionário público apropriar-se de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do cargo, ou desviá-lo, em proveito próprio ou alheio.' },
+  { id: 'fc-pec-2', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Qual é a pena do peculato (caput e § 1º do art. 312)?', back: 'Reclusão, de dois a doze anos, e multa.' },
+  { id: 'fc-pec-3', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'O que é o chamado "peculato-furto" (art. 312, § 1º)?', back: 'O funcionário, embora não tendo a posse do bem, o subtrai (ou concorre para que seja subtraído), em proveito próprio ou alheio, valendo-se da facilidade que a qualidade de funcionário lhe proporciona. Mesma pena do caput.' },
+  { id: 'fc-pec-4', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Quando ocorre o peculato culposo e qual é a sua pena?', back: 'Quando o funcionário concorre culposamente para o crime de outrem (§ 2º). Pena: detenção, de três meses a um ano.' },
+  { id: 'fc-pec-5', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Reparação do dano no peculato culposo (§ 3º): o que muda se for antes ou depois da sentença irrecorrível?', back: 'Antes da sentença irrecorrível: extingue a punibilidade. Depois: reduz de metade a pena imposta.' },
+  { id: 'fc-pec-6', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'O objeto do peculato precisa ser bem público?', back: 'Não. Pode ser dinheiro, valor ou qualquer outro bem móvel, público ou particular, desde que esteja na posse do funcionário em razão do cargo.' },
+  { id: 'fc-pec-7', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Qual a diferença entre o caput e o § 1º do art. 312 quanto à posse do bem?', back: 'No caput o funcionário TEM a posse do bem em razão do cargo. No § 1º ele NÃO tem a posse e se vale da facilidade que o cargo lhe dá para subtrair.' },
+  { id: 'fc-pec-8', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'Quem é funcionário público para efeitos penais (art. 327, caput)?', back: 'Quem, embora transitoriamente ou sem remuneração, exerce cargo, emprego ou função pública.' },
+  { id: 'fc-pec-9', topicId: 'dpenal-2', lessonId: 'dpenal-peculato', origin: 'aula', front: 'O § 3º do art. 312 (reparação do dano) vale para qual modalidade de peculato?', back: 'Só para o peculato culposo: o texto diz "no caso do parágrafo anterior" (§ 2º).' },
 ]
 export const errCardId = (qid: string) => `err-${qid}`
 // Cards de erro são derivados da questão errada (não duplicam texto no armazenamento).

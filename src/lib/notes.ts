@@ -1,5 +1,5 @@
 import { cardById } from '../data/cards'
-import { QUESTIONS } from '../data/crase'
+import { QUESTIONS } from '../data/questions'
 import { DISCIPLINES } from '../data/edital'
 export const cardNoteKey = (cardId: string) => (cardId.startsWith('err-') ? `question:${cardId.slice(4)}` : `card:${cardId}`) // card de erro compartilha a anotação da questão
 export const questionNoteKey = (qid: string) => `question:${qid}`

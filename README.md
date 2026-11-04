@@ -30,3 +30,9 @@ npm run build
 - **Tempo ativo de estudo**: soma 15 s por intervalo com a aba visível e interação no último minuto.
 - **Configurações**: XP editável, backup (baixar/restaurar JSON) e zerar progresso.
 - Dados das fases anteriores são migrados automaticamente.
+
+## Aulas jurídicas (Peculato)
+- `src/data/peculato.ts` — aula do art. 312 do CP (tópico `dpenal-2`), 5 questões inéditas e, em `data/cards.ts`, 9 flashcards.
+- O Direito Penal do edital foi dividido em 5 módulos com exatamente os mesmos artigos do Anexo VIII (nenhum incluído ou removido). Só o módulo do art. 312 tem aula; os demais aparecem como "Sem aula ainda".
+- Aulas aceitam `quotes` (citação da lei) e `table` (comparação) em cada etapa. Para criar nova aula: adicionar em `data/`, registrar em `data/lessons.ts` e `data/questions.ts`.
+- A redação do art. 312 foi conferida em fontes públicas (o site do Planalto bloqueou o acesso automatizado). Confirme a redação vigente em planalto.gov.br.

@@ -1,5 +1,5 @@
 import { DISCIPLINES, BLOCKS, topicDiscipline } from '../data/edital'
-import { QUESTIONS } from '../data/crase'
+import { QUESTIONS } from '../data/questions'
 import { LESSONS } from '../data/lessons'
 import { cardById } from '../data/cards'
 import { EXAM_DATE } from '../config'
@@ -7,10 +7,11 @@ import { levelInfo, streak } from '../lib/gamification'
 import { missionDone, missionProgress } from '../lib/missions'
 import { isDue } from '../lib/srs'
 import { todayStr } from '../lib/dates'
+import { suggestLesson } from '../lib/study'
 import type { Progress } from '../types'
 import Bar from '../components/Bar'
 export const fmtTime = (sec: number) => { const m = Math.floor(sec / 60); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min` }
-export default function Dashboard({ p, go }: { p: Progress; go: (page: string) => void }) {
+export default function Dashboard({ p, go }: { p: Progress; go: (page: string, lessonId?: string) => void }) {
   const t = todayStr(), lv = levelInfo(p.xp), st = streak(p.studyDays), day = p.daily[t]
   const missions = p.missionsToday?.day === t ? p.missionsToday.list : [], mDone = missions.filter(m => missionDone(m, day)).length
   const total = DISCIPLINES.reduce((n, d) => n + d.topics.length, 0), done = Object.keys(p.completed).length
@@ -33,7 +34,7 @@ export default function Dashboard({ p, go }: { p: Progress; go: (page: string) =
       <div className="card"><h2 className="font-bold mb-1">🎯 Missão de Hoje <span className="text-sm font-normal text-slate-500">({mDone}/{missions.length})</span></h2><p className="text-xs text-slate-500 mb-3">Geradas a cada dia conforme suas pendências, seu desempenho e seu ritmo recente de estudo.</p>
         <ul className="space-y-3">{missions.map(m => { const cur = Math.min(missionProgress(m, day), m.target), ok = missionDone(m, day); return <li key={m.id}><div className="flex items-center gap-2"><span className={`h-5 w-5 shrink-0 rounded-full grid place-items-center text-xs text-white ${ok ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-600'}`}>{ok ? '✓' : ''}</span><span className={`flex-1 ${ok ? 'line-through text-slate-400' : ''}`}>{m.label}</span><span className="text-xs text-slate-500">{cur}/{m.target}</span></div><div className="ml-7 mt-1"><Bar pct={Math.round((cur / m.target) * 100)} color="bg-emerald-500" /></div></li> })}</ul>
         <p className="text-xs text-slate-500 mt-3">Cumpra todas para ganhar +{p.settings.xp.dailyMission} XP (1x por dia).</p>
-        {last && <p className="text-sm mt-2">Último assunto: <b>{last.title}</b></p>}<button className="btn-p mt-3" onClick={() => go('lesson')}>{p.lastLessonId ? 'Continuar estudando' : 'Começar a estudar'}</button></div>
+        {last && <p className="text-sm mt-2">Último assunto: <b>{last.title}</b></p>}<button className="btn-p mt-3" onClick={() => go('lesson', suggestLesson(p))}>{p.lastLessonId ? 'Continuar estudando' : 'Começar a estudar'}</button></div>
       <div className="card"><h2 className="font-bold mb-3">📊 Desempenho por disciplina</h2>{perf.length ? perf.map(({ d, n, ok }) => <div key={d.id} className="mb-2"><div className="flex justify-between text-sm"><span>{d.name}</span><span>{ok}/{n} acertos</span></div><Bar pct={Math.round((ok / n) * 100)} color="bg-emerald-500" /></div>) : <p className="text-slate-500 text-sm">Sem respostas registradas ainda. Resolva as questões da primeira aula.</p>}
         <button className="underline text-sm text-indigo-600 mt-3" onClick={() => go('progress')}>Ver evolução e conquistas →</button></div>
     </div>

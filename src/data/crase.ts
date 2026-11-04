@@ -10,7 +10,7 @@ export const CRASE_LESSON: Lesson = {
   ],
 }
 const Q = (n: number, stem: string, options: Question['options'], answer: Question['answer'], difficulty: Question['difficulty']): Question => ({ id: `crase-${n}`, topicId: 'pt-12', stem, options, answer, difficulty, origin: 'inedita-ia' })
-export const QUESTIONS: Question[] = [
+export const CRASE_QUESTIONS: Question[] = [
   Q(1, 'Assinale a alternativa em que o sinal indicativo de crase está empregado corretamente.', [
     o('A', 'Referiu-se à pessoas que não conhecia.', 'Errada: "pessoas" é plural indeterminado, sem artigo.'), o('B', 'O prazo começa à partir de segunda-feira.', 'Errada: não há crase antes de verbo.'),
     o('C', 'Os documentos foram entregues às 14 horas.', 'Correta: indicação de horas exige crase.'), o('D', 'Ela revelou à você toda a verdade.', 'Errada: pronome pessoal não aceita artigo.'), o('E', 'Fomos à pé até o fórum.', 'Errada: "pé" é masculino ("a pé").')], 'C', 'Fácil'),

@@ -1,9 +1,11 @@
 import type { Discipline } from '../types'
 const t = (p: string, a: string[]) => a.map((title, i) => ({ id: `${p}-${i + 1}`, title }))
-// Fonte: Edital de Abertura nº 02/2026 TJSP – Anexo VIII (Conteúdo Programático)
+// Fonte: Edital de Abertura nº 02/2026 TJSP – Anexo VIII (Conteúdo Programático).
+// Direito Penal: o edital lista "arts. 293 a 305; 307; 308; 311-A; 312 a 317; 319 a 333; 336 e 337; 339 a 347; 357 e 359".
+// Dividimos esse mesmo conjunto em módulos (sem incluir nem excluir artigos) para permitir aulas e status por módulo.
 export const DISCIPLINES: Discipline[] = [
   { id: 'pt', name: 'Língua Portuguesa', block: 1, questions: 16, emoji: '📖', topics: t('pt', ['Compreensão e interpretação de textos (verbais, não verbais, literários e não literários)', 'Informações literais e inferências', 'Ponto de vista do autor', 'Estruturação do texto: relações entre ideias; coesão', 'Significação contextual de palavras e expressões', 'Sinônimos e antônimos', 'Sentido próprio e figurado', 'Classes de palavras: emprego e sentido', 'Concordância verbal e nominal', 'Regência verbal e nominal', 'Colocação pronominal', 'Crase', 'Pontuação']) },
-  { id: 'dpenal', name: 'Direito Penal', block: 2, emoji: '⚖️', topics: t('dpenal', ['Código Penal – arts. 293 a 305; 307; 308; 311-A; 312 a 317; 319 a 333; 336 e 337; 339 a 347; 357 e 359']) },
+  { id: 'dpenal', name: 'Direito Penal', block: 2, emoji: '⚖️', topics: t('dpenal', ['CP – arts. 293 a 305; 307; 308; 311-A', 'CP – art. 312 (peculato)', 'CP – arts. 313 a 317', 'CP – arts. 319 a 333', 'CP – arts. 336 e 337; 339 a 347; 357 e 359']) },
   { id: 'dpp', name: 'Direito Processual Penal', block: 2, emoji: '🏛️', topics: t('dpp', ['CPP – arts. 251 a 258; 261 a 267; 274; 351 a 372; 394 a 497; 531 a 538; 541 a 548; 574 a 667', 'Lei 9.099/1995 – arts. 60 a 83; 88 e 89']) },
   { id: 'dpc', name: 'Direito Processual Civil', block: 2, emoji: '📑', topics: t('dpc', ['CPC – arts. 144 a 155; 188 a 275; 294 a 311; 318 a 538; 994 a 1026', 'Lei 9.099/1995 – arts. 3º a 19', 'Lei 12.153/2009']) },
   { id: 'dconst', name: 'Direito Constitucional', block: 2, emoji: '📜', topics: t('dconst', ['CF – Título II, Capítulo I', 'CF – Título II, Capítulo II', 'CF – Título II, Capítulo III', 'CF – Título III, Capítulo VII, Seções I e II', 'CF – art. 92']) },

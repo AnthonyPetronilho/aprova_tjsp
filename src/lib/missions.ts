@@ -1,6 +1,6 @@
 import type { DayStats, Mission, Progress } from '../types'
 import { LESSONS } from '../data/lessons'
-import { QUESTIONS } from '../data/crase'
+import { QUESTIONS } from '../data/questions'
 import { cardById } from '../data/cards'
 import { isDue } from './srs'
 export const emptyDay = (): DayStats => ({ qids: [], correctQids: [], lessons: 0, reviews: 0, resolved: 0, seconds: 0, xp: 0 })
