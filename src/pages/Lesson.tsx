@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { QUESTIONS } from '../data/questions'
 import { LESSONS } from '../data/lessons'
 import { FLASHCARDS } from '../data/cards'
-import { DISCIPLINES, topicDiscipline } from '../data/edital'
+import { DISCIPLINES, BLOCKS, topicDiscipline } from '../data/edital'
 import QuestionCard from '../components/QuestionCard'
 import VideoPlayer from '../components/VideoPlayer'
 import NoteBox from '../components/NoteBox'
 import { topicNoteKey } from '../lib/notes'
 import type { Store } from '../lib/useProgress'
+let saved: { blk: string; dsc: string } | null = null
+const matches = (topicId: string, b: string, d: string) => { const x = topicDiscipline(topicId); return !!x && (b === 'all' || String(x.block) === b) && (d === 'all' || x.id === d) }
 export default function Lesson({ s, lessonId, onPick }: { s: Store; lessonId: string; onPick: (id: string) => void }) {
   const { p, answer, complete, setLast, toggleFav, saveNote } = s, xp = p.settings.xp
   const L = LESSONS.find(l => l.id === lessonId) ?? LESSONS[0]
@@ -15,11 +17,24 @@ export default function Lesson({ s, lessonId, onPick }: { s: Store; lessonId: st
   const qs = QUESTIONS.filter(q => L.questionIds.includes(q.id)), all = qs.every(q => p.answers[q.id]), isDone = !!p.completed[L.id]
   const cards = FLASHCARDS.filter(c => c.lessonId === L.id)
   const topic = DISCIPLINES.flatMap(d => d.topics).find(t => t.id === L.topicId), disc = topicDiscipline(L.topicId)
+  const init = saved && matches(L.topicId, saved.blk, saved.dsc) ? saved : { blk: String(disc?.block ?? 'all'), dsc: disc?.id ?? 'all' }
+  const [blk, setBlk] = useState(init.blk), [dsc, setDsc] = useState(init.dsc)
+  const discOpts = DISCIPLINES.filter(d => blk === 'all' || String(d.block) === blk)
+  const list = LESSONS.filter(l => matches(l.topicId, blk, dsc))
+  const pos = list.findIndex(l => l.id === L.id), inList = pos >= 0, doneN = list.filter(l => p.completed[l.id]).length
+  const pickFilter = (b: string, d: string) => { setBlk(b); setDsc(d); saved = { blk: b, dsc: d }; if (!matches(L.topicId, b, d)) { const nl = LESSONS.find(l => matches(l.topicId, b, d)); if (nl) onPick(nl.id) } }
   const go = (n: number) => { setI(n); setAlt(false); setLast(L.id) }
   const names = [...L.steps.map(st => st.title), 'Teste seu conhecimento', 'Revisão']
   const step = L.steps[i]
   return <div className="space-y-4 max-w-3xl">
-    <div className="flex gap-2 flex-wrap">{LESSONS.map(l => <button key={l.id} onClick={() => onPick(l.id)} className={`px-3 py-1 rounded-full text-sm border ${l.id === L.id ? 'bg-indigo-600 text-white border-indigo-600' : 'border-slate-300 dark:border-slate-600'}`}>{p.completed[l.id] ? '✅ ' : ''}{l.title}</button>)}</div>
+    <div className="card space-y-3">
+      <div className="grid gap-3 sm:grid-cols-3">
+        <label className="text-xs text-slate-500 space-y-1 block">Bloco<select className="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm" value={blk} onChange={e => pickFilter(e.target.value, 'all')}><option value="all">Todos os blocos</option>{([1, 2, 3] as const).map(b => <option key={b} value={b}>{BLOCKS[b]}</option>)}</select></label>
+        <label className="text-xs text-slate-500 space-y-1 block">Matéria<select className="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm" value={dsc} onChange={e => pickFilter(blk, e.target.value)}><option value="all">Todas as matérias</option>{discOpts.map(d => <option key={d.id} value={d.id}>{d.emoji} {d.name}</option>)}</select></label>
+        <label className="text-xs text-slate-500 space-y-1 block">Aula<select className="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm" value={L.id} onChange={e => onPick(e.target.value)}>{!inList && <option value={L.id}>{L.title}</option>}{list.map(l => <option key={l.id} value={l.id}>{p.completed[l.id] ? '✅ ' : ''}{l.title}</option>)}</select></label>
+      </div>
+      <div className="flex items-center gap-2 text-sm"><button className="btn-s" disabled={pos < 1} onClick={() => onPick(list[pos - 1].id)}>← Anterior</button><button className="btn-s" disabled={pos < 0 || pos >= list.length - 1} onClick={() => onPick(list[pos + 1].id)}>Próxima →</button><span className="text-slate-500 ml-auto">{doneN}/{list.length} aulas concluídas neste filtro</span></div>
+    </div>
     <div><p className="text-sm text-slate-500">{disc?.name} › {topic?.title}</p><h1 className="text-2xl font-bold">Aula: {L.title} {isDone && '✅'}</h1></div>
     {L.video && <details className="card"><summary className="cursor-pointer font-semibold">🎬 Reforço em vídeo (opcional)</summary><div className="mt-3"><VideoPlayer video={L.video} /></div></details>}
     <div className="flex gap-1 flex-wrap">{names.map((n, k) => <button key={n} onClick={() => go(k)} className={`px-3 py-1 rounded-full text-sm ${k === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700'}`}>{k + 1}. {n}</button>)}</div>
