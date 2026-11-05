@@ -83,6 +83,16 @@ Detalhes, arquivos e limitações: `docs/FASE-2-RESULTADO.md`.
 - **Servidor:** validação do formato dos documentos (422), limite de requisições por usuário nas rotas de dados, `TRUST_PROXY` configurável, apagar conta exige a senha.
 - **Testes** (`npm test`): `tests/events.test.ts` (migração, mesclagem, propriedades com 3 aparelhos), `tests/sync.test.ts` (servidor real: concorrência, queda de rede, aparelho antigo, dados inválidos, 401), `tests/content-backup.test.ts`, `tests/legacy/*` (integridade dos dados, simulados, cronograma, Admin) e `server/test/api.test.js`. `npm run typecheck` verifica `src` e `tests`. E2E manual com dois aparelhos: `tests/e2e/two-devices.cjs` (precisa de Playwright).
 
+## Entrada, conta e perfil
+
+- Com servidor configurado (`VITE_API_URL`), quem não está conectado vê a **página de boas-vindas** (`#/`), com **Entrar** (`#/login`) e **Criar conta** (`#/register`); depois do login vai ao `#/dashboard` ou à página que tentava abrir (`?next=`). Sem servidor, o app segue 100% local, sem telas de conta.
+- As rotas usam **hash** (`#/dashboard`, `#/lesson/<id>`, `#/settings`…): funcionam em qualquer hospedagem estática, sem regra de reescrita, e o botão "voltar" do navegador funciona.
+- A sessão é verificada ao abrir (`GET /api/me`) com uma tela de carregamento. **Só 401** encerra a sessão; falha de rede ou servidor fora do ar mantém o usuário dentro, com os dados locais.
+- Menu de perfil (avatar): e-mail, estado da sincronização, Configurações e **Sair da conta**. Sair envia o que estiver pendente (até 5 s), guarda uma cópia local da conta, encerra a sessão e esvazia o estado ativo do navegador; nada é apagado do servidor nem dos backups. Entrar de novo na mesma conta soma a cópia (inclusive o que não chegou a ser enviado); outra conta nunca vê os dados da anterior.
+- Quem usava o app sem conta tem o progresso local **adotado** pela primeira conta que entrar neste navegador.
+- Código: `src/lib/route.ts` (rotas e proteção), `src/lib/session.ts` (dono dos dados e troca de conta), `src/lib/auth.ts` (cola com a sincronização), `src/pages/Welcome.tsx`, `src/pages/Auth.tsx`, `src/components/ProfileMenu.tsx`. A autenticação em si continua em `src/lib/sync.ts` e no servidor.
+- Teste manual no navegador: `tests/e2e/auth-flow.cjs` (mesmos pré-requisitos de `two-devices.cjs`; reinicie o servidor de teste entre execuções por causa do limite de tentativas de login).
+
 ## Conteúdo
 - **Lote 1 – Matemática e Raciocínio Lógico:** MMC e MDC, Porcentagem, Estruturas lógicas, Diagramas lógicos.
 - **Lote 2 – Língua Portuguesa:** Concordância verbal e nominal, Regência verbal e nominal, Colocação pronominal, Pontuação (a aula de Crase já existia).

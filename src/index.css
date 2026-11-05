@@ -4,3 +4,7 @@ body{@apply bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 ant
 .btn{@apply rounded-xl px-4 py-2 font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed}
 .btn-p{@apply btn bg-indigo-600 text-white hover:bg-indigo-700}
 .btn-s{@apply btn bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600}
+.inp{@apply w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2.5 text-base placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 aria-[invalid=true]:border-rose-500}
+.lnk{@apply text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-800 dark:hover:text-indigo-300 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500}
+a.btn,a.btn-p,a.btn-s{@apply inline-block text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900}
+button:focus-visible{@apply outline-none ring-2 ring-indigo-500}

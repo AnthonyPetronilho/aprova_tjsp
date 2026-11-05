@@ -121,6 +121,8 @@ export function importContent(raw: unknown): { ok: boolean; added: number } {
   emit(); return { ok: true, added }
 }
 export function resetContent() { const at = now(), deleted = { ...state.deleted }; for (const x of [...state.lessons, ...state.questions, ...state.cards]) deleted[x.id] = at; state = { ...empty(), editor: state.editor, deleted }; emit() }
+// Troca de conta: esvazia o conteúdo local sem lápides (não é exclusão; o conteúdo da conta continua no servidor) e desliga o modo editor.
+export function clearContentLocal() { state = empty(); emit() }
 export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length && !Object.keys(state.deleted).length
 export function replaceContent(raw: unknown): boolean { const c = sanitize(raw); if (!c) return false; state = { ...c, editor: state.editor }; emit(); return true }
 export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos, deleted: state.deleted })

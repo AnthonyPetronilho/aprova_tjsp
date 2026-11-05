@@ -15,6 +15,8 @@ export interface SyncConfig { api: string; storage?: Pick<Storage, 'getItem' | '
 interface Saved { token?: string; email?: string; admin?: boolean; versions: Record<Kind, number> }
 const KINDS: Kind[] = ['progress', 'content']
 const fresh = (): Saved => ({ versions: { progress: 0, content: 0 } })
+export type AuthResult = { ok: true } | { ok: false; status: number; message: string } // status 0 = sem conexão com o servidor
+export type SessionCheck = 'none' | 'valid' | 'invalid' | 'offline'
 export class ApiError extends Error { constructor(public status: number, m: string, public body?: { version?: number; data?: unknown }) { super(m) } }
 
 export function createSync(cfg: SyncConfig) {
@@ -99,20 +101,39 @@ export function createSync(cfg: SyncConfig) {
     clearTimeout(timers[k]); timers[k] = setTimeout(() => { void run(() => push(k)) }, delay)
   }
 
-  async function authenticate(mode: 'login' | 'register', email: string, password: string) {
-    if (!API) return
+  // onAuthed roda (de forma síncrona) logo depois que o servidor aceita as credenciais e ANTES da primeira sincronização:
+  // é o ponto em que o app troca os dados locais se a conta for outra (veja lib/auth.ts).
+  async function authenticate(mode: 'login' | 'register', email: string, password: string, onAuthed?: (email: string) => void): Promise<AuthResult> {
+    if (!API) return { ok: false, status: 0, message: 'Servidor não configurado.' }
     set({ status: 'syncing', msg: undefined })
     try {
       const r = await req('POST', `/api/auth/${mode}`, { email, password }, false) as { token: string; user: { email: string; admin?: boolean } }
-      saved = { token: r.token, email: r.user.email, admin: !!r.user.admin, versions: { progress: 0, content: 0 } }; persist(); set({ email: r.user.email, admin: !!r.user.admin })
-      await syncNow()
-    } catch (e) { set({ status: saved.token ? 'idle' : 'local', msg: e instanceof Error ? e.message : 'Falha ao entrar.' }) }
+      saved = { token: r.token, email: r.user.email, admin: !!r.user.admin, versions: { progress: 0, content: 0 } }; persist()
+      Object.keys(synced).forEach(k => delete synced[k as Kind])
+      onAuthed?.(r.user.email)
+      set({ email: r.user.email, admin: !!r.user.admin })
+    } catch (e) {
+      const message = e instanceof Error ? e.message : 'Falha ao entrar.', status = e instanceof ApiError ? e.status : 0
+      set({ status: saved.token ? 'idle' : 'local', msg: undefined }); return { ok: false, status, message }
+    }
+    await syncNow(); return { ok: true }
   }
-  function logout() { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])); saved = fresh(); persist(); set({ email: undefined, admin: undefined, status: 'local', msg: undefined }) }
+  function logout() { clearTimeout(retryTimer); Object.keys(synced).forEach(k => delete synced[k as Kind]); KINDS.forEach(k => clearTimeout(timers[k])); saved = fresh(); persist(); set({ email: undefined, admin: undefined, status: 'local', msg: undefined }) }
   async function deleteAccount(password: string) {
     try { await req('DELETE', '/api/me', { password }); logout(); set({ msg: 'Conta e dados do servidor apagados. Os dados deste navegador foram mantidos.' }) }
     catch (e) { set({ status: 'error', msg: e instanceof Error ? e.message : 'Falha ao apagar a conta.' }) }
   }
+  // Confirma no servidor que o token guardado ainda vale. Só 401 conta como sessão inválida: falha de rede, timeout ou erro 5xx
+  // mantêm a sessão (o app segue com os dados locais e tenta sincronizar depois).
+  async function verifySession(timeoutMs = 6000): Promise<SessionCheck> {
+    readSaved(); if (!saved.token) return 'none'
+    try {
+      const r = await Promise.race([req('GET', '/api/me'), new Promise<never>((_, rej) => setTimeout(() => rej(new ApiError(0, 'timeout')), timeoutMs))]) as { user: { admin?: boolean } }
+      saved.admin = !!r.user.admin; persist(); set({ admin: saved.admin }); return 'valid'
+    } catch (e) { return e instanceof ApiError && e.status === 401 ? 'invalid' : 'offline' }
+  }
+  // Outra aba entrou ou saiu da conta: relê o armazenamento e atualiza o estado.
+  function reload() { readSaved(); set({ email: saved.token ? saved.email : undefined, admin: saved.token ? saved.admin : undefined, status: saved.token ? 'idle' : 'local', msg: undefined }) }
   // Ao abrir o app, voltar ao foco ou reconectar: puxa e mescla (no máximo 1x a cada 15 s), e confirma o papel de administrador no servidor.
   let lastPull = 0
   async function refreshMe() { try { const r = await req('GET', '/api/me') as { user: { admin?: boolean } }; saved.admin = !!r.user.admin; persist(); set({ admin: saved.admin }) } catch { /* sem rede: mantém o último valor */ } }
@@ -126,7 +147,7 @@ export function createSync(cfg: SyncConfig) {
   }
   return {
     getState: () => st, subscribe: (f: () => void) => { subs.add(f); return () => { subs.delete(f) } }, version: () => ver,
-    setAdapters: (a: Partial<Record<Kind, Adapter>>) => { adapters = a }, authenticate, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn: () => !!saved.token,
+    setAdapters: (a: Partial<Record<Kind, Adapter>>) => { adapters = a }, authenticate, verifySession, reload, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn: () => !!saved.token,
     idle: () => chain, dispose: () => { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])) },
   }
 }
@@ -135,4 +156,4 @@ export function createSync(cfg: SyncConfig) {
 const API = ((import.meta as { env?: Record<string, string> }).env?.VITE_API_URL ?? '')
 export const sync = createSync({ api: API })
 export const useSyncState = () => { useSyncExternalStore(sync.subscribe, sync.version); return sync.getState() }
-export const { setAdapters, authenticate, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn } = sync
+export const { setAdapters, authenticate, verifySession, reload, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn } = sync

@@ -134,6 +134,9 @@ export function useProgress() {
     if (canon(merged) !== canon(ref.current)) { backup('antes-de-mesclar', JSON.stringify(ref.current)); update(() => merged) }
     return ref.current
   }, [update])
+  // Troca de conta no mesmo navegador: esvazia o estado local SEM criar nova época (não é "zerar": não apaga nada no servidor).
+  // Quem chama já guardou uma cópia dos dados (lib/session.ts).
+  const clearLocal = useCallback(() => { seen.current.clear(); update(x => ({ ...normalize({}), dark: x.dark })) }, [update])
   const startMock = useCallback((run: MockRun) => update(x => ({ ...x, mockRun: run })), [update])
   const patchMock = useCallback((f: (r: MockRun) => MockRun) => update(x => (x.mockRun ? { ...x, mockRun: f(x.mockRun) } : x)), [update])
   const abandonMock = useCallback(() => update(x => ({ ...x, mockRun: undefined })), [update])
@@ -167,7 +170,7 @@ export function useProgress() {
   const toggleDark = () => update(x => ({ ...x, dark: !x.dark }))
   const dismiss = (id: string) => setToasts(t => t.filter(x => x.id !== id))
   const getState = useCallback(() => ref.current, [])
-  return { p, toasts, dismiss, answer, complete, rate, finishReview, saveNote, toggleFav, setXp, resetXp, replaceAll, reset, setLast, toggleDark, startMock, patchMock, abandonMock, finishMock, createPlan, recalcPlan, clearPlan, markBlock, saveDraft, saveEssay, deleteEssay, mergeRemote, getState }
+  return { p, toasts, dismiss, answer, complete, rate, finishReview, saveNote, toggleFav, setXp, resetXp, replaceAll, reset, setLast, toggleDark, startMock, patchMock, abandonMock, finishMock, createPlan, recalcPlan, clearPlan, markBlock, saveDraft, saveEssay, deleteEssay, mergeRemote, clearLocal, toast, getState }
 }
 export type Store = ReturnType<typeof useProgress>
 export type { DayStats }
