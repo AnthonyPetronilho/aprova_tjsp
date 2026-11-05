@@ -63,13 +63,25 @@ O app continua funcionando 100% local. Com o servidor, você ganha conta e sincr
 
 **Ligar o front-end:** na raiz, copie `.env.example` para `.env` (`VITE_API_URL=http://localhost:3001`) e reinicie `npm run dev`. Em Configurações aparece "Conta e sincronização" (criar conta, entrar, sair, apagar conta).
 
-**Como sincroniza:** progresso e conteúdo do Admin são enviados ~3 s após cada mudança. Cada documento tem número de versão: se outro aparelho salvou antes, o app avisa e você escolhe manter o do servidor ou o deste navegador (nada é sobrescrito em silêncio). No primeiro login, se só um lado tem dados, ele é usado; se os dois têm, você escolhe.
+**Como sincroniza (Fase 2):** veja a seção "Fase 2" abaixo. Resumo: não há mais "escolha entre servidor e navegador"; os dados dos aparelhos são mesclados automaticamente.
 
 **Segurança implementada:** senha com bcrypt (custo 12), JWT HS256 com expiração de 7 dias, mensagem de login genérica, limite de tentativas, helmet, CORS restrito a `CORS_ORIGIN`, validação de entrada, limite de tamanho, isolamento por usuário. Em produção use HTTPS e um `JWT_SECRET` forte.
 
-**Testes:** `cd server && npm test` (7 testes de API contra o repositório em memória). O repositório MongoDB (`repo.mongo.js`) segue a mesma interface, mas **não pôde ser executado no ambiente de desenvolvimento (sem MongoDB)** — teste-o na sua máquina.
+**Testes:** `npm test` na raiz roda os testes do front (Vitest) e os do servidor (`node --test`); veja "Fase 2". O repositório MongoDB (`repo.mongo.js`) segue a mesma interface, mas **não pôde ser executado no ambiente de desenvolvimento (sem MongoDB)** — teste-o na sua máquina.
 
 **Ainda não implementado:** Tutora TJSP (IA), recuperação de senha por e-mail, importação de PDF.
+
+## Fase 2 – Segurança e integridade dos dados
+Detalhes, arquivos e limitações: `docs/FASE-2-RESULTADO.md`.
+
+- **Modelo de eventos.** Cada resposta, revisão, aula concluída, favorito, recompensa de XP e contador de tempo de estudo é um registro com **id único** (`src/lib/events.ts`). XP, estatísticas, erros e flashcards são **derivados** desses registros (`rebuild`). Os dados antigos viram uma "base" congelada: nada é descartado nem reatribuído.
+- **Sincronização por mesclagem.** O envio usa número de versão; se outro aparelho salvou antes (409), o app baixa o documento do servidor, **mescla** (união por id, idempotente) e reenvia. Mesclar duas vezes não duplica respostas, revisões nem XP. A mesma 1ª resposta certa em dois aparelhos paga XP uma vez (`rwd:q:<questão>`). O tempo de estudo é um contador por aparelho e dia; o total é a soma.
+- **Quando sincroniza:** ao entrar, ao abrir o app, ao voltar à aba, ao reconectar e a cada minuto (consulta leve de versão); alterações enviam em ~3 s. Sem conexão: dados ficam locais, o app mostra "sem conexão" e tenta de novo com espera crescente.
+- **Backups.** Antes de migrar o formato antigo, de mesclar, de restaurar um arquivo ou de zerar, o navegador guarda uma cópia (3 por tipo; Configurações → "Cópias automáticas"). O servidor guarda as últimas 10 versões de cada documento (`docs_history`).
+- **Zerar progresso** cria uma nova "época" e vence na sincronização. **Restaurar backup** passa a *somar* o arquivo ao progresso atual.
+- **Administradores.** Defina `ADMIN_EMAILS` (separados por vírgula) no `.env` **do servidor**. O servidor confere o e-mail a cada requisição (o token não carrega papel). Por ora só existe `GET /api/admin/whoami`; as rotas de conteúdo chegam na Fase 5. O "modo editor" do front continua local até lá.
+- **Servidor:** validação do formato dos documentos (422), limite de requisições por usuário nas rotas de dados, `TRUST_PROXY` configurável, apagar conta exige a senha.
+- **Testes** (`npm test`): `tests/events.test.ts` (migração, mesclagem, propriedades com 3 aparelhos), `tests/sync.test.ts` (servidor real: concorrência, queda de rede, aparelho antigo, dados inválidos, 401), `tests/content-backup.test.ts`, `tests/legacy/*` (integridade dos dados, simulados, cronograma, Admin) e `server/test/api.test.js`. `npm run typecheck` verifica `src` e `tests`. E2E manual com dois aparelhos: `tests/e2e/two-devices.cjs` (precisa de Playwright).
 
 ## Conteúdo
 - **Lote 1 – Matemática e Raciocínio Lógico:** MMC e MDC, Porcentagem, Estruturas lógicas, Diagramas lógicos.

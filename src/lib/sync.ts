@@ -1,86 +1,138 @@
 import { useSyncExternalStore } from 'react'
-// Conta + sincronização opcional. O app continua funcionando 100% offline/local; com servidor configurado
-// (VITE_API_URL) e login, o progresso e o conteúdo são copiados para o servidor (último a salvar vence, com aviso de conflito).
+// Conta + sincronização opcional. O app funciona 100% local; com servidor (VITE_API_URL) e login, o progresso e o conteúdo
+// são copiados para o servidor. Conflitos NÃO pedem escolha ao usuário: o cliente baixa a versão do servidor, MESCLA com a local
+// (união de eventos com ids únicos; veja lib/events.ts) e reenvia. A mesclagem é idempotente, então repetir não duplica nada.
 export type Kind = 'progress' | 'content'
-export interface Adapter { get: () => object; set: (d: unknown) => boolean; isEmpty: () => boolean }
-export interface SyncState { enabled: boolean; email?: string; status: 'local' | 'idle' | 'syncing' | 'error' | 'conflict'; msg?: string; lastAt?: string; conflict?: Kind[] }
-const API = ((import.meta as { env?: Record<string, string> }).env?.VITE_API_URL ?? '').replace(/\/$/, '')
-const KEY = 'aprova-tjsp:sync:v1'
-interface Saved { token?: string; email?: string; versions: Record<Kind, number> }
-let saved: Saved = { versions: { progress: 0, content: 0 } }
-try { const r = localStorage.getItem(KEY); if (r) saved = { ...saved, ...JSON.parse(r) } } catch { /* ignora */ }
-let st: SyncState = { enabled: !!API, email: saved.token ? saved.email : undefined, status: 'local' }
-if (saved.token) st.status = 'idle'
-let adapters: Partial<Record<Kind, Adapter>> = {}
-const subs = new Set<() => void>(); let ver = 0
-const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(saved)) } catch { /* ignora */ } }
-const set = (p: Partial<SyncState>) => { st = { ...st, ...p }; ver++; subs.forEach(f => f()) }
-export const useSyncState = () => { useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => ver); return st }
-export const setAdapters = (a: Partial<Record<Kind, Adapter>>) => { adapters = a }
-
-class ApiError extends Error { constructor(public status: number, m: string, public body?: { version?: number; data?: unknown }) { super(m) } }
-async function req(method: string, path: string, body?: unknown, auth = true) {
-  let r: Response
-  try { r = await fetch(API + path, { method, headers: { 'Content-Type': 'application/json', ...(auth && saved.token ? { Authorization: `Bearer ${saved.token}` } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) }) }
-  catch { throw new ApiError(0, 'Sem conexão com o servidor.') }
-  const t = await r.text(); let j: { error?: string } & Record<string, unknown> = {}
-  try { j = t ? JSON.parse(t) : {} } catch { /* resposta não-JSON */ }
-  if (!r.ok) { if (r.status === 401 && auth) { saved = { versions: { progress: 0, content: 0 } }; persist(); set({ email: undefined, status: 'local', msg: 'Sessão expirada. Entre novamente.' }) } throw new ApiError(r.status, j.error ?? `Erro ${r.status}`, j as never) }
-  return j
+export interface Adapter {
+  get: () => object
+  /** Mescla os dados do servidor no estado local e devolve o resultado (ou null se os dados forem inválidos/de versão mais nova). */
+  merge: (remote: unknown) => object | null
+  /** Resumo canônico dos campos sincronizados, para saber se há algo novo a enviar. */
+  fingerprint: (data: unknown) => string
 }
+export interface SyncState { enabled: boolean; email?: string; admin?: boolean; status: 'local' | 'idle' | 'syncing' | 'error' | 'offline'; msg?: string; lastAt?: string }
+export interface SyncConfig { api: string; storage?: Pick<Storage, 'getItem' | 'setItem'>; fetch?: typeof fetch; debounceMs?: number; retryBaseMs?: number; retryMaxMs?: number; maxAttempts?: number; storageKey?: string }
+interface Saved { token?: string; email?: string; admin?: boolean; versions: Record<Kind, number> }
 const KINDS: Kind[] = ['progress', 'content']
-async function push(k: Kind) {
-  const a = adapters[k]; if (!a) return
-  try { const r = await req('PUT', `/api/data/${k}`, { baseVersion: saved.versions[k], data: a.get() }) as { version: number }; saved.versions[k] = r.version; persist() }
-  catch (e) { if (e instanceof ApiError && e.status === 409) { saved.versions[k] = (e.body?.version as number) ?? saved.versions[k]; persist(); throw Object.assign(e, { conflict: true }) } throw e }
-}
-// Compara com o servidor depois do login: servidor vazio → envia; local vazio → adota o do servidor; os dois com dados → pergunta.
-async function reconcile() {
-  const conflicts: Kind[] = []
-  for (const k of KINDS) {
-    const a = adapters[k]; if (!a) continue
-    const r = await req('GET', `/api/data/${k}`) as { version: number; data: unknown }
-    saved.versions[k] = r.version; persist()
-    if (r.version === 0 || !r.data) await push(k)
-    else if (a.isEmpty()) a.set(r.data)
-    else conflicts.push(k)
-  }
-  if (conflicts.length) set({ status: 'conflict', conflict: conflicts, msg: 'Há dados neste navegador e no servidor. Escolha qual manter.' })
-  else set({ status: 'idle', conflict: undefined, msg: undefined, lastAt: new Date().toISOString() })
-}
-async function guarded(fn: () => Promise<void>) {
-  set({ status: 'syncing', msg: undefined })
-  try { await fn() } catch (e) {
-    if (e instanceof Error && (e as { conflict?: boolean }).conflict) set({ status: 'conflict', conflict: [...(st.conflict ?? []), ...KINDS].filter((x, i, arr) => arr.indexOf(x) === i), msg: 'Outro dispositivo salvou antes. Escolha qual versão manter.' })
-    else set({ status: 'error', msg: e instanceof Error ? e.message : 'Falha ao sincronizar.' })
-  }
-}
-export async function authenticate(mode: 'login' | 'register', email: string, password: string) {
-  if (!API) return
-  set({ status: 'syncing', msg: undefined })
-  try {
-    const r = await req('POST', `/api/auth/${mode}`, { email, password }, false) as { token: string; user: { email: string } }
-    saved = { token: r.token, email: r.user.email, versions: { progress: 0, content: 0 } }; persist(); set({ email: r.user.email })
-    await guarded(reconcile)
-  } catch (e) { set({ status: saved.token ? 'idle' : 'local', msg: e instanceof Error ? e.message : 'Falha ao entrar.' }) }
-}
-export function logout() { saved = { versions: { progress: 0, content: 0 } }; persist(); set({ email: undefined, status: 'local', msg: undefined, conflict: undefined }) }
-export async function deleteAccount() { try { await req('DELETE', '/api/me'); logout(); set({ msg: 'Conta e dados do servidor apagados. Os dados deste navegador foram mantidos.' }) } catch (e) { set({ status: 'error', msg: e instanceof Error ? e.message : 'Falha ao apagar a conta.' }) } }
-export async function resolveConflict(choice: 'server' | 'local') {
-  await guarded(async () => {
-    for (const k of st.conflict ?? []) {
-      const a = adapters[k]; if (!a) continue
-      if (choice === 'server') { const r = await req('GET', `/api/data/${k}`) as { version: number; data: unknown }; if (r.data && !a.set(r.data)) throw new Error('Dados do servidor inválidos.'); saved.versions[k] = r.version; persist() }
-      else { const r = await req('GET', `/api/data/${k}`) as { version: number }; saved.versions[k] = r.version; persist(); await push(k) }
+const fresh = (): Saved => ({ versions: { progress: 0, content: 0 } })
+export class ApiError extends Error { constructor(public status: number, m: string, public body?: { version?: number; data?: unknown }) { super(m) } }
+
+export function createSync(cfg: SyncConfig) {
+  const API = cfg.api.replace(/\/$/, ''), KEY = cfg.storageKey ?? 'aprova-tjsp:sync:v1'
+  const store = cfg.storage ?? (typeof localStorage !== 'undefined' ? localStorage : undefined)
+  const doFetch = (...a: Parameters<typeof fetch>) => (cfg.fetch ?? fetch)(...a)
+  const debounceMs = cfg.debounceMs ?? 3000, retryBase = cfg.retryBaseMs ?? 5000, retryMax = cfg.retryMaxMs ?? 300000, maxAttempts = cfg.maxAttempts ?? 6
+  let saved: Saved = fresh()
+  const readSaved = () => { try { const r = store?.getItem(KEY); saved = r ? { ...fresh(), ...JSON.parse(r) } : fresh() } catch { saved = fresh() } }
+  const persist = () => { try { store?.setItem(KEY, JSON.stringify(saved)) } catch { /* ignora */ } }
+  readSaved()
+  let st: SyncState = { enabled: !!API, email: saved.token ? saved.email : undefined, admin: saved.token ? saved.admin : undefined, status: saved.token ? 'idle' : 'local' }
+  let adapters: Partial<Record<Kind, Adapter>> = {}
+  const synced: Partial<Record<Kind, string>> = {} // resumo do último estado que sabemos estar no servidor
+  const subs = new Set<() => void>(); let ver = 0
+  const set = (p: Partial<SyncState>) => { st = { ...st, ...p }; ver++; subs.forEach(f => f()) }
+
+  async function req(method: string, path: string, body?: unknown, auth = true) {
+    let r: Response
+    try { r = await doFetch(API + path, { method, headers: { 'Content-Type': 'application/json', ...(auth && saved.token ? { Authorization: `Bearer ${saved.token}` } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) }) }
+    catch { throw new ApiError(0, 'Sem conexão com o servidor.') }
+    const t = await r.text(); let j: { error?: string } & Record<string, unknown> = {}
+    try { j = t ? JSON.parse(t) : {} } catch { /* resposta não-JSON */ }
+    if (!r.ok) {
+      if (r.status === 401 && auth) { saved = fresh(); persist(); set({ email: undefined, admin: undefined, status: 'local', msg: 'Sessão expirada. Entre novamente.' }) }
+      throw new ApiError(r.status, j.error ?? `Erro ${r.status}`, j as never)
     }
-    set({ status: 'idle', conflict: undefined, msg: undefined, lastAt: new Date().toISOString() })
-  })
+    return j
+  }
+
+  // Envia; em 409 (outro aparelho salvou antes) mescla com a versão que o servidor devolveu e tenta de novo. Nunca descarta dados locais.
+  async function push(k: Kind) {
+    const a = adapters[k]; if (!a) return
+    readSaved(); let data = a.get(), base = saved.versions[k]
+    for (let i = 0; i < maxAttempts; i++) {
+      try {
+        const r = await req('PUT', `/api/data/${k}`, { baseVersion: base, data }) as { version: number }
+        saved.versions[k] = r.version; persist(); synced[k] = a.fingerprint(data); return
+      } catch (e) {
+        if (!(e instanceof ApiError) || e.status !== 409) throw e
+        const merged = e.body?.data ? a.merge(e.body.data) : data
+        if (!merged) throw new ApiError(422, 'Os dados do servidor não puderam ser lidos (formato inválido ou de uma versão mais nova do app). Nada foi sobrescrito.')
+        data = merged; base = e.body?.version ?? base
+      }
+    }
+    throw new ApiError(409, 'Muitas atualizações simultâneas. Tentaremos de novo em instantes.')
+  }
+  // Busca o servidor (só se a versão mudou), mescla e, se a mescla trouxe algo que o servidor não tem, envia.
+  async function pull(k: Kind) {
+    const a = adapters[k]; if (!a) return
+    readSaved()
+    const meta = await req('GET', `/api/data/${k}/meta`) as { version: number }
+    if (meta.version === saved.versions[k] && meta.version !== 0 && synced[k] !== undefined) { if (a.fingerprint(a.get()) !== synced[k]) await push(k); return } // nada novo no servidor; só envia o que for local
+    const r = await req('GET', `/api/data/${k}`) as { version: number; data: unknown }
+    if (r.version === 0 || !r.data) { await push(k); return }
+    const merged = a.merge(r.data)
+    if (!merged) throw new ApiError(422, 'Os dados do servidor não puderam ser lidos (formato inválido ou de uma versão mais nova do app). Nada foi sobrescrito.')
+    saved.versions[k] = r.version; persist()
+    if (a.fingerprint(merged) !== a.fingerprint(r.data)) await push(k); else synced[k] = a.fingerprint(r.data)
+  }
+
+  // fila: uma sincronização por vez
+  let chain: Promise<void> = Promise.resolve(), retryN = 0, retryTimer: ReturnType<typeof setTimeout> | undefined
+  const timers: Partial<Record<Kind, ReturnType<typeof setTimeout>>> = {}
+  function run(fn: () => Promise<void>): Promise<void> {
+    const next = chain.then(async () => {
+      if (!saved.token) return
+      set({ status: 'syncing', msg: undefined })
+      try { await fn(); retryN = 0; set({ status: 'idle', msg: undefined, lastAt: new Date().toISOString() }) }
+      catch (e) {
+        if (e instanceof ApiError && e.status === 0) { set({ status: 'offline', msg: 'Sem conexão. Seus dados estão salvos neste aparelho e serão enviados quando a conexão voltar.' }); scheduleRetry() }
+        else if (e instanceof ApiError && e.status === 409) { set({ status: 'error', msg: e.message }); scheduleRetry() }
+        else if (!(e instanceof ApiError && e.status === 401)) set({ status: 'error', msg: e instanceof Error ? e.message : 'Falha ao sincronizar.' })
+      }
+    })
+    chain = next.catch(() => undefined); return next
+  }
+  function scheduleRetry() { clearTimeout(retryTimer); const wait = Math.min(retryBase * 3 ** retryN++, retryMax); retryTimer = setTimeout(() => { void syncNow() }, wait) }
+  const syncNow = () => run(async () => { for (const k of KINDS) await pull(k) })
+  function scheduleSync(k: Kind, delay = debounceMs) {
+    if (!saved.token) return
+    clearTimeout(timers[k]); timers[k] = setTimeout(() => { void run(() => push(k)) }, delay)
+  }
+
+  async function authenticate(mode: 'login' | 'register', email: string, password: string) {
+    if (!API) return
+    set({ status: 'syncing', msg: undefined })
+    try {
+      const r = await req('POST', `/api/auth/${mode}`, { email, password }, false) as { token: string; user: { email: string; admin?: boolean } }
+      saved = { token: r.token, email: r.user.email, admin: !!r.user.admin, versions: { progress: 0, content: 0 } }; persist(); set({ email: r.user.email, admin: !!r.user.admin })
+      await syncNow()
+    } catch (e) { set({ status: saved.token ? 'idle' : 'local', msg: e instanceof Error ? e.message : 'Falha ao entrar.' }) }
+  }
+  function logout() { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])); saved = fresh(); persist(); set({ email: undefined, admin: undefined, status: 'local', msg: undefined }) }
+  async function deleteAccount(password: string) {
+    try { await req('DELETE', '/api/me', { password }); logout(); set({ msg: 'Conta e dados do servidor apagados. Os dados deste navegador foram mantidos.' }) }
+    catch (e) { set({ status: 'error', msg: e instanceof Error ? e.message : 'Falha ao apagar a conta.' }) }
+  }
+  // Ao abrir o app, voltar ao foco ou reconectar: puxa e mescla (no máximo 1x a cada 15 s), e confirma o papel de administrador no servidor.
+  let lastPull = 0
+  async function refreshMe() { try { const r = await req('GET', '/api/me') as { user: { admin?: boolean } }; saved.admin = !!r.user.admin; persist(); set({ admin: saved.admin }) } catch { /* sem rede: mantém o último valor */ } }
+  function maybePull(force = false) { if (!saved.token) return; const n = Date.now(); if (!force && n - lastPull < 15000) return; lastPull = n; void syncNow() }
+  function startAutoSync(win: Pick<Window, 'addEventListener' | 'removeEventListener'> & { document?: Document } = window) {
+    const onVis = () => { if (win.document?.visibilityState !== 'hidden') maybePull() }, onOnline = () => { clearTimeout(retryTimer); maybePull(true) }, onFocus = () => maybePull()
+    win.addEventListener('visibilitychange', onVis); win.addEventListener('online', onOnline); win.addEventListener('focus', onFocus)
+    const poll = setInterval(() => { if (win.document?.visibilityState !== 'hidden') maybePull(true) }, 60000)
+    if (saved.token) { void refreshMe(); maybePull(true) }
+    return () => { win.removeEventListener('visibilitychange', onVis); win.removeEventListener('online', onOnline); win.removeEventListener('focus', onFocus); clearInterval(poll) }
+  }
+  return {
+    getState: () => st, subscribe: (f: () => void) => { subs.add(f); return () => { subs.delete(f) } }, version: () => ver,
+    setAdapters: (a: Partial<Record<Kind, Adapter>>) => { adapters = a }, authenticate, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn: () => !!saved.token,
+    idle: () => chain, dispose: () => { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])) },
+  }
 }
-let timers: Partial<Record<Kind, ReturnType<typeof setTimeout>>> = {}
-// chamado quando os dados locais mudam; agrupa as alterações (3 s) antes de enviar
-export function scheduleSync(k: Kind) {
-  if (!saved.token || st.status === 'conflict') return
-  clearTimeout(timers[k]); timers[k] = setTimeout(() => { guarded(async () => { await push(k); set({ status: 'idle', msg: undefined, lastAt: new Date().toISOString() }) }) }, 3000)
-}
-export const syncNow = () => guarded(async () => { await reconcile() })
-export const isLoggedIn = () => !!saved.token
+
+// instância usada pelo app
+const API = ((import.meta as { env?: Record<string, string> }).env?.VITE_API_URL ?? '')
+export const sync = createSync({ api: API })
+export const useSyncState = () => { useSyncExternalStore(sync.subscribe, sync.version); return sync.getState() }
+export const { setAdapters, authenticate, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn } = sync

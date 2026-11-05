@@ -1,6 +1,6 @@
 // Repositório em memória: usado nos testes e em desenvolvimento rápido (STORE=memory). NÃO persiste nada.
 export function createMemoryRepo() {
-  const users = new Map(), byEmail = new Map(), docs = new Map()
+  const users = new Map(), byEmail = new Map(), docs = new Map(), history = new Map()
   let seq = 0
   return {
     kind: 'memory',
@@ -17,9 +17,11 @@ export function createMemoryRepo() {
       const key = `${userId}:${kind}`, cur = docs.get(key)
       if ((cur?.version ?? 0) !== baseVersion) return { conflict: true, current: cur ?? null }
       const doc = { json, version: baseVersion + 1, updatedAt: new Date().toISOString() }
+      if (cur) { const h = history.get(key) ?? []; h.push({ ...cur, savedAt: doc.updatedAt }); history.set(key, h.slice(-10)) }
       docs.set(key, doc); return { doc }
     },
-    async deleteUser(id) { const u = users.get(id); if (!u) return; users.delete(id); byEmail.delete(u.email); for (const k of [...docs.keys()]) if (k.startsWith(`${id}:`)) docs.delete(k) },
+    async listHistory(userId, kind) { return [...(history.get(`${userId}:${kind}`) ?? [])] },
+    async deleteUser(id) { const u = users.get(id); if (!u) return; users.delete(id); byEmail.delete(u.email); for (const k of [...docs.keys()]) if (k.startsWith(`${id}:`)) docs.delete(k); for (const k of [...history.keys()]) if (k.startsWith(`${id}:`)) history.delete(k) },
     async close() {},
   }
 }

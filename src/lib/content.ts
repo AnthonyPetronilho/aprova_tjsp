@@ -13,11 +13,11 @@ export type Meta = { status: Status; reviewed: boolean; updatedAt: string }
 export type CLesson = Lesson & Meta
 export type CQuestion = Question & Meta
 export type CCard = Flashcard & Meta
-export interface ContentState { editor: boolean; lessons: CLesson[]; questions: CQuestion[]; cards: CCard[]; videos: Record<string, Video> }
+export interface ContentState { editor: boolean; lessons: CLesson[]; questions: CQuestion[]; cards: CCard[]; videos: Record<string, Video>; deleted: Record<string, string> } // deleted: lápides (id → quando), para a exclusão também sincronizar
 const KEY = 'aprova-tjsp:content:v1'
 const BUILTIN = { lessons: [...LESSONS], questions: [...QUESTIONS], cards: [...FLASHCARDS] }
 export const isBuiltin = (id: string) => BUILTIN.lessons.some(l => l.id === id) || BUILTIN.questions.some(q => q.id === id) || BUILTIN.cards.some(c => c.id === id)
-const empty = (): ContentState => ({ editor: false, lessons: [], questions: [], cards: [], videos: {} })
+const empty = (): ContentState => ({ editor: false, lessons: [], questions: [], cards: [], videos: {}, deleted: {} })
 
 let state: ContentState = empty(), version = 0
 const subs = new Set<() => void>()
@@ -38,7 +38,9 @@ export function sanitize(raw: unknown): ContentState | null {
   const clean = <T extends { id?: unknown }>(a: T[]) => a.filter(okId).filter(x => !isBuiltin(x.id as string))
   const videos: Record<string, Video> = {}
   for (const [k, v] of Object.entries(r.videos ?? {})) if (v && typeof (v as Video).url === 'string' && parseVideo((v as Video).url)) videos[k] = { url: (v as Video).url, title: typeof (v as Video).title === 'string' ? (v as Video).title : undefined }
-  return { editor: !!r.editor, lessons: clean(r.lessons as CLesson[]), questions: clean(r.questions as CQuestion[]), cards: clean(r.cards as CCard[]), videos }
+  const deleted: Record<string, string> = {}
+  for (const [k, v] of Object.entries((r as { deleted?: Record<string, unknown> }).deleted ?? {})) if (typeof v === 'string' && k.length < 200) deleted[k] = v
+  return { editor: !!r.editor, lessons: clean(r.lessons as CLesson[]), questions: clean(r.questions as CQuestion[]), cards: clean(r.cards as CCard[]), videos, deleted }
 }
 export function loadContent() {
   try { const r = localStorage.getItem(KEY); if (r) state = sanitize(JSON.parse(r)) ?? empty() } catch { state = empty() }
@@ -107,6 +109,7 @@ export function removeItem(kind: 'lessons' | 'questions' | 'cards', id: string) 
   let next: ContentState = { ...state, [kind]: (state[kind] as { id: string }[]).filter(x => x.id !== id) } as ContentState
   if (kind === 'questions') next = { ...next, lessons: next.lessons.map(l => ({ ...l, questionIds: l.questionIds.filter(q => q !== id) })) }
   if (kind === 'lessons') next = { ...next, cards: next.cards.map(c => c.lessonId === id ? { ...c, status: 'rascunho' as Status, lessonId: undefined } : c) }
+  next = { ...next, deleted: { ...next.deleted, [id]: now() } }
   state = next; emit()
 }
 export const exportContent = () => JSON.stringify({ app: 'aprova-tjsp-conteudo', v: 1, ...state, editor: undefined }, null, 2)
@@ -117,7 +120,23 @@ export function importContent(raw: unknown): { ok: boolean; added: number } {
   state = { ...state, lessons: merge(state.lessons, c.lessons), questions: merge(state.questions, c.questions), cards: merge(state.cards, c.cards), videos: { ...state.videos, ...c.videos } }
   emit(); return { ok: true, added }
 }
-export function resetContent() { state = { ...empty(), editor: state.editor }; emit() }
-export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length
+export function resetContent() { const at = now(), deleted = { ...state.deleted }; for (const x of [...state.lessons, ...state.questions, ...state.cards]) deleted[x.id] = at; state = { ...empty(), editor: state.editor, deleted }; emit() }
+export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length && !Object.keys(state.deleted).length
 export function replaceContent(raw: unknown): boolean { const c = sanitize(raw); if (!c) return false; state = { ...c, editor: state.editor }; emit(); return true }
-export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos })
+export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos, deleted: state.deleted })
+// Mescla o conteúdo do servidor com o local: por id, vence a versão mais recente (updatedAt); exclusões valem por lápide.
+// Itens nunca são apagados por causa de uma mesclagem sem lápide. Devolve o conteúdo resultante, ou null se os dados forem inválidos.
+export function mergeRemoteContent(raw: unknown): object | null {
+  const c = sanitize(raw); if (!c) return null
+  const deleted = { ...state.deleted }; for (const [k, v] of Object.entries(c.deleted)) if (!deleted[k] || v > deleted[k]) deleted[k] = v
+  const pick = <T extends { id: string; updatedAt?: string }>(a: T[], b: T[]): T[] => {
+    const m = new Map<string, T>()
+    for (const x of [...a, ...b]) { const cur = m.get(x.id); if (!cur || (x.updatedAt ?? '') > (cur.updatedAt ?? '') || ((x.updatedAt ?? '') === (cur.updatedAt ?? '') && JSON.stringify(x) < JSON.stringify(cur))) m.set(x.id, x) }
+    return [...m.values()].filter(x => !(deleted[x.id] && deleted[x.id] >= (x.updatedAt ?? ''))).sort((p, q) => (p.id < q.id ? -1 : 1))
+  }
+  const next: ContentState = { ...state, lessons: pick(state.lessons, c.lessons), questions: pick(state.questions, c.questions), cards: pick(state.cards, c.cards), videos: { ...c.videos, ...state.videos }, deleted }
+  if (JSON.stringify(contentView(next)) !== JSON.stringify(contentView(state))) { state = next; emit() }
+  return contentForSync()
+}
+export const contentFingerprint = (raw: unknown): string => { const c = sanitize(raw); return c ? JSON.stringify(contentView(c)) : '' }
+const contentView = (s: ContentState) => ({ lessons: [...s.lessons].sort((p, q) => (p.id < q.id ? -1 : 1)), questions: [...s.questions].sort((p, q) => (p.id < q.id ? -1 : 1)), cards: [...s.cards].sort((p, q) => (p.id < q.id ? -1 : 1)), videos: s.videos, deleted: s.deleted })

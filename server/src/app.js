@@ -4,15 +4,22 @@ import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { VALIDATORS } from './validate.js'
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/
 const KINDS = new Set(['progress', 'content'])
-const LIMIT = { progress: 1_000_000, content: 4_000_000 }  // bytes (texto JSON)
+const LIMIT = { progress: 4_500_000, content: 4_000_000 }  // bytes: o progresso agora inclui o registro de eventos  // bytes (texto JSON)
 
-export function createApp({ repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLimitMax = 20 }) {
+// Administradores: definidos só no servidor (ADMIN_EMAILS, separados por vírgula). O token JWT NÃO carrega papel algum:
+// a cada requisição o servidor confere o e-mail do usuário contra esta lista. Nenhum estado do frontend concede acesso.
+export const parseAdmins = s => new Set(String(s ?? '').split(',').map(x => x.trim().toLowerCase()).filter(Boolean))
+
+export function createApp({ repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLimitMax = 20, dataLimitMax = 600, adminEmails = '', trustProxy = undefined }) {
   if (!jwtSecret || jwtSecret.length < 32) throw new Error('JWT_SECRET precisa ter pelo menos 32 caracteres.')
   const app = express()
   app.disable('x-powered-by')
+  if (trustProxy !== undefined && trustProxy !== '') app.set('trust proxy', /^\d+$/.test(String(trustProxy)) ? Number(trustProxy) : trustProxy)
+  const admins = parseAdmins(adminEmails), isAdmin = u => !!u && admins.has(String(u.email).toLowerCase())
   app.use(helmet())
   app.use(cors({ origin: corsOrigin ? corsOrigin.split(',').map(s => s.trim()) : false, methods: ['GET', 'POST', 'PUT', 'DELETE'], allowedHeaders: ['Content-Type', 'Authorization'] }))
   app.use(express.json({ limit: '5mb' }))
@@ -42,30 +49,45 @@ export function createApp({ repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLi
     const c = creds(req.body); if (c.error) return res.status(400).json({ error: c.error })
     const u = await repo.createUser({ email: c.email, passHash: await bcrypt.hash(c.password, bcryptCost) })
     if (!u) return res.status(409).json({ error: 'Este e-mail já está cadastrado.' })
-    res.status(201).json({ token: sign(u), user: { id: u.id, email: u.email } })
+    res.status(201).json({ token: sign(u), user: { id: u.id, email: u.email, admin: isAdmin(u) } })
   }))
   app.post('/api/auth/login', authLimiter, wrap(async (req, res) => {
     const c = creds(req.body); if (c.error) return res.status(400).json({ error: c.error })
     const u = await repo.findUserByEmail(c.email)
     const ok = await bcrypt.compare(c.password, u?.passHash ?? dummyHash)   // mesmo custo com ou sem usuário
     if (!u || !ok) return res.status(401).json({ error: 'E-mail ou senha incorretos.' })
-    res.json({ token: sign(u), user: { id: u.id, email: u.email } })
+    res.json({ token: sign(u), user: { id: u.id, email: u.email, admin: isAdmin(u) } })
   }))
-  app.get('/api/me', auth, (req, res) => res.json({ user: { id: req.user.id, email: req.user.email } }))
-  app.delete('/api/me', auth, wrap(async (req, res) => { await repo.deleteUser(req.user.id); res.status(204).end() }))
+  app.get('/api/me', auth, (req, res) => res.json({ user: { id: req.user.id, email: req.user.email, admin: isAdmin(req.user) } }))
+  // apagar a conta exige a senha atual (um token roubado não basta)
+  app.delete('/api/me', authLimiter, auth, wrap(async (req, res) => {
+    const pw = typeof req.body?.password === 'string' ? req.body.password : ''
+    if (!pw || !(await bcrypt.compare(pw, req.user.passHash))) return res.status(403).json({ error: 'Senha incorreta.' })
+    await repo.deleteUser(req.user.id); res.status(204).end()
+  }))
+  // Rotas administrativas: sempre autenticadas E autorizadas no servidor. As rotas de conteúdo entram na Fase 5.
+  const requireAdmin = [auth, (req, res, next) => (isAdmin(req.user) ? next() : res.status(403).json({ error: 'Acesso restrito a administradores.' }))]
+  app.get('/api/admin/whoami', ...requireAdmin, (req, res) => res.json({ admin: true, email: req.user.email }))
 
-  // Documentos do usuário (progresso e conteúdo). O servidor guarda o JSON como o app enviou; quem define o formato é o app.
-  app.get('/api/data/:kind', auth, wrap(async (req, res) => {
-    if (!KINDS.has(req.params.kind)) return res.status(404).json({ error: 'Tipo desconhecido.' })
+  // Documentos do usuário (progresso e conteúdo). O servidor guarda o JSON como o app enviou, depois de validar o formato.
+  // Atualização com controle de versão (baseVersion): se outro aparelho salvou antes, responde 409 com o documento atual
+  // e quem mescla é o cliente. Cada versão substituída fica no histórico do servidor (backup, últimas 10).
+  const dataLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: dataLimitMax, standardHeaders: true, legacyHeaders: false, keyGenerator: req => `u:${req.user?.id ?? req.ip}`, message: { error: 'Muitas requisições. Aguarde alguns minutos.' } })
+  const kindOk = (req, res, next) => (KINDS.has(req.params.kind) ? next() : res.status(404).json({ error: 'Tipo desconhecido.' }))
+  app.get('/api/data/:kind/meta', auth, dataLimiter, kindOk, wrap(async (req, res) => {
+    const d = await repo.getDoc(req.user.id, req.params.kind)
+    res.json({ version: d?.version ?? 0, updatedAt: d?.updatedAt ?? null })
+  }))
+  app.get('/api/data/:kind', auth, dataLimiter, kindOk, wrap(async (req, res) => {
     const d = await repo.getDoc(req.user.id, req.params.kind)
     res.json(d ? { version: d.version, updatedAt: d.updatedAt, data: JSON.parse(d.json) } : { version: 0, updatedAt: null, data: null })
   }))
-  app.put('/api/data/:kind', auth, wrap(async (req, res) => {
+  app.put('/api/data/:kind', auth, dataLimiter, kindOk, wrap(async (req, res) => {
     const kind = req.params.kind
-    if (!KINDS.has(kind)) return res.status(404).json({ error: 'Tipo desconhecido.' })
     const { baseVersion, data } = req.body ?? {}
     if (!Number.isInteger(baseVersion) || baseVersion < 0) return res.status(400).json({ error: 'baseVersion inválido.' })
     if (!data || typeof data !== 'object' || Array.isArray(data)) return res.status(400).json({ error: 'data precisa ser um objeto.' })
+    const bad = VALIDATORS[kind](data); if (bad) return res.status(422).json({ error: `Dados recusados: ${bad}` })
     const json = JSON.stringify(data)
     if (Buffer.byteLength(json) > LIMIT[kind]) return res.status(413).json({ error: 'Dados grandes demais.' })
     const r = await repo.putDoc(req.user.id, kind, json, baseVersion)

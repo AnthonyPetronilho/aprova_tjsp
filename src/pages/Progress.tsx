@@ -26,7 +26,7 @@ export default function Progress({ p }: { p: P }) {
       {[['XP total', String(p.xp)], ['Dias estudados', String(p.studyDays.length)], ['Sequência', `${streak(p.studyDays)} dia(s)`], ['Questões respondidas', String(p.totalAnswered)], ['Tempo ativo', fmtTime(totalSec)]].map(([k, v]) => <div key={k} className="card"><p className="text-sm text-slate-500">{k}</p><p className="text-2xl font-extrabold">{v}</p></div>)}
       <div className="card"><p className="text-sm text-slate-500">Acerto atual</p><p className="text-2xl font-extrabold">{acc === null ? '—' : `${acc}%`}</p><p className="text-xs text-slate-500">última resposta de cada questão</p></div>
       <div className="card"><p className="text-sm text-slate-500">Revisões feitas</p><p className="text-2xl font-extrabold">{p.reviewLog.length}</p></div>
-      <div className="card"><p className="text-sm text-slate-500">Anotações</p><p className="text-2xl font-extrabold">{Object.keys(p.notes).length}</p></div></div>
+      <div className="card"><p className="text-sm text-slate-500">Anotações</p><p className="text-2xl font-extrabold">{Object.values(p.notes).filter(n => n.text.trim()).length}</p></div></div>
     <div className="grid lg:grid-cols-2 gap-4">
       <Bars title="Tempo ativo nos últimos 7 dias" vals={days.map(d => Math.round((p.daily[d]?.seconds ?? 0) / 60))} labels={labels} unit="m" color="bg-sky-500" />
       <Bars title="XP ganho nos últimos 7 dias" vals={days.map(d => p.daily[d]?.xp ?? 0)} labels={labels} unit="" color="bg-indigo-500" /></div>

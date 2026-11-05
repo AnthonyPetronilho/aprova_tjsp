@@ -4,7 +4,7 @@ import { describeNote } from '../lib/notes'
 import type { Store } from '../lib/useProgress'
 export default function Notes({ s }: { s: Store }) {
   const { p, saveNote } = s, [q, setQ] = useState('')
-  const all = Object.entries(p.notes).map(([key, n]) => ({ key, n, ...describeNote(key) })).sort((a, b) => b.n.updatedAt.localeCompare(a.n.updatedAt))
+  const all = Object.entries(p.notes).filter(([, n]) => n.text.trim()).map(([key, n]) => ({ key, n, ...describeNote(key) })).sort((a, b) => b.n.updatedAt.localeCompare(a.n.updatedAt))
   const list = all.filter(x => !q.trim() || (x.n.text + ' ' + x.title).toLowerCase().includes(q.trim().toLowerCase()))
   return <div className="space-y-4 max-w-3xl"><h1 className="text-2xl font-bold">📝 Minhas Anotações</h1>
     <p className="text-sm text-slate-500">Escreva anotações nas aulas, nas questões (depois de responder) e durante as revisões. Tudo fica reunido aqui. Apagar todo o texto de uma anotação a exclui.</p>

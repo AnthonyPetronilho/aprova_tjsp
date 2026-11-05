@@ -29,8 +29,8 @@ export default function Review({ s }: { s: Store }) {
       <div className="card min-h-[12rem] flex flex-col justify-between gap-4"><p className="text-xs text-slate-500">{c.origin === 'erro' ? 'Card gerado a partir de um erro' : 'Card da aula'}</p>
         <p className="text-lg whitespace-pre-line">{c.front}</p>
         {shown && <p className="whitespace-pre-line border-t border-slate-200 dark:border-slate-700 pt-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl p-3">{c.back}</p>}
-        {!shown && p.notes[cardNoteKey(id)] && <p className="text-xs text-slate-500">📝 Você tem uma anotação neste card (aparece depois de mostrar a resposta).</p>}</div>
-      {shown && <div className="card space-y-3">{p.notes[topicNoteKey(c.topicId)] && <details><summary className="cursor-pointer text-sm font-semibold">📝 Anotação da aula</summary><p className="whitespace-pre-line text-sm mt-2">{p.notes[topicNoteKey(c.topicId)].text}</p></details>}
+        {!shown && p.notes[cardNoteKey(id)]?.text && <p className="text-xs text-slate-500">📝 Você tem uma anotação neste card (aparece depois de mostrar a resposta).</p>}</div>
+      {shown && <div className="card space-y-3">{p.notes[topicNoteKey(c.topicId)]?.text && <details><summary className="cursor-pointer text-sm font-semibold">📝 Anotação da aula</summary><p className="whitespace-pre-line text-sm mt-2">{p.notes[topicNoteKey(c.topicId)].text}</p></details>}
         <NoteBox key={cardNoteKey(id)} value={p.notes[cardNoteKey(id)]?.text ?? ''} onSave={t => saveNote(cardNoteKey(id), t)} /></div>}
       {!shown ? <button className="btn-p w-full" onClick={() => setShown(true)}>Mostrar resposta</button>
         : <div className="grid grid-cols-2 md:grid-cols-4 gap-2">{([0, 1, 2, 3] as Rating[]).map(r => <button key={r} onClick={() => onRate(id, r)} className={`btn text-white ${COLORS[r]}`}>{RATING_LABELS[r]}<span className="block text-xs font-normal opacity-90">{intervalLabel(schedule(st, r, t))}</span></button>)}</div>}</div>

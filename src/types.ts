@@ -23,4 +23,17 @@ export type PlanMark = 'done' | 'skip'
 export interface MockRun { id: string; kind: 'rapido' | 'completo'; startedAt: number; limitSec?: number; qids: string[]; answers: Record<string, OptId>; idx: number }
 export interface MockResult { id: string; kind: 'rapido' | 'completo'; date: string; secondsUsed: number; qids: string[]; answers: Record<string, OptId>; correct: number; wrong: number; blank: number; score: number }
 export interface Essay { id: string; themeId: string; text: string; savedAt: string; seconds: number }
-export interface Progress { xp: number; completed: Record<string, string>; answers: Record<string, Answer>; studyDays: string[]; bonusDays: string[]; lastLessonId?: string; dark: boolean; cards: Record<string, CardState>; errors: Record<string, ErrorEntry>; favorites: string[]; reviewLog: ReviewLog[]; reviewXpDays: string[]; notes: Record<string, Note>; achievements: Record<string, string>; correctStreak: number; bestCorrectStreak: number; totalAnswered: number; daily: Record<string, DayStats>; missionsToday?: { day: string; list: Mission[] }; settings: { xp: XpSettings }; levelSeen: number; plan?: Plan; planMarks: Record<string, Record<number, PlanMark>>; mockRun?: MockRun; mocks: MockResult[]; mockXpDays: string[]; essays: Essay[]; essayDrafts: Record<string, string> }
+
+// ── Fase 2: modelo de eventos (sincronização sem perda). Cada atividade é um registro com id único e imutável.
+interface EvBase { id: string; at: string; day: string }
+export type RewardKind = 'q' | 'les' | 'rev' | 'mock' | 'mission'
+export type Ev =
+  | (EvBase & { t: 'ans'; qid: string; chosen: OptId; correct: boolean })
+  | (EvBase & { t: 'rev'; card: string; rating: Rating })
+  | (EvBase & { t: 'les'; lid: string })
+  | (EvBase & { t: 'sec'; sec: number })   // contador acumulado de UM aparelho em UM dia (id = sec:<aparelho>:<dia>)
+  | (EvBase & { t: 'rwd'; kind: RewardKind; key: string; xp: number }) // id determinístico: a mesma recompensa em dois aparelhos conta uma vez
+  | (EvBase & { t: 'fav'; qid: string; on: boolean })
+// Base: retrato congelado do que existia antes do modelo de eventos (compatibilidade com os dados antigos).
+export interface Base { xp: number; completed: Record<string, string>; answers: Record<string, Answer>; errors: Record<string, ErrorEntry>; cards: Record<string, CardState>; favorites: string[]; reviewLog: ReviewLog[]; daily: Record<string, DayStats>; totalAnswered: number; correctStreak: number; bestCorrectStreak: number }
+export interface Progress { schemaVersion: number; epoch: { id: string; at: string }; prefsAt: string; events: Ev[]; base: Base; essaysDeleted: string[];  xp: number; completed: Record<string, string>; answers: Record<string, Answer>; studyDays: string[]; bonusDays: string[]; lastLessonId?: string; dark: boolean; cards: Record<string, CardState>; errors: Record<string, ErrorEntry>; favorites: string[]; reviewLog: ReviewLog[]; reviewXpDays: string[]; notes: Record<string, Note>; achievements: Record<string, string>; correctStreak: number; bestCorrectStreak: number; totalAnswered: number; daily: Record<string, DayStats>; missionsToday?: { day: string; list: Mission[] }; settings: { xp: XpSettings }; levelSeen: number; plan?: Plan; planMarks: Record<string, Record<number, PlanMark>>; mockRun?: MockRun; mocks: MockResult[]; mockXpDays: string[]; essays: Essay[]; essayDrafts: Record<string, string> }

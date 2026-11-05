@@ -15,8 +15,10 @@ import Mocks from './pages/Mocks'
 import Essay from './pages/Essay'
 import Admin from './pages/Admin'
 import { useContent } from './lib/content'
-import { setAdapters, scheduleSync, syncNow, isLoggedIn } from './lib/sync'
-import { contentForSync, contentIsEmpty, replaceContent } from './lib/content'
+import { setAdapters, scheduleSync, startAutoSync } from './lib/sync'
+import { fingerprint } from './lib/events'
+import { contentForSync, mergeRemoteContent, contentFingerprint } from './lib/content'
+import { normalize } from './lib/useProgress'
 import Toasts from './components/Toasts'
 import Soon from './pages/Soon'
 const BASE: { title: string; items: [string, string, string][] }[] = [
@@ -32,9 +34,18 @@ export default function App() {
   const s = useProgress(), { p, toggleDark, toasts, dismiss } = s, content = useContent()
   const pRef = useRef(p); pRef.current = p
   const firstP = useRef(true), firstC = useRef(true)
-  useEffect(() => { setAdapters({ progress: { get: () => pRef.current, set: d => s.replaceAll(d), isEmpty: () => pRef.current.xp === 0 && !Object.keys(pRef.current.answers).length && !Object.keys(pRef.current.completed).length }, content: { get: contentForSync, set: replaceContent, isEmpty: contentIsEmpty } }); if (isLoggedIn()) syncNow() }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (firstP.current) { firstP.current = false; return } scheduleSync('progress') }, [p])
-  useEffect(() => { if (firstC.current) { firstC.current = false; return } scheduleSync('content') }, [content.lessons, content.questions, content.cards, content.videos])
+  useEffect(() => {
+    setAdapters({
+      progress: { get: () => s.getState(), merge: r => s.mergeRemote(r), fingerprint: d => { try { return fingerprint(normalize(d)) } catch { return '' } } },
+      content: { get: contentForSync, merge: mergeRemoteContent, fingerprint: contentFingerprint },
+    })
+    return startAutoSync()
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  // Só atividade real agenda envio rápido (3 s). O contador de tempo de estudo (a cada 15 s) não muda esta "assinatura" e sai junto com a próxima atividade ou em até 5 min.
+  const sig = [p.events.length, p.mocks.length, p.essays.length, p.essaysDeleted.length, p.prefsAt, p.epoch.id, Object.values(p.notes).map(n => n.updatedAt).join(','), p.achievements && Object.keys(p.achievements).length].join('|')
+  const lastSig = useRef(sig)
+  useEffect(() => { if (firstP.current) { firstP.current = false; return } const quick = lastSig.current !== sig; lastSig.current = sig; scheduleSync('progress', quick ? 3000 : 300000) }, [p, sig])
+  useEffect(() => { if (firstC.current) { firstC.current = false; return } scheduleSync('content') }, [content.lessons, content.questions, content.cards, content.videos, content.deleted])
   const GROUPS = content.editor ? BASE.map(g => g.title === 'Mais' ? { ...g, items: [ADMIN, ...g.items] } : g) : BASE
   const [page, setPage] = useState('home'), [lessonId, setLessonId] = useState<string | null>(null), [more, setMore] = useState(false)
   const go = (pg: string, id?: string) => { if (pg === 'lesson' && (id || !lessonId)) setLessonId(id ?? suggestLesson(p)); setPage(pg); setMore(false); window.scrollTo?.(0, 0) }
