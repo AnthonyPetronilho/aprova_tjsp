@@ -1,18 +1,6 @@
 import type { Question } from '../types'
-import { CRASE_QUESTIONS } from './crase'
-import { PECULATO_QUESTIONS } from './peculato'
-import { EXATAS_QUESTIONS } from './exatas'
-import { PORT_QUESTIONS } from './portugues'
-import { MAT2_QUESTIONS } from './mat2'
-import { MAT3_QUESTIONS } from './mat3'
-import { RL2_QUESTIONS } from './rl2'
-import { INFO_QUESTIONS } from './info'
-import { PORT2_QUESTIONS } from './port2'
-import { ATUAL_QUESTIONS } from './atual'
-import { DCONST_QUESTIONS } from './dconst'
-import { DPENAL_QUESTIONS } from './dpenal'
-import { DPP_QUESTIONS } from './dpp2'
-import { DPC_QUESTIONS } from './dpc2'
-import { DADM_QUESTIONS } from './dadm2'
-import { DINT_QUESTIONS } from './dint2'
-export const QUESTIONS: Question[] = [...CRASE_QUESTIONS, ...PECULATO_QUESTIONS, ...EXATAS_QUESTIONS, ...PORT_QUESTIONS, ...MAT2_QUESTIONS, ...MAT3_QUESTIONS, ...RL2_QUESTIONS, ...INFO_QUESTIONS, ...PORT2_QUESTIONS, ...ATUAL_QUESTIONS, ...DCONST_QUESTIONS, ...DPENAL_QUESTIONS, ...DPP_QUESTIONS, ...DPC_QUESTIONS, ...DADM_QUESTIONS, ...DINT_QUESTIONS]
+import { RAW_QUESTIONS } from './questions-raw'
+import { AUDIT } from './audit'
+import { applyRevisions } from './revisions'
+// Fase 4: o status de catálogo vem do registro de auditoria (src/data/audit.ts). Sobrescritas por conta (content.validations) continuam valendo.
+export const QUESTIONS: Question[] = RAW_QUESTIONS.map(q => ({ ...applyRevisions(q), validation: AUDIT[q.id]?.proposed ?? q.validation ?? 'pendente' }))

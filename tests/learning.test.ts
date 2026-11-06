@@ -5,6 +5,7 @@ import { useProgress, normalize } from '../src/lib/useProgress'
 import { mergeProgress, toCurrent, rebuild, fingerprint } from '../src/lib/events'
 import { clearContentLocal, setValidation, validationOf } from '../src/lib/content'
 import { QUESTIONS } from '../src/data/questions'
+import { AUDIT } from '../src/data/audit'
 import { DISCIPLINES } from '../src/data/edital'
 import { DEFAULT_MASTERY } from '../src/config'
 import { MASTERY_SHORT, attemptsOf, coverage, entriesOf, filterEntries, masteryOf, masteryText, minutesByDiscipline, poolOf, score, suggestionsFor, topicLearning, validateStudy, evolution, performanceByDiscipline } from '../src/lib/learning'
@@ -166,8 +167,9 @@ describe('Critério de domínio', () => {
     const d = mkP(); asm(d, T, 'avaliacao', [true, true, true, false, true], 3); asm(d, T, 'avaliacao', [true, true, true, false, true])
     expect(masteryOf(T, attemptsOf(d.p), v(allV), { ...rules, minPct: 90 }).state).toBe('nao-atingido'); expect(masteryOf(T, attemptsOf(d.p), v(allV), { ...rules, minPct: 70 }).state).toBe('consolidado')
   })
-  it('validação padrão é pendente e nunca vira "validada" sozinha; ajuste manual sincroniza por data', () => {
-    expect(QUESTIONS.every(q => validationOf(q.id) === 'pendente')).toBe(true)
+  it('validação padrão vem do registro de auditoria (Fase 4): só exatas conferidas por cálculo são validadas; ajuste manual sincroniza por data', () => {
+    expect(QUESTIONS.every(q => validationOf(q.id) === (AUDIT[q.id].proposed))).toBe(true)
+    expect(QUESTIONS.filter(q => validationOf(q.id) === 'validada').every(q => AUDIT[q.id].methods.some(m => m === 'calculo-automatizado' || m === 'conferencia-normativa'))).toBe(true)
     setValidation(TQ[0].id, 'validada'); expect(validationOf(TQ[0].id)).toBe('validada'); setValidation(TQ[0].id, 'precisa-correcao'); expect(validationOf(TQ[0].id)).toBe('precisa-correcao')
   })
 })
