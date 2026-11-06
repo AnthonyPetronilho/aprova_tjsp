@@ -1,8 +1,10 @@
 import type { DayStats, Mission, Progress } from '../types'
-import { LESSONS } from '../data/lessons'
 import { QUESTIONS } from '../data/questions'
 import { cardById } from '../data/cards'
 import { isDue } from './srs'
+import { DISCIPLINES } from '../data/edital'
+import { validationOf } from './content'
+import { attemptsOf, topicLearning, topicTitle } from './learning'
 export const emptyDay = (): DayStats => ({ qids: [], correctQids: [], lessons: 0, reviews: 0, resolved: 0, seconds: 0, xp: 0 })
 export function missionProgress(m: Mission, d?: DayStats): number {
   if (!d) return 0
@@ -13,6 +15,8 @@ export function missionProgress(m: Mission, d?: DayStats): number {
     case 'questions': return d.qids.length
     case 'correct': return d.correctQids.length
     case 'time': return Math.floor(d.seconds / 60)
+    case 'study': return d.study ?? 0
+    case 'assess': return d.asm ?? 0
   }
 }
 export const missionDone = (m: Mission, d?: DayStats) => missionProgress(m, d) >= m.target
@@ -20,8 +24,11 @@ const openErrors = (p: Progress) => Object.entries(p.errors).filter(([q, e]) => 
 // Missões geradas uma vez por dia a partir do estado real (3 a 5), para não mudarem enquanto a pessoa estuda.
 export function buildMissions(p: Progress, today: string): Mission[] {
   const out: Mission[] = []
-  const lesson = LESSONS.find(l => !p.completed[l.id])
-  if (lesson) out.push({ id: 'lesson', kind: 'lesson', target: 1, label: `Concluir a aula: ${lesson.title}` })
+  // Método: estudar fora → registrar → validar → reforçar. As missões seguem o que está pendente nessa jornada.
+  const att = attemptsOf(p), L = DISCIPLINES.flatMap(d => d.topics).map(t => topicLearning(p, t.id, { vOf: validationOf, today, attempts: att }))
+  const wait = L.find(x => x.status === 'aguardando')
+  if (wait) out.push({ id: 'assess', kind: 'assess', target: 1, label: `Validar o assunto: ${topicTitle(wait.topicId)}` })
+  else if (!att.length || !L.some(x => x.studied)) out.push({ id: 'study', kind: 'study', target: 1, label: 'Registrar um estudo externo no Diário' })
   const due = Object.keys(p.cards).filter(id => cardById(id) && isDue(p.cards[id], today)).length
   const recent = p.reviewLog.slice(-50), retention = recent.length >= 10 ? recent.filter(r => r.rating > 0).length / recent.length : 1
   if (due > 0) { const n = Math.min(due, retention < 0.7 ? 15 : 10); out.push({ id: 'review', kind: 'review', target: n, label: `Revisar ${n} flashcard(s)` }) }

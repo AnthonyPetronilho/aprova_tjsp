@@ -14,6 +14,8 @@ async function boot(opts = {}) {
 const P1 = (extra = {}) => ({ xp: 0, completed: {}, answers: {}, cards: {}, errors: {}, notes: {}, daily: {}, studyDays: [], bonusDays: [], favorites: [], reviewLog: [], reviewXpDays: [], mocks: [], mockXpDays: [], essays: [], ...extra })
 const EV = (o = {}) => ({ id: 'e1', t: 'ans', at: '2026-11-05T10:00:00.000Z', day: '2026-11-05', qid: 'q1', chosen: 'A', correct: true, ...o })
 const P2 = (events = [], extra = {}) => P1({ schemaVersion: 2, epoch: { id: '0', at: '' }, base: {}, events, ...extra })
+const P3 = (events = [], extra = {}) => P2(events, { schemaVersion: 3, diary: {}, marks: {}, ...extra })
+const ASM = (o = {}) => ({ id: 'a1', t: 'asm', at: '2026-11-05T10:00:00.000Z', day: '2026-11-05', topic: 't1', mode: 'avaliacao', items: [['q1', 'A', 1]], sec: 30, ...o })
 const reg = (s, email = 'a@b.com', password = 'senha-boa-123') => s.call('POST', '/api/auth/register', { email, password })
 
 test('JWT_SECRET curto é recusado', () => assert.throws(() => createApp({ repo: createMemoryRepo(), jwtSecret: 'curto' })))
@@ -106,12 +108,16 @@ test('validação do formato do progresso e do conteúdo (422)', async () => {
       ['xp negativo', P1({ xp: -1 })], ['xp texto', P1({ xp: '10' })], ['sem completed', (({ completed, ...r }) => r)(P1())], ['lista no lugar de objeto', P1({ answers: [] })],
       ['evento de tipo desconhecido', P2([EV({ t: 'hack' })])], ['evento sem id', P2([EV({ id: '' })])], ['dia inválido', P2([EV({ day: '05/11/2026' })])], ['ids repetidos', P2([EV(), EV()])],
       ['alternativa inválida', P2([EV({ chosen: 'Z' })])], ['XP absurdo', P2([EV({ id: 'r1', t: 'rwd', kind: 'q', key: 'q1', xp: 99999 })])], ['tempo absurdo', P2([EV({ id: 's1', t: 'sec', sec: 999999 })])],
-      ['versão futura', P1({ schemaVersion: 3 })], ['v2 sem base', (({ base, ...r }) => r)(P2())], ['events não é lista', P2('x')],
+      ['versão futura', P2([], { schemaVersion: 4 })], ['v3: diário não é objeto', P3([], { diary: [] })], ['v3: asm sem itens', P3([ASM({ items: 'x' })])], ['v3: asm com modo inválido', P3([ASM({ mode: 'hack' })])], ['v3: item de asm inválido', P3([ASM({ items: [['q1', 'Z', 1]] })])], ['v3: dev sem n', P3([EV({ dev: 'abc' })])], ['v3: checkpoint inválido', P3([], { cp: { id: 1 } })], ['v2 sem base', (({ base, ...r }) => r)(P2())], ['events não é lista', P2('x')],
     ]) assert.equal((await put(d)).status, 422, nome)
     assert.equal((await put(P2([EV(), EV({ id: 'e2', t: 'sec', sec: 15 })]))).status, 200, 'v2 válido')
+    const ok3 = P3([EV({ dev: 'abc', n: 1 }), ASM(), EV({ id: 'r9', t: 'rwd', kind: 'asm', key: 't:2026-11-05', xp: 30 })], { cp: { id: 'c1', gen: 1, at: '2026-11-05T10:00:00.000Z', vec: { abc: 1 }, legacy: [] }, diary: {}, marks: {} })
+    assert.equal((await put(ok3, 'progress', 1)).status, 200, 'v3 válido (asm, dev/n, recompensa asm e checkpoint)')
+    assert.equal((await put({ lessons: [], questions: [], cards: [], videos: {}, deleted: {}, validations: [] }, 'content')).status, 422, 'validations precisa ser objeto')
+    assert.equal((await put({ lessons: [], questions: [], cards: [], videos: {}, deleted: {}, validations: { q1: { v: 'validada', at: '2026-11-05T10:00:00.000Z' } } }, 'content')).status, 200)
     assert.equal((await put({ lessons: [{ nome: 'sem id' }], questions: [], cards: [] }, 'content')).status, 422)
     assert.equal((await put({ lessons: [], questions: [], cards: [], videos: [] }, 'content')).status, 422)
-    assert.equal((await put({ lessons: [{ id: 'u-1' }], questions: [], cards: [], videos: {}, deleted: {} }, 'content')).status, 200)
+    assert.equal((await put({ lessons: [{ id: 'u-1' }], questions: [], cards: [], videos: {}, deleted: {} }, 'content', 1)).status, 200)
   } finally { s.close() }
 })
 test('meta de versão, histórico (backup) no servidor e 409 com o documento atual', async () => {

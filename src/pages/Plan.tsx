@@ -6,7 +6,7 @@ import { addDays, todayStr } from '../lib/dates'
 import { WEEKDAYS, blocksPerDay, dayBlocks, discName, finalStart, missed, remaining } from '../lib/plan'
 import type { Plan as PlanT, PlanBlock, PlanSettings } from '../types'
 import type { Store } from '../lib/useProgress'
-const KIND: Record<PlanBlock['kind'], string> = { estudo: 'Estudar', questoes: 'Resolver questões de', revisao: 'Revisão geral (flashcards e erros)', simulado: 'Simulado', erros: 'Refazer o Caderno de Erros' }
+const KIND: Record<PlanBlock['kind'], string> = { estudo: 'Estudar (resumo complementar de)', questoes: 'Resolver questões de', revisao: 'Revisão geral (flashcards e erros)', simulado: 'Simulado', erros: 'Refazer o Caderno de Erros', teoria: 'Estudo teórico (material externo) de', diagnostico: 'Teste diagnóstico (Validar meu aprendizado) de' }
 const fmt = (d: string) => `${WEEKDAYS[new Date(d + 'T12:00:00').getDay()]} ${d.slice(8)}/${d.slice(5, 7)}`
 const label = (b: PlanBlock) => (b.disc === 'geral' ? KIND[b.kind] : `${KIND[b.kind]} ${discName(b.disc)}`)
 const chip = (on: boolean) => `px-3 py-1 rounded-full text-sm border ${on ? 'bg-indigo-600 text-white border-indigo-600' : 'border-slate-300 dark:border-slate-600'}`
@@ -16,6 +16,8 @@ function target(s: Store, b: PlanBlock): { page: string; id?: string } | null {
   if (b.kind === 'erros') return { page: 'errors' }
   if (b.kind === 'simulado') return { page: 'mocks' }
   if (b.kind === 'questoes') return { page: 'bank' }
+  if (b.kind === 'teoria') return { page: 'diary', id: 'new' }
+  if (b.kind === 'diagnostico') return { page: 'validate' }
   const l = LESSONS.find(x => topicDiscipline(x.topicId)?.id === b.disc && !s.p.completed[x.id])
   return l ? { page: 'lesson', id: l.id } : null
 }
@@ -30,7 +32,7 @@ function Questionnaire({ s }: { s: Store }) {
       <div><span className="font-semibold">2. Em quais dias da semana?</span><div className="flex flex-wrap gap-2 mt-2">{WEEKDAYS.map((w, i) => <button key={w} type="button" onClick={() => setSt({ ...st, weekdays: tog(st.weekdays, i) })} className={chip(st.weekdays.includes(i))} aria-pressed={st.weekdays.includes(i)}>{w}</button>)}</div>{!st.weekdays.length && <p className="text-xs text-rose-600 mt-1">Escolha ao menos um dia.</p>}</div>
       <div><span className="font-semibold">3. Qual é o seu nível atual?</span><div className="flex flex-wrap gap-2 mt-2">{([['iniciante', 'Iniciante'], ['intermediario', 'Intermediário'], ['avancado', 'Avançado']] as const).map(([k, n]) => <button key={k} type="button" onClick={() => setSt({ ...st, level: k })} className={chip(st.level === k)}>{n}</button>)}</div></div>
       <div><span className="font-semibold">4. Quais matérias você considera mais difíceis?</span><div className="flex flex-wrap gap-2 mt-2">{DISCIPLINES.map(d => <button key={d.id} type="button" onClick={() => setSt({ ...st, hard: tog(st.hard, d.id) })} className={chip(st.hard.includes(d.id))} aria-pressed={st.hard.includes(d.id)}>{d.name}</button>)}</div></div>
-      <div><span className="font-semibold">5. Você prefere estudar…</span><div className="flex flex-wrap gap-2 mt-2">{([['ler', 'Lendo'], ['praticar', 'Praticando'], ['misto', 'Combinando os dois']] as const).map(([k, n]) => <button key={k} type="button" onClick={() => setSt({ ...st, style: k })} className={chip(st.style === k)}>{n}</button>)}</div></div>
+      <div><span className="font-semibold">5. Você prefere estudar…</span><div className="flex flex-wrap gap-2 mt-2">{([['ler', 'Mais teoria externa'], ['praticar', 'Mais questões'], ['misto', 'Combinando os dois']] as const).map(([k, n]) => <button key={k} type="button" onClick={() => setSt({ ...st, style: k })} className={chip(st.style === k)}>{n}</button>)}</div></div>
       <button className="btn-p" disabled={!st.weekdays.length} onClick={() => s.createPlan(st)}>Criar meu cronograma</button></div></div>
 }
 function Week({ plan, s }: { plan: PlanT; s: Store }) {

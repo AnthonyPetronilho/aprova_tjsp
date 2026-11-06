@@ -9,6 +9,10 @@ export interface Adapter {
   merge: (remote: unknown) => object | null
   /** Resumo canônico dos campos sincronizados, para saber se há algo novo a enviar. */
   fingerprint: (data: unknown) => string
+  /** Opcional: devolve uma versão compactada do documento a enviar (ou o próprio objeto se não há o que compactar). Nada muda localmente ainda. */
+  prepare?: (data: object) => object
+  /** Opcional: chamado só depois que o servidor ACEITOU o documento compactado; aí o estado local passa a usá-lo. */
+  committed?: (sent: object) => void
 }
 export interface SyncState { enabled: boolean; email?: string; admin?: boolean; status: 'local' | 'idle' | 'syncing' | 'error' | 'offline'; msg?: string; lastAt?: string }
 export interface SyncConfig { api: string; storage?: Pick<Storage, 'getItem' | 'setItem'>; fetch?: typeof fetch; debounceMs?: number; retryBaseMs?: number; retryMaxMs?: number; maxAttempts?: number; storageKey?: string }
@@ -53,8 +57,11 @@ export function createSync(cfg: SyncConfig) {
     readSaved(); let data = a.get(), base = saved.versions[k]
     for (let i = 0; i < maxAttempts; i++) {
       try {
-        const r = await req('PUT', `/api/data/${k}`, { baseVersion: base, data }) as { version: number }
-        saved.versions[k] = r.version; persist(); synced[k] = a.fingerprint(data); return
+        let payload = data; try { payload = a.prepare?.(data) ?? data } catch { payload = data } // compactar nunca pode impedir o envio
+        const r = await req('PUT', `/api/data/${k}`, { baseVersion: base, data: payload }) as { version: number }
+        saved.versions[k] = r.version; persist()
+        if (payload !== data) { a.committed?.(payload); synced[k] = a.fingerprint(payload) } else synced[k] = a.fingerprint(data)
+        return
       } catch (e) {
         if (!(e instanceof ApiError) || e.status !== 409) throw e
         const merged = e.body?.data ? a.merge(e.body.data) : data

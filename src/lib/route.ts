@@ -2,7 +2,7 @@ import { useSyncExternalStore } from 'react'
 // Roteamento mínimo por hash (#/login, #/dashboard…). Funciona em qualquer hospedagem estática sem regras de reescrita e
 // dá ao botão "voltar" do navegador o comportamento esperado. Nenhuma biblioteca nova.
 export type Gate = 'checking' | 'in' | 'out'
-export const PAGE_KEYS = ['home', 'edital', 'lesson', 'review', 'bank', 'errors', 'notes', 'mocks', 'essay', 'plan', 'progress', 'settings', 'soon', 'admin'] as const
+export const PAGE_KEYS = ['home', 'edital', 'lesson', 'review', 'bank', 'errors', 'notes', 'mocks', 'essay', 'plan', 'progress', 'diary', 'validate', 'settings', 'soon', 'admin'] as const
 export type PageKey = (typeof PAGE_KEYS)[number]
 export type View =
   | { kind: 'loading' } | { kind: 'welcome' } | { kind: 'login' } | { kind: 'register' }

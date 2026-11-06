@@ -35,7 +35,7 @@ export default function Lesson({ s, lessonId, onPick }: { s: Store; lessonId: st
       </div>
       <div className="flex items-center gap-2 text-sm"><button className="btn-s" disabled={pos < 1} onClick={() => onPick(list[pos - 1].id)}>← Anterior</button><button className="btn-s" disabled={pos < 0 || pos >= list.length - 1} onClick={() => onPick(list[pos + 1].id)}>Próxima →</button><span className="text-slate-500 ml-auto">{doneN}/{list.length} aulas concluídas neste filtro</span></div>
     </div>
-    <div><p className="text-sm text-slate-500">{disc?.name} › {topic?.title}</p><h1 className="text-2xl font-bold">Aula: {L.title} {isDone && '✅'}</h1></div>
+    <div><p className="text-sm text-slate-500">{disc?.name} › {topic?.title}</p><h1 className="text-2xl font-bold">Resumo complementar: {L.title} {isDone && '✅'}</h1><p className="text-xs text-slate-500 mt-1">Material de reforço do app. O estudo teórico principal é feito fora dele; ler este resumo não conta como aprendizado validado.</p></div>
     {L.video && <details className="card"><summary className="cursor-pointer font-semibold">🎬 Reforço em vídeo (opcional)</summary><div className="mt-3"><VideoPlayer video={L.video} /></div></details>}
     <div className="flex gap-1 flex-wrap">{names.map((n, k) => <button key={n} onClick={() => go(k)} className={`px-3 py-1 rounded-full text-sm ${k === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 dark:bg-slate-700'}`}>{k + 1}. {n}</button>)}</div>
     {step ? <div className="card space-y-3"><h2 className="font-bold text-lg">{step.title}</h2>

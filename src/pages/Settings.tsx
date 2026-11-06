@@ -5,7 +5,7 @@ import { useSyncState, syncNow } from '../lib/sync'
 import { signOut, removeAccount } from '../lib/auth'
 import { listBackups, readBackup } from '../lib/backup'
 import type { Store } from '../lib/useProgress'
-const FIELDS: [keyof XpSettings, string][] = [['lesson', 'Concluir uma aula'], ['question', 'Acertar uma questão (1ª vez que acerta)'], ['review', 'Concluir uma revisão (1x por dia)'], ['dailyMission', 'Completar as missões do dia'], ['mock', 'Finalizar um simulado (1x por dia)']]
+const FIELDS: [keyof XpSettings, string][] = [['lesson', 'Concluir uma aula'], ['question', 'Acertar uma questão (1ª vez que acerta)'], ['review', 'Concluir uma revisão (1x por dia)'], ['dailyMission', 'Completar as missões do dia'], ['mock', 'Finalizar um simulado (1x por dia)'], ['assessment', 'Avaliar um assunto com 5+ questões (1x por assunto por dia)'], ['study', 'Registrar estudo de 10+ min no Diário (1x por dia)']]
 function Backups() {
   const [list] = useState(listBackups)
   if (!list.length) return null
@@ -14,13 +14,16 @@ function Backups() {
 }
 export default function Settings({ s }: { s: Store }) {
   const content = useContent(), sy = useSyncState(), [delc, setDelc] = useState(false), [delPw, setDelPw] = useState('')
-  const { p, setXp, resetXp, replaceAll, reset } = s, [msg, setMsg] = useState(''), [confirm, setConfirm] = useState(false), file = useRef<HTMLInputElement>(null)
+  const { p, setXp, resetXp, replaceAll, reset, setMastery, resetMastery } = s, [msg, setMsg] = useState(''), [confirm, setConfirm] = useState(false), file = useRef<HTMLInputElement>(null)
   const exportData = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(p, null, 2)], { type: 'application/json' })); a.download = `aprova-tjsp-backup-${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href); setMsg('Backup baixado.') }
   const importData = async (f?: File) => { if (!f) return; try { setMsg(replaceAll(JSON.parse(await f.text())) ? 'Backup somado ao seu progresso atual (nada do que você já tinha foi apagado).' : 'Arquivo inválido: não parece um backup do Aprova TJSP.') } catch { setMsg('Não foi possível ler o arquivo.') } if (file.current) file.current.value = '' }
   return <div className="space-y-4 max-w-2xl"><h1 className="text-2xl font-bold">⚙️ Configurações</h1>
     <div className="card space-y-3"><h2 className="font-bold">Valores de XP</h2><p className="text-sm text-slate-500">Valem para ganhos futuros; o XP já acumulado não muda. Os níveis têm limites fixos.</p>
       {FIELDS.map(([k, l]) => <label key={k} className="flex items-center justify-between gap-3 text-sm"><span>{l}</span><input type="number" min={0} max={1000} value={p.settings.xp[k]} onChange={e => setXp(k, Number(e.target.value))} className="w-24 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-1 text-right" /></label>)}
       <button className="btn-s" onClick={resetXp}>Restaurar valores padrão</button></div>
+    <div className="card space-y-3"><h2 className="font-bold">🎓 Critério de domínio</h2><p className="text-sm text-slate-500">Um assunto só é “Domínio consolidado” quando todas as regras abaixo são cumpridas com questões <b>validadas</b>, em avaliações (a prática não conta). Mudar as regras reavalia o status na hora; nenhum dado é apagado.</p>
+      {([['minPct', 'Acertos mínimos (%)', 50, 100], ['minDays', 'Avaliações em dias diferentes', 1, 10], ['minDistinct', 'Questões validadas distintas', 3, 100], ['weakBelow', '“Precisa reforçar” abaixo de (%)', 10, 90]] as const).map(([k, l, lo, hi]) => <label key={k} className="flex items-center justify-between gap-3 text-sm"><span>{l}</span><input type="number" min={lo} max={hi} value={p.settings.mastery[k]} onChange={e => setMastery({ [k]: Number(e.target.value) })} className="w-24 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2" /></label>)}
+      <button className="btn-s" onClick={resetMastery}>Restaurar padrão (80% · 2 dias · 10 questões · 60%)</button></div>
     <div className="card space-y-3"><h2 className="font-bold">Backup do progresso</h2><p className="text-sm text-slate-500">Sem conta, seu progresso fica salvo só neste navegador: baixe um backup de vez em quando. Restaurar um arquivo <b>soma</b> o conteúdo dele ao progresso atual.</p>
       <div className="flex flex-wrap gap-2"><button className="btn-p" onClick={exportData}>⬇️ Baixar backup</button><button className="btn-s" onClick={() => file.current?.click()}>⬆️ Restaurar backup</button><input ref={file} type="file" accept="application/json,.json" className="hidden" onChange={e => importData(e.target.files?.[0])} /></div>
       {msg && <p className="text-sm" role="status">{msg}</p>}

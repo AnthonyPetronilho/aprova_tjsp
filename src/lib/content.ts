@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react'
-import type { Flashcard, Lesson, Question, Video } from '../types'
+import type { Flashcard, Lesson, Question, Validation, Video } from '../types'
 import { LESSONS } from '../data/lessons'
 import { QUESTIONS } from '../data/questions'
 import { FLASHCARDS } from '../data/cards'
@@ -13,11 +13,12 @@ export type Meta = { status: Status; reviewed: boolean; updatedAt: string }
 export type CLesson = Lesson & Meta
 export type CQuestion = Question & Meta
 export type CCard = Flashcard & Meta
-export interface ContentState { editor: boolean; lessons: CLesson[]; questions: CQuestion[]; cards: CCard[]; videos: Record<string, Video>; deleted: Record<string, string> } // deleted: lápides (id → quando), para a exclusão também sincronizar
+export interface ContentState { editor: boolean; lessons: CLesson[]; questions: CQuestion[]; cards: CCard[]; videos: Record<string, Video>; deleted: Record<string, string>; validations: Record<string, { v: Validation; at: string }> } // validations: situação de validação por questão (padrão: pendente); deleted: lápides (id → quando), para a exclusão também sincronizar
 const KEY = 'aprova-tjsp:content:v1'
+const VALS: Validation[] = ['pendente', 'precisa-correcao', 'precisa-complementacao', 'validada']
 const BUILTIN = { lessons: [...LESSONS], questions: [...QUESTIONS], cards: [...FLASHCARDS] }
 export const isBuiltin = (id: string) => BUILTIN.lessons.some(l => l.id === id) || BUILTIN.questions.some(q => q.id === id) || BUILTIN.cards.some(c => c.id === id)
-const empty = (): ContentState => ({ editor: false, lessons: [], questions: [], cards: [], videos: {}, deleted: {} })
+const empty = (): ContentState => ({ editor: false, lessons: [], questions: [], cards: [], videos: {}, deleted: {}, validations: {} })
 
 let state: ContentState = empty(), version = 0
 const subs = new Set<() => void>()
@@ -40,13 +41,19 @@ export function sanitize(raw: unknown): ContentState | null {
   for (const [k, v] of Object.entries(r.videos ?? {})) if (v && typeof (v as Video).url === 'string' && parseVideo((v as Video).url)) videos[k] = { url: (v as Video).url, title: typeof (v as Video).title === 'string' ? (v as Video).title : undefined }
   const deleted: Record<string, string> = {}
   for (const [k, v] of Object.entries((r as { deleted?: Record<string, unknown> }).deleted ?? {})) if (typeof v === 'string' && k.length < 200) deleted[k] = v
-  return { editor: !!r.editor, lessons: clean(r.lessons as CLesson[]), questions: clean(r.questions as CQuestion[]), cards: clean(r.cards as CCard[]), videos, deleted }
+  const validations: Record<string, { v: Validation; at: string }> = {}
+  for (const [k, v] of Object.entries((r as { validations?: Record<string, unknown> }).validations ?? {})) { const x = v as { v?: unknown; at?: unknown }; if (k.length < 200 && x && VALS.includes(x.v as Validation) && typeof x.at === 'string') validations[k] = { v: x.v as Validation, at: x.at } }
+  return { editor: !!r.editor, lessons: clean(r.lessons as CLesson[]), questions: clean(r.questions as CQuestion[]), cards: clean(r.cards as CCard[]), videos, deleted, validations }
 }
 export function loadContent() {
   try { const r = localStorage.getItem(KEY); if (r) state = sanitize(JSON.parse(r)) ?? empty() } catch { state = empty() }
   rebuild()
 }
 export const getContent = () => state
+// Situação de validação da questão: o que o editor registrou; sem registro vale o campo da própria questão e, por fim, 'pendente'.
+// Nunca é promovida automaticamente para 'validada'.
+export const validationOf = (qid: string): Validation => state.validations[qid]?.v ?? QUESTIONS.find(q => q.id === qid)?.validation ?? 'pendente'
+export function setValidation(qid: string, v: Validation) { if (!VALS.includes(v)) return; state = { ...state, validations: { ...state.validations, [qid]: { v, at: new Date().toISOString() } } }; emit() }
 export function useContent(): ContentState { useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => version); return state }
 const now = () => new Date().toISOString()
 const upsert = <T extends { id: string }>(a: T[], x: T) => a.some(y => y.id === x.id) ? a.map(y => y.id === x.id ? x : y) : [...a, x]
@@ -113,19 +120,20 @@ export function removeItem(kind: 'lessons' | 'questions' | 'cards', id: string) 
   state = next; emit()
 }
 export const exportContent = () => JSON.stringify({ app: 'aprova-tjsp-conteudo', v: 1, ...state, editor: undefined }, null, 2)
+const mergeVal = (a: ContentState['validations'], b: ContentState['validations']) => { const o = { ...a }; for (const [k, x] of Object.entries(b)) if (!o[k] || x.at > o[k].at || (x.at === o[k].at && x.v < o[k].v)) o[k] = x; return o }
 export function importContent(raw: unknown): { ok: boolean; added: number } {
   const c = sanitize(raw); if (!c) return { ok: false, added: 0 }
   let added = 0
   const merge = <T extends { id: string }>(a: T[], b: T[]) => { let out = a; for (const x of b) { if (!out.some(y => y.id === x.id)) added++; out = upsert(out, x) } return out }
-  state = { ...state, lessons: merge(state.lessons, c.lessons), questions: merge(state.questions, c.questions), cards: merge(state.cards, c.cards), videos: { ...state.videos, ...c.videos } }
+  state = { ...state, lessons: merge(state.lessons, c.lessons), questions: merge(state.questions, c.questions), cards: merge(state.cards, c.cards), videos: { ...state.videos, ...c.videos }, validations: mergeVal(state.validations, c.validations) }
   emit(); return { ok: true, added }
 }
-export function resetContent() { const at = now(), deleted = { ...state.deleted }; for (const x of [...state.lessons, ...state.questions, ...state.cards]) deleted[x.id] = at; state = { ...empty(), editor: state.editor, deleted }; emit() }
+export function resetContent() { const at = now(), deleted = { ...state.deleted }; for (const x of [...state.lessons, ...state.questions, ...state.cards]) deleted[x.id] = at; state = { ...empty(), editor: state.editor, deleted, validations: state.validations }; emit() }
 // Troca de conta: esvazia o conteúdo local sem lápides (não é exclusão; o conteúdo da conta continua no servidor) e desliga o modo editor.
 export function clearContentLocal() { state = empty(); emit() }
-export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length && !Object.keys(state.deleted).length
+export const contentIsEmpty = () => !state.lessons.length && !state.questions.length && !state.cards.length && !Object.keys(state.videos).length && !Object.keys(state.deleted).length && !Object.keys(state.validations).length
 export function replaceContent(raw: unknown): boolean { const c = sanitize(raw); if (!c) return false; state = { ...c, editor: state.editor }; emit(); return true }
-export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos, deleted: state.deleted })
+export const contentForSync = () => ({ lessons: state.lessons, questions: state.questions, cards: state.cards, videos: state.videos, deleted: state.deleted, validations: state.validations })
 // Mescla o conteúdo do servidor com o local: por id, vence a versão mais recente (updatedAt); exclusões valem por lápide.
 // Itens nunca são apagados por causa de uma mesclagem sem lápide. Devolve o conteúdo resultante, ou null se os dados forem inválidos.
 export function mergeRemoteContent(raw: unknown): object | null {
@@ -136,9 +144,9 @@ export function mergeRemoteContent(raw: unknown): object | null {
     for (const x of [...a, ...b]) { const cur = m.get(x.id); if (!cur || (x.updatedAt ?? '') > (cur.updatedAt ?? '') || ((x.updatedAt ?? '') === (cur.updatedAt ?? '') && JSON.stringify(x) < JSON.stringify(cur))) m.set(x.id, x) }
     return [...m.values()].filter(x => !(deleted[x.id] && deleted[x.id] >= (x.updatedAt ?? ''))).sort((p, q) => (p.id < q.id ? -1 : 1))
   }
-  const next: ContentState = { ...state, lessons: pick(state.lessons, c.lessons), questions: pick(state.questions, c.questions), cards: pick(state.cards, c.cards), videos: { ...c.videos, ...state.videos }, deleted }
+  const next: ContentState = { ...state, lessons: pick(state.lessons, c.lessons), questions: pick(state.questions, c.questions), cards: pick(state.cards, c.cards), videos: { ...c.videos, ...state.videos }, deleted, validations: mergeVal(state.validations, c.validations) }
   if (JSON.stringify(contentView(next)) !== JSON.stringify(contentView(state))) { state = next; emit() }
   return contentForSync()
 }
 export const contentFingerprint = (raw: unknown): string => { const c = sanitize(raw); return c ? JSON.stringify(contentView(c)) : '' }
-const contentView = (s: ContentState) => ({ lessons: [...s.lessons].sort((p, q) => (p.id < q.id ? -1 : 1)), questions: [...s.questions].sort((p, q) => (p.id < q.id ? -1 : 1)), cards: [...s.cards].sort((p, q) => (p.id < q.id ? -1 : 1)), videos: s.videos, deleted: s.deleted })
+const contentView = (s: ContentState) => ({ lessons: [...s.lessons].sort((p, q) => (p.id < q.id ? -1 : 1)), questions: [...s.questions].sort((p, q) => (p.id < q.id ? -1 : 1)), cards: [...s.cards].sort((p, q) => (p.id < q.id ? -1 : 1)), videos: s.videos, deleted: s.deleted, validations: Object.fromEntries(Object.entries(s.validations).sort(([a], [b]) => (a < b ? -1 : 1))) })

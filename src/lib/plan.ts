@@ -1,4 +1,4 @@
-// Motor do cronograma: gera um ciclo semanal (1 a 4 semanas) com blocos de 30 min, pesos por matéria e reta final.
+// Motor do cronograma (Fase 3: teoria externa → teste diagnóstico → questões/reforço; revisão semanal e simulados na reta final): gera um ciclo semanal (1 a 4 semanas) com blocos de 30 min, pesos por matéria e reta final.
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import { QUESTIONS } from '../data/questions'
 import { EXAM_DATE } from '../config'
@@ -49,7 +49,7 @@ export function buildTemplate(p: Progress, s: PlanSettings): PlanBlock[][] {
   const content = K * W * bpd - K
   const seq = interleave(allocate(content, ws), ws.map(x => x.id))
   const seen: Record<string, number> = {}
-  const mk = (disc: string): PlanBlock => { const c = (seen[disc] = (seen[disc] ?? -1) + 1); return { disc, min: 30, kind: s.style === 'ler' ? 'estudo' : s.style === 'praticar' ? 'questoes' : c % 2 === 0 ? 'estudo' : 'questoes' } }
+  const mk = (disc: string): PlanBlock => { const c = (seen[disc] = (seen[disc] ?? -1) + 1); return { disc, min: 30, kind: s.style === 'ler' ? (c % 3 === 2 ? 'diagnostico' : 'teoria') : s.style === 'praticar' ? (c % 2 === 0 ? 'questoes' : 'diagnostico') : (['teoria', 'diagnostico', 'questoes'] as const)[c % 3] } }
   const days: PlanBlock[][] = []; let i = 0
   for (let d = 0; d < K * W; d++) {
     const lastOfWeek = d % W === W - 1, n = bpd - (lastOfWeek ? 1 : 0), day: PlanBlock[] = []

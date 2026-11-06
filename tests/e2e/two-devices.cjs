@@ -16,7 +16,7 @@ const txt = async pg => await pg.locator('body').innerText()
   // 1) migração de dados antigos no navegador
   const A = await dev(b, legacy)
   const raw = await A.evaluate(() => JSON.parse(localStorage.getItem('aprova-tjsp:v1')))
-  ok(raw.schemaVersion === 2 && raw.base.xp === 245 && raw.xp === 245, 'dados antigos migrados: XP 245 preservado, schemaVersion 2')
+  ok(raw.schemaVersion === 3 && raw.base.xp === 245 && raw.xp === 245, 'dados antigos migrados: XP 245 preservado, schemaVersion 3')
   ok(raw.completed['pt-crase'] === '2026-10-01' && raw.base.completed['pt-crase'], 'aula concluída no modelo anterior preservada na base')
   const bk = await A.evaluate(() => Object.keys(localStorage).filter(k => k.startsWith('aprova-tjsp:backup:antes-da-migracao')))
   ok(bk.length === 1, 'backup criado antes de migrar')

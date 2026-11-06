@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
-import type { Flashcard, Lesson, OptId, Question, Step, Video } from '../types'
+import type { Flashcard, Lesson, OptId, Question, Step, Validation, Video } from '../types'
+import { VALIDATION } from '../lib/learning'
 import { DISCIPLINES } from '../data/edital'
 import { LESSONS } from '../data/lessons'
 import { QUESTIONS } from '../data/questions'
 import { FLASHCARDS } from '../data/cards'
-import { useContent, saveLesson, saveQuestion, saveCard, removeItem, setVideo, newId, isBuiltin, exportContent, importContent, resetContent, topicsFlat, type Status } from '../lib/content'
+import { useContent, setValidation, validationOf, saveLesson, saveQuestion, saveCard, removeItem, setVideo, newId, isBuiltin, exportContent, importContent, resetContent, topicsFlat, type Status } from '../lib/content'
 import { parseVideo } from '../lib/video'
 import VideoPlayer from '../components/VideoPlayer'
 const inp = 'w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-3 py-2 text-sm'
@@ -71,9 +72,10 @@ function CardForm({ init, onDone }: { init: Flashcard & { reviewed?: boolean }; 
 }
 
 const topicName = (id: string) => topicsFlat.find(t => t.id === id)?.title ?? '(sem assunto)'
-function Row({ title, sub, st, onEdit, onDelete }: { title: string; sub: string; st: Status | 'embutido'; onEdit?: () => void; onDelete?: () => void }) {
+const ValSel = ({ id }: { id: string }) => <select aria-label="Situação de validação" title={VALIDATION[validationOf(id)].hint} className="rounded-lg border border-slate-300 dark:border-slate-600 bg-transparent px-2 py-1 text-xs" value={validationOf(id)} onChange={e => setValidation(id, e.target.value as Validation)}>{(Object.keys(VALIDATION) as Validation[]).map(k => <option key={k} value={k}>{VALIDATION[k].label}</option>)}</select>
+function Row({ title, sub, st, onEdit, onDelete, extra }: { title: string; sub: string; st: Status | 'embutido'; onEdit?: () => void; onDelete?: () => void; extra?: React.ReactNode }) {
   const [c, setC] = useState(false)
-  return <li className="flex flex-wrap items-center gap-2 py-2 border-b border-slate-100 dark:border-slate-700"><div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{title || '(sem título)'}</p><p className="text-xs text-slate-500 truncate">{sub}</p></div><Badge st={st} />
+  return <li className="flex flex-wrap items-center gap-2 py-2 border-b border-slate-100 dark:border-slate-700"><div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{title || '(sem título)'}</p><p className="text-xs text-slate-500 truncate">{sub}</p></div><Badge st={st} />{extra}
     {onEdit && <button className="btn-s !py-1 text-xs" onClick={onEdit}>Editar</button>}
     {onDelete && (c ? <><button className="btn !py-1 text-xs bg-rose-600 text-white" onClick={onDelete}>Confirmar exclusão</button><button className="underline text-xs" onClick={() => setC(false)}>Não</button></> : <button className="underline text-xs text-rose-600" onClick={() => setC(true)}>Excluir</button>)}</li>
 }
@@ -118,8 +120,8 @@ export default function Admin() {
       {c.lessons.map(l => <Row key={l.id} title={l.title} sub={`${topicName(l.topicId)} · ${l.steps.length} etapa(s)${l.video ? ' · 🎬' : ''}`} st={l.status} onEdit={() => setEdit({ kind: 'aulas', item: l })} onDelete={() => removeItem('lessons', l.id)} />)}
       {LESSONS.filter(l => isBuiltin(l.id)).map(l => <Row key={l.id} title={l.title} sub={`${topicName(l.topicId)}${l.video ? ' · 🎬' : ''}`} st="embutido" />)}</ul></div>}
     {!edit && tab === 'questoes' && <div className="card"><div className="flex items-center mb-2"><h2 className="font-bold flex-1">Questões <span className="text-sm font-normal text-slate-500">({QUESTIONS.length} publicadas no banco)</span></h2><button className="btn-p" onClick={() => setEdit({ kind: 'questoes', item: blankQ() })}>+ Nova questão</button></div><ul>
-      {c.questions.map(q => <Row key={q.id} title={q.stem} sub={`${topicName(q.topicId)} · ${q.difficulty}`} st={q.status} onEdit={() => setEdit({ kind: 'questoes', item: q })} onDelete={() => removeItem('questions', q.id)} />)}
-      {QUESTIONS.filter(q => isBuiltin(q.id)).map(q => <Row key={q.id} title={q.stem} sub={`${topicName(q.topicId)} · ${q.difficulty}`} st="embutido" />)}</ul></div>}
+      {c.questions.map(q => <Row key={q.id} title={q.stem} sub={`${topicName(q.topicId)} · ${q.difficulty}`} st={q.status} extra={<ValSel id={q.id} />} onEdit={() => setEdit({ kind: 'questoes', item: q })} onDelete={() => removeItem('questions', q.id)} />)}
+      {QUESTIONS.filter(q => isBuiltin(q.id)).map(q => <Row key={q.id} title={q.stem} sub={`${topicName(q.topicId)} · ${q.difficulty}`} st="embutido" extra={<ValSel id={q.id} />} />)}</ul></div>}
     {!edit && tab === 'cards' && <div className="card"><div className="flex items-center mb-2"><h2 className="font-bold flex-1">Flashcards</h2><button className="btn-p" onClick={() => setEdit({ kind: 'cards', item: blankC() })}>+ Novo flashcard</button></div><ul>
       {c.cards.map(x => <Row key={x.id} title={x.front} sub={topicName(x.topicId)} st={x.status} onEdit={() => setEdit({ kind: 'cards', item: x })} onDelete={() => removeItem('cards', x.id)} />)}
       {FLASHCARDS.filter(x => isBuiltin(x.id)).map(x => <Row key={x.id} title={x.front} sub={topicName(x.topicId)} st="embutido" />)}</ul></div>}

@@ -83,6 +83,13 @@ Detalhes, arquivos e limitações: `docs/FASE-2-RESULTADO.md`.
 - **Servidor:** validação do formato dos documentos (422), limite de requisições por usuário nas rotas de dados, `TRUST_PROXY` configurável, apagar conta exige a senha.
 - **Testes** (`npm test`): `tests/events.test.ts` (migração, mesclagem, propriedades com 3 aparelhos), `tests/sync.test.ts` (servidor real: concorrência, queda de rede, aparelho antigo, dados inválidos, 401), `tests/content-backup.test.ts`, `tests/legacy/*` (integridade dos dados, simulados, cronograma, Admin) e `server/test/api.test.js`. `npm run typecheck` verifica `src` e `tests`. E2E manual com dois aparelhos: `tests/e2e/two-devices.cjs` (precisa de Playwright).
 
+## Fase 3 – Método: estudar fora, registrar, validar, reforçar
+Detalhes completos: `docs/FASE-3-RESULTADO.md`. O app organiza e avalia o estudo; a teoria é estudada em material externo e os resumos/flashcards do app são complementares.
+- **Diário de Estudos** (`#/diary`) e **Validar meu aprendizado** (`#/validate`, 6 etapas); 8 status por assunto; 3 métricas (estudo, avaliação, domínio).
+- **Domínio** só com questões *validadas*, em avaliações (não prática), ≥ 80%, ≥ 2 dias, ≥ 10 questões distintas (configurável). Questões começam **pendentes**; o campo de validação é editado no Admin.
+- **Compactação de eventos** automática e segura (só vale depois que o servidor aceita; cópia `antes-de-compactar`).
+- Testes: `npm test`. E2E manual da fase: `tests/e2e/learning-flow.cjs` (build sem `VITE_API_URL` + `npx vite preview --port 4174`).
+
 ## Entrada, conta e perfil
 
 - Com servidor configurado (`VITE_API_URL`), quem não está conectado vê a **página de boas-vindas** (`#/`), com **Entrar** (`#/login`) e **Criar conta** (`#/register`); depois do login vai ao `#/dashboard` ou à página que tentava abrir (`?next=`). Sem servidor, o app segue 100% local, sem telas de conta.

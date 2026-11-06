@@ -22,7 +22,7 @@ const legacy = () => ({
 describe('migração do formato antigo (compatibilidade)', () => {
   it('preserva XP, aulas, respostas, revisões, erros, anotações, simulados e conquistas', () => {
     const raw = legacy(), p = normalize(raw)
-    expect(p.schemaVersion).toBe(2); expect(p.events).toEqual([])
+    expect(p.schemaVersion).toBe(3); expect(p.events).toEqual([])
     expect(p.xp).toBe(245); expect(p.completed).toEqual(raw.completed); expect(p.answers).toEqual(raw.answers)
     expect(p.cards[card.id]).toEqual(raw.cards[card.id]); expect(p.errors).toEqual(raw.errors); expect(p.favorites).toEqual(['q1'])
     expect(p.reviewLog).toEqual(raw.reviewLog); expect(p.notes).toEqual(raw.notes); expect(p.achievements).toEqual(raw.achievements)
@@ -36,7 +36,7 @@ describe('migração do formato antigo (compatibilidade)', () => {
     const p = normalize(legacy()); expect(p.events.length).toBe(0); expect(p.xp).toBe(245)
   })
   it('dados antigos incompletos (fases iniciais) recebem padrões', () => {
-    const p = normalize({ xp: 5, completed: {}, answers: {} }); expect(p.cards).toEqual({}); expect(p.schemaVersion).toBe(2); expect(p.settings.xp.lesson).toBeGreaterThan(0)
+    const p = normalize({ xp: 5, completed: {}, answers: {} }); expect(p.cards).toEqual({}); expect(p.schemaVersion).toBe(3); expect(p.settings.xp.lesson).toBeGreaterThan(0)
   })
 })
 
