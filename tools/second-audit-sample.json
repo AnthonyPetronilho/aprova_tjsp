@@ -1,0 +1,432 @@
+[
+ {
+  "id": "itt-5",
+  "estrato": "B/D: explicação alterada (correcao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilc-4",
+  "estrato": "B/D: explicação alterada (correcao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "itm-5",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilr-1",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilr-2",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilr-3",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilr-4",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ilr-5",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ird-2",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "icg-4",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ico-3",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ip2-3",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "adp-5",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "ada-1",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "ada-5",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "aim-4",
+  "estrato": "B/D: explicação alterada (complementacao); A: alteração normativa de 2026 / pendência",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "soc-2",
+  "estrato": "B: gabarito corrigido/substituído",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "soc-2b",
+  "estrato": "A/B: substituta; B/D: explicação alterada (complementacao)",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "ppj-4",
+  "estrato": "B: gabarito corrigido/substituído",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppj-4b",
+  "estrato": "A/B: substituta",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppu-4",
+  "estrato": "B/D: explicação alterada (correcao)",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "estr-1",
+  "estrato": "B: gabarito corrigido/substituído",
+  "disciplina": "Raciocínio Lógico"
+ },
+ {
+  "id": "estr-1b",
+  "estrato": "A/B: substituta",
+  "disciplina": "Raciocínio Lógico"
+ },
+ {
+  "id": "conc-5",
+  "estrato": "B/D: explicação alterada (correcao)",
+  "disciplina": "Língua Portuguesa"
+ },
+ {
+  "id": "clas-5",
+  "estrato": "B/D: explicação alterada (complementacao)",
+  "disciplina": "Língua Portuguesa"
+ },
+ {
+  "id": "pcl-4",
+  "estrato": "B: gabarito corrigido/substituído; C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcl-4b",
+  "estrato": "A/B: substituta",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "ip2-1",
+  "estrato": "A: alteração normativa de 2026 / pendência",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ip2-2",
+  "estrato": "A: alteração normativa de 2026 / pendência",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ird-4",
+  "estrato": "A: alteração normativa de 2026 / pendência",
+  "disciplina": "Legislação Interna do TJSP"
+ },
+ {
+  "id": "ppc-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppc-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppo-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppu-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppr-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppr-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppr-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppa-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppa-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "ppx-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "pjc-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "pjd-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "pjd-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Penal"
+ },
+ {
+  "id": "pcj-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcj-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pca-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pca-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pca-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcc-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcc-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pct-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pct-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pci-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pci-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pci-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcs-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcs-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcs-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcp-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcn-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcn-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcu-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcu-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcu-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcr-1",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcr-2",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcr-5",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcl-3",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "pcf-4",
+  "estrato": "C: prazo/exceção em CPC/CPP",
+  "disciplina": "Direito Processual Civil"
+ },
+ {
+  "id": "fals-4",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "p342-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "p336-4",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "p319-4",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "p328-3",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "p313-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Penal"
+ },
+ {
+  "id": "epd1-3",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Atualidades"
+ },
+ {
+  "id": "epd2-2",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Atualidades"
+ },
+ {
+  "id": "fat-5",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Atualidades"
+ },
+ {
+  "id": "cf5a-3",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "pj-2",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "soc-3",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "adm2-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Constitucional"
+ },
+ {
+  "id": "adf-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "adt-4",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "adt-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Administrativo"
+ },
+ {
+  "id": "aij-1",
+  "estrato": "E: aleatória (semente 20261112)",
+  "disciplina": "Direito Administrativo"
+ }
+]

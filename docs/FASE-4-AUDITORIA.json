@@ -7,19 +7,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-12",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A página não traz \"à você\" (cita só \"a maior parte dos pronomes\") nem \"à partir\". Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Crase: horas; locução masculina; antes de verbo; plural (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, \"Com crase ou sem crase: uso da crase em expressões\" (Flávia Neves; sem data) — https://www.dicio.com.br/expressoes-que-se-escrevem-com-e-sem-crase/; Crase: horas; locução masculina; antes de verbo; plural, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -27,19 +30,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-12",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Crase: palavras repetidas; locução adverbial (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, \"Com crase ou sem crase: uso da crase em expressões\" (Flávia Neves; sem data) — https://www.dicio.com.br/expressoes-que-se-escrevem-com-e-sem-crase/; Crase: palavras repetidas; locução adverbial, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -70,19 +76,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-12",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Crase: a + aquele(s) (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Crase: regras de uso\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/crase-regras-de-uso/; Crase: a + aquele(s), p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -90,19 +99,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-12",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "\"Pedir ajuda à vizinha\" não aparece literalmente: aplica-se a regra geral (preposição \"a\" exigida por \"pedir\" + artigo \"a\"). Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Crase: \"daqui a\"; masculino; verbo; a + artigo (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Crase: regras de uso\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/crase-regras-de-uso/ ; Dicio, \"Com crase ou sem crase: uso da crase em expressões\" (Flávia Neves; sem data) — https://www.dicio.com.br/expressoes-que-se-escrevem-com-e-sem-crase/; Crase: \"daqui a\"; masculino; verbo; a + artigo, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -692,19 +704,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-9",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Concordância com \"se\": apassivadora x indeterminação (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Dúvidas gramaticais recorrentes\" (Vânia Maria do Nascimento Duarte; sem data) — https://www.preparaenem.com/portugues/duvidas-gramaticais-recorrentes.htm ; Lição \"Verbos impessoais e verbos pessoais\" (lição 39), PDF hospedado em bd.tjmg.jus.br (autor, instituição e data não informados no texto) — https://bd.tjmg.jus.br/bitstreams/778fe1d0-3aad-48df-8588-91ea25b56395/download; Concordância com \"se\": apassivadora x indeterminação, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -712,19 +727,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-9",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Concordância nominal: anexo; meio (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Estude Grátis, \"Concordância Nominal: o que é? Saiba todas as regras\" (Diego Monteiro; sem data) — https://www.estudegratis.com.br/dicas/concordancia-nominal; Concordância nominal: anexo; meio, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -732,19 +750,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-9",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A inexistência de \"menas\" não aparece na página (fato lexical conhecido; não confrontado). Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Concordância nominal: \"é proibida a entrada\"; meio; bastante; em anexo (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Estude Grátis, \"Concordância Nominal: o que é? Saiba todas as regras\" (Diego Monteiro; sem data) — https://www.estudegratis.com.br/dicas/concordancia-nominal; Concordância nominal: \"é proibida a entrada\"; meio; bastante; em anexo, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -757,14 +778,17 @@
     "revisao-ia-textual"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Fase 4C: explicação da alternativa A corrigida (2ª pessoa do plural é \"ides\", não \"ireis\"); regra da alternativa D (1ª pessoa prevalece) sem página de referência."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão editorial humana de gramática normativa.",
+    "Confrontar a regra de sujeito composto com pessoas gramaticais diferentes em gramática normativa."
    ]
   },
   {
@@ -776,15 +800,18 @@
    "methods": [
     "revisao-ia-textual"
    ],
-   "risk": "baixo",
-   "issues": [],
+   "risk": "medio",
+   "issues": [
+    "Fase 4C: a alternativa D (\"implica em\") é tratada como errada pela norma-padrão tradicional (implicar = acarretar, transitivo direto), mas o uso com \"em\" é registrado em obras de uso; página de referência sobre \"implicar\" não foi obtida."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão editorial humana de gramática normativa.",
+    "Confrontar com gramática normativa (Cunha & Cintra/Cegalla) ou trocar o distrator."
    ]
   },
   {
@@ -792,19 +819,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-10",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A exigência de preposição antes do relativo (\"o filme a que assistimos\") decorre da mesma regência; não há página que a cite literalmente. Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Regência de \"assistir\" (= ver) (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Maia & Nunes, \"Regência verbal e nominal: uma análise em livros didáticos do ensino fundamental II\", Leopoldianum 44(123), 2018, pp. 67-86 (Univ. Católica de Santos) — https://periodicos.unisantos.br/leopoldianum/article/download/821/691/2050; Regência de \"assistir\" (= ver), p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -812,19 +842,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-10",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Regência de \"preferir\" (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Maia & Nunes, \"Regência verbal e nominal: uma análise em livros didáticos do ensino fundamental II\", Leopoldianum 44(123), 2018, pp. 67-86 (Univ. Católica de Santos) — https://periodicos.unisantos.br/leopoldianum/article/download/821/691/2050; Regência de \"preferir\", p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -852,19 +885,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-10",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A fonte mostra a regência por exemplo com crase; a regra \"preposição antes do relativo\" (a que) não foi confrontada em página específica. Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Regência de \"referir-se\" (a) (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Crase: regras de uso\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/crase-regras-de-uso/; Regência de \"referir-se\" (a), p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -938,19 +974,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-11",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A página não trata do imperativo negativo; a alternativa A é errada pela regra geral da negação. Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Colocação pronominal: imperativo; não iniciar frase com átono (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Estratégia Vestibulares, \"Colocação pronominal: próclise, mesóclise, ênclise\" (Kauane Elias; 28/02/2023, atualizado 02/04/2024) — https://vestibulares.estrategia.com/portal/materias/portugues/colocacao-pronominal/; Colocação pronominal: imperativo; não iniciar frase com átono, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -958,19 +997,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-11",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "O exemplo \"Tinha-se esquecido\" não consta literalmente nas fontes; aplica-se a regra da locução verbal. Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Colocação pronominal: locução verbal; \"quem\"; negação (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Estratégia Vestibulares, \"Colocação pronominal: próclise, mesóclise, ênclise\" (Kauane Elias; 28/02/2023, atualizado 02/04/2024) — https://vestibulares.estrategia.com/portal/materias/portugues/colocacao-pronominal/ ; UNIFAL-MG, minicurso \"Pronomes Clíticos\" (baseado em Cunha & Cintra e Cegalla); Colocação pronominal: locução verbal; \"quem\"; negação, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -1001,21 +1043,23 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-13",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
    "issues": [
-    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato)."
+    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Vírgula: oração adjetiva explicativa x restritiva (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Usos da Vírgula\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/usos-da-virgula-aprenda-os-truques/; Vírgula: oração adjetiva explicativa x restritiva, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2491,19 +2535,22 @@
    "discipline": "Informática",
    "topicId": "info-1",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Ctrl+Delete aparece só como atalho de edição de texto (apagar palavra à direita), não como exclusão de arquivo. Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Windows: Shift+Delete (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Atalhos de teclado no Windows\" (aplica-se a Windows 10 e Windows 11) — https://support.microsoft.com/pt-br/windows/atalhos-do-teclado-no-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec; Windows: Shift+Delete, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2511,21 +2558,23 @@
    "discipline": "Informática",
    "topicId": "info-1",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
+   "risk": "baixo",
    "issues": [
-    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato)."
+    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Windows: Win+L, Win+D, Win+E, Win+R (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Atalhos de teclado no Windows\" (aplica-se a Windows 10 e Windows 11) — https://support.microsoft.com/pt-br/windows/atalhos-do-teclado-no-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec; Windows: Win+L, Win+D, Win+E, Win+R, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2533,19 +2582,22 @@
    "discipline": "Informática",
    "topicId": "info-1",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Windows: Ctrl+Shift+Esc (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Atalhos de teclado no Windows\" (aplica-se a Windows 10 e Windows 11) — https://support.microsoft.com/pt-br/windows/atalhos-do-teclado-no-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec; Windows: Ctrl+Shift+Esc, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2558,14 +2610,17 @@
     "revisao-ia-textual"
    ],
    "risk": "medio",
-   "issues": [],
+   "issues": [
+    "Fase 4C: só foram encontradas respostas de comunidade (Microsoft Q&A) sobre a Lixeira e unidades removíveis; nenhuma documentação oficial lida confirma a regra."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Conferir versão do software/recurso citado.",
+    "Confirmar em documentação oficial da Microsoft."
    ]
   },
   {
@@ -2573,19 +2628,22 @@
    "discipline": "Informática",
    "topicId": "info-1",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Ctrl+Tab (alternar guias dentro de um programa) não foi confrontado nesta página. Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Windows: Alt+Tab (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Atalhos de teclado no Windows\" (aplica-se a Windows 10 e Windows 11) — https://support.microsoft.com/pt-br/windows/atalhos-do-teclado-no-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec; Windows: Alt+Tab, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2616,19 +2674,22 @@
    "discipline": "Informática",
    "topicId": "info-2",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Word: cabeçalho e rodapé (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Inserir um cabeçalho ou rodapé\" (Word 2016 a Microsoft 365) — https://support.microsoft.com/pt-pt/office/inserir-um-cabeçalho-ou-rodapé-b87ee4df-abc1-41f8-995b-b39f6d99c7ed; Word: cabeçalho e rodapé, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2636,19 +2697,22 @@
    "discipline": "Informática",
    "topicId": "info-2",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Word: sumário automático (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Inserir um sumário\" (Word 2021, 2024, Microsoft 365) — https://support.microsoft.com/pt-br/office/inserir-um-sumário-882e8564-0edb-435e-84b5-1d8552ccf0c0; Word: sumário automático, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2679,19 +2743,22 @@
    "discipline": "Informática",
    "topicId": "info-2",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Word: Controlar Alterações (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Controlar alterações no Word\" (Word 2016 a Microsoft 365) — https://support.microsoft.com/pt-br/office/controlar-alterações-no-word-197ba630-0f5f-4a8e-9a77-3712475e806a; Word: Controlar Alterações, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2706,7 +2773,7 @@
    ],
    "risk": "baixo",
    "issues": [
-    "Resultado recalculado por ferramenta; independe de versão do Excel (comportamento padrão de SOMA, SE, MÉDIA e de referências relativas/absolutas). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente em inglês usado na verificação."
+    "Resultado recalculado por ferramenta (LibreOffice/openpyxl; limitação: não é o Microsoft Excel). Fase 4C (12/11/2026): comportamento confirmado em página oficial da Microsoft (aplica-se a Excel 2016, 2019, 2021, 2024 e Microsoft 365): \"Função SOMA\" (support.microsoft.com/pt-pt/office/função-soma-043e1c7d-7726-4e80-8f32-07b23e057f89): soma valores de números, referências e intervalos (exemplo =SOMA(A2:A10)). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente usado na verificação. Revisão humana não realizada."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -2729,7 +2796,7 @@
    ],
    "risk": "baixo",
    "issues": [
-    "Resultado recalculado por ferramenta; independe de versão do Excel (comportamento padrão de SOMA, SE, MÉDIA e de referências relativas/absolutas). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente em inglês usado na verificação."
+    "Resultado recalculado por ferramenta (LibreOffice/openpyxl; limitação: não é o Microsoft Excel). Fase 4C (12/11/2026): comportamento confirmado em página oficial da Microsoft (aplica-se a Excel 2016, 2019, 2021, 2024 e Microsoft 365): \"SE (Função SE)\" (support.microsoft.com/pt-br/office/se-função-se-69aed7c9-4e8a-4755-a9bc-aa8bbff73be2): retorna um valor se a condição for verdadeira e outro se for falsa; SE(teste_lógico; valor_se_verdadeiro; valor_se_falso). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente usado na verificação. Revisão humana não realizada."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -2752,7 +2819,7 @@
    ],
    "risk": "baixo",
    "issues": [
-    "Resultado recalculado por ferramenta; independe de versão do Excel (comportamento padrão de SOMA, SE, MÉDIA e de referências relativas/absolutas). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente em inglês usado na verificação."
+    "Resultado recalculado por ferramenta (LibreOffice/openpyxl; limitação: não é o Microsoft Excel). Fase 4C (12/11/2026): comportamento confirmado em página oficial da Microsoft (aplica-se a Excel 2016, 2019, 2021, 2024 e Microsoft 365): \"Alternar entre referências relativas, absolutas e mistas\" (support.microsoft.com/pt-br/office/alternar-entre-referências-relativas-absolutas-e-mistas-dfec08cd-ae65-4f56-839e-5f0d8d0baca9): ao copiar, a referência relativa é alterada. Argumentos separados por \";\" no Excel em português e por \",\" no equivalente usado na verificação. Revisão humana não realizada."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -2775,7 +2842,7 @@
    ],
    "risk": "baixo",
    "issues": [
-    "Resultado recalculado por ferramenta; independe de versão do Excel (comportamento padrão de SOMA, SE, MÉDIA e de referências relativas/absolutas). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente em inglês usado na verificação."
+    "Resultado recalculado por ferramenta (LibreOffice/openpyxl; limitação: não é o Microsoft Excel). Fase 4C (12/11/2026): comportamento confirmado em página oficial da Microsoft (aplica-se a Excel 2016, 2019, 2021, 2024 e Microsoft 365): Mesma página sobre referências: a referência absoluta ($B$1) permanece exatamente a mesma ao copiar; a relativa (A1) se ajusta. Argumentos separados por \";\" no Excel em português e por \",\" no equivalente usado na verificação. Revisão humana não realizada."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -2798,7 +2865,7 @@
    ],
    "risk": "baixo",
    "issues": [
-    "Resultado recalculado por ferramenta; independe de versão do Excel (comportamento padrão de SOMA, SE, MÉDIA e de referências relativas/absolutas). Argumentos separados por \";\" no Excel em português e por \",\" no equivalente em inglês usado na verificação."
+    "Resultado recalculado por ferramenta (LibreOffice/openpyxl; limitação: não é o Microsoft Excel). Fase 4C (12/11/2026): comportamento confirmado em página oficial da Microsoft (aplica-se a Excel 2016, 2019, 2021, 2024 e Microsoft 365): \"Função MÉDIA\" (support.microsoft.com/pt-br/excel/functions/average-function): em intervalo ou referência, texto, valores lógicos e células vazias \"serão ignorados\"; células com zero entram no cálculo. Argumentos separados por \";\" no Excel em português e por \",\" no equivalente usado na verificação. Revisão humana não realizada."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -2814,19 +2881,22 @@
    "discipline": "Informática",
    "topicId": "info-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Outlook: Cco (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Mostre, oculte e exiba o campo Cco (cópia oculta) no Outlook para Windows\" (Outlook 2016 a Microsoft 365) — https://support.microsoft.com/pt-br/outlook/mail/show-hide-and-view-the-bcc-blind-carbon-copy-field-in-outlook-for-windows; Outlook: Cco, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2834,19 +2904,22 @@
    "discipline": "Informática",
    "topicId": "info-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Outlook: Responder a Todos (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Responder ou encaminhar uma mensagem de email no Outlook clássico\" — https://support.microsoft.com/pt-br/outlook/reply-to-or-forward-an-email-message; Outlook: Responder a Todos, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2854,19 +2927,22 @@
    "discipline": "Informática",
    "topicId": "info-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Protocolo-padrão de envio: SMTP; POP3 e IMAP servem ao acesso/recebimento. HTTPS e FTP não são protocolos de correio. Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Protocolos de e-mail (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — IETF RFC 5321, Simple Mail Transfer Protocol (J. Klensin, 2008) — https://www.rfc-editor.org/rfc/rfc5321.html ; IETF RFC 1939, Post Office Protocol - Version 3 (1996) — https://datatracker.ietf.org/doc/html/rfc1939.html ; IETF RFC 9051, IMAP - Version 4rev2 (2021) — https://datatracker.ietf.org/doc/html/rfc9051; Protocolos de e-mail, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2874,19 +2950,22 @@
    "discipline": "Informática",
    "topicId": "info-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Phishing (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — CERT.br/NIC.br, Cartilha de Segurança para Internet, fascículo sobre golpes (março/2026) — https://cartilha.cert.br/fasciculos/golpes-evite-fraudes/fasciculo-golpes-evite-fraudes.pdf; Phishing, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2894,19 +2973,22 @@
    "discipline": "Informática",
    "topicId": "info-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "POP3 pode ser configurado para manter cópia no servidor; \"em geral\" na alternativa A é adequado. Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "IMAP x POP3 (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — IETF RFC 9051, IMAP - Version 4rev2 (2021) — https://datatracker.ietf.org/doc/html/rfc9051 ; IETF RFC 1939, Post Office Protocol - Version 3 (1996) — https://datatracker.ietf.org/doc/html/rfc1939.html; IMAP x POP3, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2974,19 +3056,22 @@
    "discipline": "Informática",
    "topicId": "info-5",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "As páginas não tratam de criptografia nem de malware; as alternativas A e E decorrem de o modo anônimo apenas limitar o que é salvo no dispositivo. Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Navegação InPrivate/anônima (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Procurar InPrivate no Microsoft Edge\" — https://support.microsoft.com/pt-br/microsoft-edge/procurar-inprivate-no-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2 ; Google Chrome Ajuda, \"Como o modo de janela anônima do Chrome mantém sua navegação privada\" — https://support.google.com/chrome/answer/9845881?hl=pt-BR; Navegação InPrivate/anônima, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -2999,14 +3084,17 @@
     "revisao-ia-textual"
    ],
    "risk": "medio",
-   "issues": [],
+   "issues": [
+    "Fase 4C: Ctrl+Shift+T foi confirmado na página do Chrome; a página de atalhos do Edge consultada não pôde ser lida de forma confiável para esse atalho (tabela com erros de renderização)."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Conferir versão do software/recurso citado.",
+    "Confirmar o atalho no Edge em página da Microsoft legível."
    ]
   },
   {
@@ -3037,19 +3125,22 @@
    "discipline": "Informática",
    "topicId": "info-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Teams: @menção (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Use @mentions para chamar a atenção de alguém no Microsoft Teams\" — https://support.microsoft.com/pt-br/office/use-mentions-para-chamar-a-atenção-de-alguém-no-microsoft-teams-eb4f059d-320e-454e-b111-03361d4d6855; Teams: @menção, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3057,19 +3148,22 @@
    "discipline": "Informática",
    "topicId": "info-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Teams: compartilhar conteúdo em reunião (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Apresentar conteúdo em reuniões do Microsoft Teams\" — https://support.microsoft.com/pt-br/teams/meetings/present-content-in-microsoft-teams-meetings; Teams: compartilhar conteúdo em reunião, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3077,19 +3171,22 @@
    "discipline": "Informática",
    "topicId": "info-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Teams: canais (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Learn, \"Visão geral de equipes e canais no Microsoft Teams\" — https://learn.microsoft.com/pt-br/microsoftteams/teams-channels-overview; Teams: canais, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3148,7 +3245,8 @@
    ],
    "risk": "medio",
    "issues": [
-    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato)."
+    "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
+    "Fase 4C: a alternativa C diz que o arquivo \"somente online\" \"ocupa pouco espaço local\"; a página da Microsoft diz que arquivos somente online \"não ocupam espaço no computador\". Redação imprecisa (o gabarito segue sendo a única alternativa defensável)."
    ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
@@ -3156,7 +3254,8 @@
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Conferir versão do software/recurso citado.",
+    "Reformular a alternativa C (\"não ocupa espaço local\") por versão, após revisão humana."
    ]
   },
   {
@@ -3164,19 +3263,22 @@
    "discipline": "Informática",
    "topicId": "info-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "A questão usa \"exibição\" (= Pode exibir). Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "OneDrive: permissões de link (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Colaborar no Microsoft OneDrive: compartilhar, editar e gerenciar arquivos\" — https://support.microsoft.com/pt-br/onedrive/collaborate-in-microsoft-onedrive-sharing-editing-and-managing-files; OneDrive: permissões de link, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3184,19 +3286,22 @@
    "discipline": "Informática",
    "topicId": "info-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página consultada em inglês; o rótulo \"Histórico de versões\" é a tradução usada no OneDrive em português (não confrontado em página em português). Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "OneDrive: Histórico de versões (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Restore a previous version of a file stored in OneDrive\" (en-us) — https://support.microsoft.com/en-us/onedrive/restore-a-previous-version-of-a-file-stored-in-onedrive; OneDrive: Histórico de versões, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3204,19 +3309,22 @@
    "discipline": "Informática",
    "topicId": "info-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
-   "risk": "medio",
-   "issues": [],
+   "risk": "baixo",
+   "issues": [
+    "Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "OneDrive: Lixeira (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Microsoft Support, \"Restaurar arquivos excluídos do seu OneDrive\" — https://support.microsoft.com/pt-br/onedrive/restore-your-onedrive-files; OneDrive: Lixeira, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Conferir versão do software/recurso citado."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3414,15 +3522,18 @@
    "methods": [
     "revisao-ia-textual"
    ],
-   "risk": "baixo",
-   "issues": [],
+   "risk": "medio",
+   "issues": [
+    "Fase 4C: a alternativa A (\"A reforma começou na segunda-feira\") não é estritamente sustentada pelo texto (\"fechou para reforma na segunda-feira\" não diz quando a obra começou); pode haver duas conclusões não sustentadas."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão editorial humana de gramática normativa.",
+    "Reformular a alternativa A ou o texto-base por substituição versionada, após revisão humana."
    ]
   },
   {
@@ -3536,19 +3647,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Conjunções: adversativas, condicionais, conformativas, conclusivas (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Conjunção\" — https://www.preparaenem.com/portugues/conjuncao.htm; Conjunções: adversativas, condicionais, conformativas, conclusivas, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3556,21 +3670,23 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-4",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
    "issues": [
-    "1 explicação(ões) de alternativa muito curta(s)."
+    "1 explicação(ões) de alternativa muito curta(s).",
+    "A classificação de \"assim que\" (tempo) não foi confrontada. Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Conjunções: concessivas (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Conjunção\" — https://www.preparaenem.com/portugues/conjuncao.htm; Conjunções: concessivas, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3748,21 +3864,23 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
    "issues": [
-    "3 explicação(ões) de alternativa muito curta(s)."
+    "3 explicação(ões) de alternativa muito curta(s).",
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Significado de \"mitigar\" (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, verbete \"mitigar\" — https://www.dicio.com.br/mitigar/; Significado de \"mitigar\", p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3770,19 +3888,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Significado de \"dirimir\" (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, verbete \"dirimir\" — https://www.dicio.com.br/dirimir/; Significado de \"dirimir\", p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3790,19 +3911,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Antônimo de \"efêmero\" (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, verbete \"efêmero\" — https://www.dicio.com.br/efemero/; Antônimo de \"efêmero\", p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3810,21 +3934,23 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-6",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
    "issues": [
-    "4 explicação(ões) de alternativa muito curta(s)."
+    "4 explicação(ões) de alternativa muito curta(s).",
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Significado de \"prescindir\" (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Dicio, verbete \"prescindir\" — https://www.dicio.com.br/prescindir/; Significado de \"prescindir\", p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3852,19 +3978,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Metáfora (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Figuras de linguagem: resumo e exemplos\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/figuras-de-linguagem/; Metáfora, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3876,15 +4005,18 @@
    "methods": [
     "revisao-ia-textual"
    ],
-   "risk": "baixo",
-   "issues": [],
+   "risk": "medio",
+   "issues": [
+    "Fase 4C: \"A sala dormia em silêncio\" admite leitura metonímica (continente pelo conteúdo: a sala = as pessoas), o que enfraquece a alternativa A (metonímia) como distrator; gabarito (personificação) é defensável, mas há ambiguidade."
+   ],
    "corrections": [],
    "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
    "reference": "",
    "auditedAt": "2026-11-06",
    "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão editorial humana de gramática normativa.",
+    "Reformular a frase (ex.: sujeito inanimado sem relação com pessoas) por substituição versionada, após revisão humana."
    ]
   },
   {
@@ -3892,19 +4024,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Metonímia (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Figuras de linguagem: resumo e exemplos\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/figuras-de-linguagem/; Metonímia, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3912,19 +4047,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-7",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Hipérbole (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — Toda Matéria, \"Figuras de linguagem: resumo e exemplos\" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/figuras-de-linguagem/; Hipérbole, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3974,19 +4112,22 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-8",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
+   "issues": [
+    "A página não traz \"o qual\" nem o exemplo \"O parecer que li\". Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Classe de \"que\": pronome relativo (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Funções morfossintáticas da palavra 'que'\" (Mariana Rigonatto) — https://www.preparaenem.com/portugues/funcoes-morfossintaticas-palavra-que.htm; Classe de \"que\": pronome relativo, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -3994,21 +4135,23 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-8",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
    "issues": [
-    "1 explicação(ões) de alternativa muito curta(s)."
+    "1 explicação(ões) de alternativa muito curta(s).",
+    "A página não traz o exemplo \"Espero que ...\" nem a expressão \"oração substantiva\". Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Classe de \"que\": conjunção integrante (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Funções morfossintáticas da palavra 'que'\" (Mariana Rigonatto) — https://www.preparaenem.com/portugues/funcoes-morfossintaticas-palavra-que.htm; Classe de \"que\": conjunção integrante, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -4039,19 +4182,24 @@
    "discipline": "Língua Portuguesa",
    "topicId": "pt-8",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "validada",
    "methods": [
-    "revisao-ia-textual"
+    "revisao-ia-textual",
+    "conferencia-normativa"
    ],
    "risk": "baixo",
-   "issues": [],
-   "corrections": [],
-   "justification": "Revisão textual por IA sem achados de erro conceitual; sem cotejo com fonte oficial, permanece Pendente.",
-   "reference": "",
+   "issues": [
+    "Fase 4C: a explicação da alternativa C dizia \"contração\"; corrigida para \"combinação\" (revisão v2). Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada."
+   ],
+   "corrections": [
+    "v2 (complementacao): Explicação da alternativa C usava \"contração\"; a + o = ao é \"combinação\"."
+   ],
+   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "reference": "Combinação de preposição e artigo (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
-   "verification": "Leitura integral do item (enunciado, 4-5 alternativas, gabarito, explicações) por IA em 2026-11-06.",
+   "verification": "Conferência documental por IA (não humana) em 2026-11-12 — PrePara Enem, \"Combinação e contração das preposições\" (Mariana Rigonatto) — https://www.preparaenem.com/portugues/combinacao-contracao-das-preposicoes.htm; Combinação de preposição e artigo, p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Revisão editorial humana de gramática normativa."
+    "Revisão humana não realizada."
    ]
   },
   {
@@ -4082,22 +4230,23 @@
    "discipline": "Atualidades",
    "topicId": "atual-1",
    "previous": "pendente",
-   "proposed": "validada",
+   "proposed": "pendente",
    "methods": [
     "revisao-ia-textual",
     "conferencia-normativa"
    ],
-   "risk": "baixo",
+   "risk": "medio",
    "issues": [
     "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
     "Fato datado (2026), confirmado em fontes consultadas em 06/11/2026. Verificar de novo perto da prova (14/03/2027). Revisão humana não realizada."
    ],
    "corrections": [],
-   "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
+   "justification": "Conferência inconclusiva ou parcial (ver achados e pendências); permanece Pendente.",
    "reference": "Rejeição da indicação de Jorge Messias ao STF (Senado, 29/04/2026) (p. página web (sem paginação))",
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Imprensa: O Povo, \"Indicação de Jorge Messias é rejeitada no Senado com 42 votos contrários\" (29/04/2026) e \"132 anos depois, lista dos rejeitados pelo Senado ao STF ganha um novo nome\" (30/04/2026); DGABC; Diário do Nordeste; Rejeição da indicação de Jorge Messias ao STF (Senado, 29/04/2026), p. página web (sem paginação). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
+    "Reconferir em fonte institucional (Senado/STF) a afirmação \"primeira rejeição em 132 anos\" contida no enunciado; placar e data confirmados na Agência Senado.",
     "Revisão humana não realizada."
    ]
   },
@@ -8466,7 +8615,7 @@
    "discipline": "Direito Processual Civil",
    "topicId": "dpc-2",
    "previous": "pendente",
-   "proposed": "pendente",
+   "proposed": "precisa-correcao",
    "methods": [
     "revisao-ia-textual",
     "conferencia-normativa"
@@ -8475,15 +8624,17 @@
    "issues": [
     "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Conteúdo correto (a Lei 9.099 confere), mas o art. 42 está fora do recorte que o Anexo VIII fixa para Processo Civil (Lei 9.099, arts. 3º a 19) e do recorte de Processo Penal (arts. 60 a 83, 88 e 89). Permanece Pendente por escopo, não por erro: decisão sobre mantê-la como material complementar ou retirá-la cabe à revisão humana."
+    "Conteúdo correto (a Lei 9.099 confere), mas o art. 42 está fora do recorte que o Anexo VIII fixa para Processo Civil (Lei 9.099, arts. 3º a 19) e para Processo Penal (arts. 60 a 83, 88 e 89) — confirmado na Fase 4C no texto do edital. Questão substituída por pcl-4b (substituição versionada); o ID pcl-4 permanece no catálogo."
    ],
-   "corrections": [],
-   "justification": "Conferência inconclusiva ou parcial (ver achados e pendências); permanece Pendente.",
+   "corrections": [
+    "v2 (substituicao): Questão fora do recorte do edital: cita o art. 42 da Lei 9.099/1995; o recorte de Processo Civil é arts. 3º a 19."
+   ],
+   "justification": "Erro demonstrado em confronto com a fonte (ver achados); fora das avaliações até a correção ser aplicada e conferida.",
    "reference": "Art. 42, caput e § 1º (p. 6)",
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026; Art. 42, caput e § 1º, p. 6. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Decisão humana: manter a questão como complementar ou retirá-la do banco por estar fora do edital.",
+    "Revisão humana de pcl-4b (autoral, nasce Pendente).",
     "Revisão humana não realizada."
    ]
   },
@@ -9879,7 +10030,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 3º; arts. 4º e 5º, p. 3. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -9904,7 +10055,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 9º, III e II, p. 4 (compilado); 16 (original). Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -9929,7 +10080,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 11, II, III e IV, p. 6. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -9954,7 +10105,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 13; art. 19, § 1º; art. 10, § 1º, p. 7; 8; 5. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -9981,7 +10132,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 19, § 1º; art. 9º, V (compilado e original), p. 8; 4; 16. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10006,7 +10157,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 24, caput, p. 9. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10031,7 +10182,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 24, § 1º; art. 25, § 5º, p. 9. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10057,7 +10208,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 25, § 1º (e § 2º), p. 9. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10082,7 +10233,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 32, caput e § 5º, p. 11; 12. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10109,7 +10260,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — Res. TJSP 850/2021, texto compilado (portal TJSP: \"Compilada At. 25/04/2022\"; PDF impresso em 06/11/2026); Art. 33, § 1º, p. 12. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.",
+    "Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas \"Redação dada/Acrescido pela Resolução nº 864/2022\" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.",
     "Revisão humana não realizada."
    ]
   },
@@ -10499,7 +10650,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo. Distrator A (12) corresponde ao art. 4º, II (Pleno elege doze)."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento. Distrator A (12) corresponde ao art. 4º, II (Pleno elege doze)."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10523,7 +10674,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10547,7 +10698,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10572,7 +10723,7 @@
    "issues": [
     "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10596,7 +10747,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo. Os incisos III e IV (Escola Paulista da Magistratura e TRE) não constam das alternativas."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento. Os incisos III e IV (Escola Paulista da Magistratura e TRE) não constam das alternativas."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10644,7 +10795,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo. Referência precisada na explicação: alínea \"r\" do art. 26, II."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento. Referência precisada na explicação: alínea \"r\" do art. 26, II."
    ],
    "corrections": [
     "v2 (complementacao): Referência precisada: art. 26, II, \"r\"."
@@ -10670,7 +10821,7 @@
    "risk": "baixo",
    "issues": [
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -10719,7 +10870,7 @@
    "issues": [
     "Alternativa correta nitidamente mais longa que as demais (pista indevida de formato).",
     "1 explicação(ões) de alternativa muito curta(s).",
-    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. A data de cada Assento não consta do arquivo."
+    "Sem nota de alteração de 2026 no dispositivo citado; as alterações de 2026 (Assentos 593 a 597) incidem em outros artigos. Fase 4C (12/11/2026): pelo DEJESP de 30/04/2026 (cópia do CNB/SP), o Assento Regimental 594/2026 (assinado em 29/04/2026, em vigor em 30/04/2026) acrescentou §§ 1º e 2º ao art. 60 e o 595/2026 (idem) alterou os §§ 1º e 4º do art. 29-A e criou o art. 29-F; as datas dos Assentos 593, 596 e 597 não foram obtidas. Comunicado do Órgão Especial de 22/10/2026 (sessão de 21/10/2026, posterior ao edital) registra minuta de assento sem número que altera os arts. 31, 32, 42, 46 (§ 4º), 190, 191, 192 e 200 e revoga o art. 285; não se aplica ao edital (Anexo VIII) e nenhum desses artigos é citado pelas questões do Regimento."
    ],
    "corrections": [],
    "justification": "Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.",
@@ -11729,7 +11880,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — NSCGJ Tomo I — Normas de Serviço, Ofícios de Justiça (PDF fornecido, 431 p.; capa 2013, notas de rodapé até Prov. CG 27/2026; a página oficial do TJSP indica \"Texto atualizado até 22/10/2026\", consulta de 06/11/2026, não cotejada com o PDF); Art. 1.257-A, caput, p. 415-416. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Data do Prov. CG 04/2026 (Normas de Serviço, art. 1.257-A).",
+    "Data do Prov. CG 04/2026 (Normas de Serviço, art. 1.257-A): Fase 4C — busca em fontes web (portal TJSP de provimentos sem listagem carregada; resultados não relacionados) não localizou o provimento nem sua data.",
     "Revisão humana não realizada.",
     "Revisão humana não realizada."
    ]
@@ -11754,7 +11905,7 @@
    "auditedAt": "2026-11-06",
    "verification": "Conferência documental por IA (não humana) em 2026-11-06 — NSCGJ Tomo I — Normas de Serviço, Ofícios de Justiça (PDF fornecido, 431 p.; capa 2013, notas de rodapé até Prov. CG 27/2026; a página oficial do TJSP indica \"Texto atualizado até 22/10/2026\", consulta de 06/11/2026, não cotejada com o PDF); Art. 1.257-A, § 1º, p. 416. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).",
    "pendencies": [
-    "Data do Prov. CG 04/2026.",
+    "Data do Prov. CG 04/2026 (não localizada na Fase 4C).",
     "Revisão humana não realizada.",
     "Revisão humana não realizada."
    ]
@@ -12063,7 +12214,9 @@
    "issues": [
     "Questão nova (substitui soc-2), criada por IA com base no texto compilado da CF. O enunciado fixa a redação da EC 141/2026 para não depender da regra de transição. Por ser autoral, nasce Pendente até revisão humana."
    ],
-   "corrections": [],
+   "corrections": [
+    "v2 (complementacao): Explicações complementadas com a transição do art. 6º da EC 141/2026 (42 h, depois 40 h)."
+   ],
    "justification": "Conferência inconclusiva ou parcial (ver achados e pendências); permanece Pendente.",
    "reference": "Art. 7º, XIII (redação da EC 141/2026); art. 7º, XIV (p. 7)",
    "auditedAt": "2026-11-06",
@@ -12122,6 +12275,28 @@
    "pendencies": [
     "Revisão humana (questão autoral).",
     "Revisão humana não realizada."
+   ]
+  },
+  {
+   "id": "pcl-4b",
+   "discipline": "Direito Processual Civil",
+   "topicId": "dpc-2",
+   "previous": "pendente",
+   "proposed": "pendente",
+   "methods": [
+    "revisao-ia-textual",
+    "calculo-automatizado"
+   ],
+   "risk": "baixo",
+   "issues": [],
+   "corrections": [],
+   "justification": "Questão nova de IA: regra da Fase 4 — nasce Pendente até revisão editorial humana, mesmo com cálculo conferido.",
+   "reference": "",
+   "auditedAt": "2026-11-06",
+   "verification": "Questão autoral criada por IA em 2026-11-06; resposta recalculada por código.",
+   "pendencies": [
+    "Conferir redação vigente na fonte oficial (Planalto/ALESP/TJSP), com versão e data de consulta.",
+    "Revisão editorial humana (enunciado, qualidade dos distratores)."
    ]
   }
  ]

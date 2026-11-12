@@ -1,0 +1,290 @@
+{
+ "ilr-1": {
+  "blind": "D",
+  "src": "LC 1.111/2010 art. 14, I (1 ano)"
+ },
+ "ilr-5": {
+  "blind": "A",
+  "src": "LC 1.111/2010 art. 21"
+ },
+ "ird-2": {
+  "blind": "B",
+  "src": "Regimento Interno art. 26, II, r"
+ },
+ "ird-4": {
+  "blind": "C",
+  "src": "Regimento Interno (presidentes de Turmas/Grupos/Câmaras: 6 meses a 1 ano)"
+ },
+ "icg-4": {
+  "blind": "C",
+  "src": "NSCGJ Tomo I art. 49, §§ 1º-2º"
+ },
+ "ico-3": {
+  "blind": "E",
+  "src": "NSCGJ Tomo I art. 99 e parágrafo único"
+ },
+ "adp-5": {
+  "blind": "E",
+  "src": "Lei 10.261/1968 art. 70 caput (LC 1.012/2007)"
+ },
+ "ada-1": {
+  "blind": "C",
+  "src": "Lei 10.261/1968 art. 266, I"
+ },
+ "ada-5": {
+  "blind": "E",
+  "src": "Lei 10.261/1968 art. 278, §3º"
+ },
+ "ppc-1": {
+  "blind": "E",
+  "src": "CPP art. 361 (15 dias)"
+ },
+ "ppc-2": {
+  "blind": "C",
+  "src": "CPP art. 366"
+ },
+ "ppo-2": {
+  "blind": "C",
+  "src": "CPP art. 400 (60 dias)"
+ },
+ "ppu-1": {
+  "blind": "E",
+  "src": "CPP art. 412 (90 dias)"
+ },
+ "ppu-4": {
+  "blind": "D",
+  "src": "CPP art. 442"
+ },
+ "ppr-1": {
+  "blind": "E",
+  "src": "CPP art. 586"
+ },
+ "ppr-3": {
+  "blind": "A",
+  "src": "CPP art. 579"
+ },
+ "ppr-5": {
+  "blind": "B",
+  "src": "CPP art. 588 (dois dias)"
+ },
+ "ppa-1": {
+  "blind": "E",
+  "src": "CPP art. 593 (5 dias)"
+ },
+ "ppa-4": {
+  "blind": "D",
+  "src": "CPP art. 609, p. único (10 dias)"
+ },
+ "ppx-3": {
+  "blind": "A",
+  "src": "CPP art. 640 (48 horas)"
+ },
+ "pjd-4": {
+  "blind": "D",
+  "src": "Lei 9.099 art. 89, §6º"
+ },
+ "pjd-3": {
+  "blind": "A",
+  "src": "Lei 9.099 art. 82, §1º (dez dias) — conferido"
+ },
+ "pjc-3": {
+  "blind": "A",
+  "src": "Lei 9.099 art. 76, §2º, II (cinco anos) — conferido"
+ },
+ "pcj-3": {
+  "blind": "C",
+  "src": "CPC art. 146 (15 dias)"
+ },
+ "pcj-5": {
+  "blind": "D",
+  "src": "CPC art. 155, I-II"
+ },
+ "pca-2": {
+  "blind": "E",
+  "src": "CPC art. 220"
+ },
+ "pca-4": {
+  "blind": "C",
+  "src": "CPC art. 226, I-III (5/10/30 dias). Leitura cega inicial errada (60 dias) — o erro foi do segundo leitor; gabarito armazenado A confere com o texto"
+ },
+ "pca-5": {
+  "blind": "D",
+  "src": "CPC art. 229 caput e §2º — conferido"
+ },
+ "pcc-1": {
+  "blind": "B",
+  "src": "CPC art. 257, III (20 a 60 dias)"
+ },
+ "pcc-2": {
+  "blind": "E",
+  "src": "CPC art. 240, §2º (10 dias; sob pena de não retroagir, §1º)"
+ },
+ "pct-1": {
+  "blind": "B",
+  "src": "CPC art. 303, §1º, I (15 dias)"
+ },
+ "pct-4": {
+  "blind": "A",
+  "src": "CPC art. 308 (30 dias)"
+ },
+ "pci-1": {
+  "blind": "B",
+  "src": "CPC art. 321 (15 dias)"
+ },
+ "pci-2": {
+  "blind": "E",
+  "src": "CPC art. 334 (réu citado com 20 dias)"
+ },
+ "pci-3": {
+  "blind": "C",
+  "src": "CPC art. 335 (15 dias)"
+ },
+ "pcs-1": {
+  "blind": "B",
+  "src": "CPC art. 357, §1º (5 dias)"
+ },
+ "pcs-4": {
+  "blind": "A",
+  "src": "CPC art. 364 (20 min + 10)"
+ },
+ "pcs-5": {
+  "blind": "D",
+  "src": "CPC art. 366 (30 dias)"
+ },
+ "pcp-4": {
+  "blind": "A",
+  "src": "CPC art. 455, §1º (3 dias)"
+ },
+ "pcn-2": {
+  "blind": "E",
+  "src": "CPC art. 485, §1º (5 dias)"
+ },
+ "pcn-5": {
+  "blind": "D",
+  "src": "CPC art. 511 (15 dias)"
+ },
+ "pcu-1": {
+  "blind": "B",
+  "src": "CPC art. 523 (15 dias; multa e honorários 10% no §1º)"
+ },
+ "pcu-2": {
+  "blind": "E",
+  "src": "CPC art. 528, §§3º-4º"
+ },
+ "pcu-3": {
+  "blind": "C",
+  "src": "CPC art. 535 (30 dias)"
+ },
+ "pcr-1": {
+  "blind": "B",
+  "src": "CPC art. 1.003, §5º (15 dias)"
+ },
+ "pcr-2": {
+  "blind": "E",
+  "src": "CPC arts. 1.023 e 1.026"
+ },
+ "pcr-5": {
+  "blind": "D",
+  "src": "CPC art. 1.019, II (15 dias)"
+ },
+ "pcl-3": {
+  "blind": "C",
+  "src": "Lei 9.099 art. 16 (15 dias)"
+ },
+ "pcf-4": {
+  "blind": "A",
+  "src": "Lei 12.153 art. 13, I (60 dias)"
+ },
+ "fals-4": {
+  "blind": "C",
+  "src": "CP art. 307"
+ },
+ "p342-1": {
+  "blind": "D",
+  "src": "CP art. 342, §2º"
+ },
+ "p336-4": {
+  "blind": "C",
+  "src": "CP art. 337"
+ },
+ "p328-3": {
+  "blind": "E",
+  "src": "CP art. 329, §1º (reclusão, 1 a 3 anos)"
+ },
+ "p319-4": {
+  "blind": "C",
+  "src": "CP art. 327, §2º"
+ },
+ "p313-1": {
+  "blind": "D",
+  "src": "CP art. 313"
+ },
+ "epd1-3": {
+  "blind": "C",
+  "src": "Lei 13.146 art. 6º, I"
+ },
+ "epd2-2": {
+  "blind": "E",
+  "src": "Lei 13.146 art. 34, §3º (\"bem como exigência de aptidão plena\")"
+ },
+ "fat-5": {
+  "blind": "D",
+  "src": "Dados SportRadar (ferramenta) reconsultados em 12/11/2026: final 19/07/2026 Espanha 1 x 0 Argentina — fonte secundária, ver reconferência"
+ },
+ "cf5a-3": {
+  "blind": "D",
+  "src": "CF art. 5º, XVI"
+ },
+ "pj-2": {
+  "blind": "A",
+  "src": "CF art. 92, §1º"
+ },
+ "soc-3": {
+  "blind": "D",
+  "src": "CF art. 7º, XVI"
+ },
+ "adm2-1": {
+  "blind": "C",
+  "src": "CF art. 37, §6º"
+ },
+ "adf-1": {
+  "blind": "C",
+  "src": "Lei 10.261 art. 32 (30 dias)"
+ },
+ "adt-4": {
+  "blind": "B",
+  "src": "Lei 10.261 art. 86, §1º, 1-3"
+ },
+ "adt-1": {
+  "blind": "C",
+  "src": "Lei 10.261 art. 86, I-VI"
+ },
+ "aij-1": {
+  "blind": "C",
+  "src": "Lei 8.429 art. 12, I (até 14 anos, redação Lei 14.230/2021)"
+ },
+ "itt-5": {
+  "blind": "A",
+  "src": "Res. TJSP 850/2021 art. 19, §1º (5 dias úteis)"
+ },
+ "itm-5": {
+  "blind": "A",
+  "src": "Res. TJSP 850/2021 art. 33, §1º (cinco dias)"
+ },
+ "ilr-2": {
+  "blind": "B",
+  "src": "LC 1.111 arts. 18 e 26 (30 dias corridos)"
+ },
+ "ilr-3": {
+  "blind": "E",
+  "src": "LC 1.111 art. 30, IV (70%)"
+ },
+ "ilr-4": {
+  "blind": "C",
+  "src": "LC 1.111 art. 32, III"
+ },
+ "ilc-4": {
+  "blind": "C",
+  "src": "LC 1.111 art. 37-B, I (LC 1.441/2026), §1º; art. 37-A, §4º"
+ }
+}

@@ -166,7 +166,7 @@ export const LCE_LESSON: Lesson = {
       ['Adicional por tempo de serviço', '5% por quinquênio', '7º'],
       ['Estágio probatório', '36 meses', '11'],
       ['RETEJ', '31,74% sobre o padrão', '37'],
-      ['AQ', 'Doutor 20%; mestre 15%; especialização 10%; graduação 7,5%', '37-A'],
+      ['AQ', 'Doutor 20%; mestre 15%; especialização 10%; graduação 7,5%', '37-A e 37-B'],
       ['Pesquisador / Estenotipista', '75% / 158% sobre o Padrão 1-A', '36']] }),
     step('O que memorizar', ['• Estágio probatório: 36 meses.', '• Quinquênio de 5% e sexta-parte.', '• AQ não cumulativo e não incorporável.', '• Escrevente: Ensino Médio.'] ),
   ],

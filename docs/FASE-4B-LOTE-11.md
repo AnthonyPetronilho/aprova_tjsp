@@ -4,14 +4,15 @@ Gerado em 2026-11-06. Conferência feita por IA (documental/automatizada); **nen
 
 Questões com conferência documental registrada neste lote: **15**.
 
-- Validada: 15
+- Validada: 14
+- Pendente: 1
 
 ## Questões
 
 | ID | Status | Método | Fonte / dispositivo | Págs. | Resultado | Pendências |
 |---|---|---|---|---|---|---|
 | fat-1 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | TSE, notícia "Presidente do TSE anuncia reeleição de Lula e faz balanço do 2º turno das Eleições 2026" (https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/presidente-do-tse-anuncia-reeleicao-de-lula-e-faz-balanco-d | página web (sem paginação) | confere | Revisão humana não realizada. |
-| fat-2 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Imprensa: O Povo, "Indicação de Jorge Messias é rejeitada no Senado com 42 votos contrários" (29/04/2026) e "132 anos depois, lista dos rejeitados pelo Senado ao STF ganha um novo nome" (30/04/2026); DGABC; Diário do Nor | página web (sem paginação) | confere | Revisão humana não realizada. |
+| fat-2 | Pendente | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Imprensa: O Povo, "Indicação de Jorge Messias é rejeitada no Senado com 42 votos contrários" (29/04/2026) e "132 anos depois, lista dos rejeitados pelo Senado ao STF ganha um novo nome" (30/04/2026); DGABC; Diário do Nor | página web (sem paginação) | confere-parcial | Reconferir em fonte institucional (Senado/STF) a afirmação "primeira rejeição em 132 anos" contida no enunciado; placar e data confirmados na Agência Senado. / Revisão humana não realizada. / Reconferir em fonte institucional (Senado/STF) a afirmação "primeira |
 | fat-3 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Imprensa: Atlas Público (BCB) "Copom reduz Selic para 13,75% ao ano em decisão unânime"; Portal de Prefeitura e Itatiaia ("quinto corte seguido") — Copom de 16/09/2026: Selic a 13,75% ao ano | página web (sem paginação) | confere | Revisão humana não realizada. |
 | fat-4 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Imprensa: Bahia Notícias, Super Rádio Tupi, Monitor Mercantil, InfoMoney ("Governo publica decreto que reajusta salário mínimo para R$ 1.621") — Salário mínimo nacional de 2026: R$ 1.621 | página web (sem paginação) | confere | Revisão humana não realizada. |
 | fat-5 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Dados esportivos (SportRadar, via ferramenta de consulta) e imprensa (Revista Oeste, Agora RN) — Final da Copa do Mundo de 2026 (19/07/2026) | página web (sem paginação) | confere | Revisão humana não realizada. |

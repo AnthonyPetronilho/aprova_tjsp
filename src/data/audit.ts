@@ -34,6 +34,13 @@ const newCalc = new Map(NEW_CALC.map(c => [c.id, c]))
 // Achados manuais da revisão (por id). Só entram itens com motivo concreto.
 const MANUAL: Record<string, { issues?: string[]; risk?: AuditRecord['risk']; pendencies?: string[] }> = {
   'adn-2': { risk: 'medio', issues: ['Conferência preliminar (diagnóstico 4B, Lei 10.261 p. 36) coincide com o gabarito, mas o PDF mistura redação antiga e nova; auditoria formal ainda não feita.'], pendencies: ['Auditar formalmente o art. 256, § 1º (texto vigente após LC 1.361/2021).'] },
+  'fig-2': { risk: 'medio', issues: ['Fase 4C: "A sala dormia em silêncio" admite leitura metonímica (continente pelo conteúdo: a sala = as pessoas), o que enfraquece a alternativa A (metonímia) como distrator; gabarito (personificação) é defensável, mas há ambiguidade.'], pendencies: ['Reformular a frase (ex.: sujeito inanimado sem relação com pessoas) por substituição versionada, após revisão humana.'] },
+  'infer-5': { risk: 'medio', issues: ['Fase 4C: a alternativa A ("A reforma começou na segunda-feira") não é estritamente sustentada pelo texto ("fechou para reforma na segunda-feira" não diz quando a obra começou); pode haver duas conclusões não sustentadas.'], pendencies: ['Reformular a alternativa A ou o texto-base por substituição versionada, após revisão humana.'] },
+  'reg-1': { risk: 'medio', issues: ['Fase 4C: a alternativa D ("implica em") é tratada como errada pela norma-padrão tradicional (implicar = acarretar, transitivo direto), mas o uso com "em" é registrado em obras de uso; página de referência sobre "implicar" não foi obtida.'], pendencies: ['Confrontar com gramática normativa (Cunha & Cintra/Cegalla) ou trocar o distrator.'] },
+  'conc-5': { risk: 'baixo', issues: ['Fase 4C: explicação da alternativa A corrigida (2ª pessoa do plural é "ides", não "ireis"); regra da alternativa D (1ª pessoa prevalece) sem página de referência.'], pendencies: ['Confrontar a regra de sujeito composto com pessoas gramaticais diferentes em gramática normativa.'] },
+  'od-2': { risk: 'medio', issues: ['Fase 4C: a alternativa C diz que o arquivo "somente online" "ocupa pouco espaço local"; a página da Microsoft diz que arquivos somente online "não ocupam espaço no computador". Redação imprecisa (o gabarito segue sendo a única alternativa defensável).'], pendencies: ['Reformular a alternativa C ("não ocupa espaço local") por versão, após revisão humana.'] },
+  'net-5': { risk: 'medio', issues: ['Fase 4C: Ctrl+Shift+T foi confirmado na página do Chrome; a página de atalhos do Edge consultada não pôde ser lida de forma confiável para esse atalho (tabela com erros de renderização).'], pendencies: ['Confirmar o atalho no Edge em página da Microsoft legível.'] },
+  'win-4': { risk: 'medio', issues: ['Fase 4C: só foram encontradas respostas de comunidade (Microsoft Q&A) sobre a Lixeira e unidades removíveis; nenhuma documentação oficial lida confirma a regra.'], pendencies: ['Confirmar em documentação oficial da Microsoft.'] },
   'nac-4': { risk: 'medio', issues: ['Depende da redação do art. 12, § 4º, dada pela EC 131/2023.'], pendencies: ['Conferir texto consolidado da CF/88.'] },
 }
 
@@ -91,8 +98,8 @@ function build(q: Question): AuditRecord {
   const da = DOC_AUDIT_BY_ID[q.id]
   let corrections: string[] = []
   if (da) {
-    methods.push(da.how === 'automatizada' ? 'calculo-automatizado' : 'conferencia-normativa'); proposed = da.status
-    verification = (da.how === 'automatizada' ? 'Verificação automatizada (execução de ferramenta; não humana) em ' : 'Conferência documental por IA (não humana) em ') + DOC_AUDIT_DATE + ' — ' + da.source + '; ' + da.provision + ', p. ' + da.pages + '. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).'
+    if (da.how === 'automatizada') methods.push('calculo-automatizado'); else methods.push('conferencia-normativa'); proposed = da.status
+    verification = (da.how === 'automatizada' ? 'Verificação automatizada (execução de ferramenta; não humana) em ' : 'Conferência documental por IA (não humana) em ') + (da.date ?? DOC_AUDIT_DATE) + ' — ' + da.source + '; ' + da.provision + ', p. ' + da.pages + '. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).'
     reference = da.provision + ' (p. ' + da.pages + ')'
     justification = da.status === 'validada'
       ? 'Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.'

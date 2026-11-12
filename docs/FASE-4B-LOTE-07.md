@@ -5,7 +5,7 @@ Gerado em 2026-11-06. Conferência feita por IA (documental/automatizada); **nen
 Questões com conferência documental registrada neste lote: **60**.
 
 - Validada: 59
-- Pendente: 1
+- Precisa de correção: 1
 
 ## Questões
 
@@ -64,7 +64,7 @@ Questões com conferência documental registrada neste lote: **60**.
 | pcl-1 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 3º, I | 1 | confere | Revisão humana não realizada. |
 | pcl-2 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 9º, caput | 2 | confere | Revisão humana não realizada. |
 | pcl-3 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 16 | 3 | confere | Revisão humana não realizada. |
-| pcl-4 | Pendente | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 42, caput e § 1º | 6 | confere-parcial | Decisão humana: manter a questão como complementar ou retirá-la do banco por estar fora do edital. / Revisão humana não realizada. / Decisão humana: manter a questão como complementar ou retirá-la do banco por estar fora do edital. |
+| pcl-4 | Precisa de correção | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 42, caput e § 1º | 6 | confere-parcial | Revisão humana de pcl-4b (autoral, nasce Pendente). / Revisão humana não realizada. / Revisão humana de pcl-4b (autoral, nasce Pendente). |
 | pcl-5 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 9.099/1995, texto compilado do Planalto, impresso em 06/11/2026 — Art. 18, § 2º | 3-4 | confere | Revisão humana não realizada. |
 | pcf-1 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 12.153/2009, texto compilado do Planalto, impresso em 06/11/2026 — Art. 2º, caput | 1 | confere | Revisão humana não realizada. |
 | pcf-2 | Validada | Revisão textual por IA (não humana) + Conferência documental por IA (não humana) | Lei 12.153/2009, texto compilado do Planalto, impresso em 06/11/2026 — Art. 11 | 2 | confere | Revisão humana não realizada. |

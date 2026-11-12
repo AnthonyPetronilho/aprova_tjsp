@@ -36,4 +36,15 @@ const ESTR_1B: Question = place({
     o('D', 'Se Marta não é escrevente, então Paulo não é oficial de justiça.', 'Errada: se Marta não é escrevente e Paulo é oficial de justiça, esse condicional é falso, mas a negação da conjunção original é verdadeira; as duas proposições não têm sempre o mesmo valor lógico.'),
     o('E', 'Marta é escrevente e Paulo não é oficial de justiça.', 'Errada: negou só uma das partes e manteve o "e".')],
 }, 'E')
-export const REPLACEMENT_QUESTIONS: Question[] = [SOC_2B, PPJ_4B, ESTR_1B]
+/** Substitui pcl-4 (Lei 9.099, art. 42 — fora do recorte do edital: Processo Civil, arts. 3º a 19). Conteúdo no recorte: art. 18, § 3º. Origem 'autoral' → Pendente. */
+const PCL_4B: Question = place({
+  id: 'pcl-4b', topicId: 'dpc-2', difficulty: 'Médio', origin: 'autoral', answer: 'A',
+  stem: 'No Juizado Especial Cível, segundo o art. 18, § 3º, da Lei 9.099/1995, a falta ou a nulidade da citação é suprida',
+  options: [
+    o('A', 'pelo comparecimento espontâneo do réu.', 'Correta: art. 18, § 3º: "O comparecimento espontâneo suprirá a falta ou nulidade da citação."'),
+    o('B', 'pela citação por edital, feita em seguida.', 'Errada: no Juizado Especial Cível não se faz citação por edital (art. 18, § 2º).'),
+    o('C', 'apenas se o réu constituir advogado nos autos.', 'Errada: o artigo não condiciona o efeito à constituição de advogado.'),
+    o('D', 'somente por decisão do juiz na sentença.', 'Errada: o suprimento decorre do comparecimento do réu, e não de decisão posterior.'),
+    o('E', 'pelo decurso do prazo para o autor se manifestar.', 'Errada: o artigo trata do comparecimento do citando, e não de prazo do autor.')],
+}, 'D')
+export const REPLACEMENT_QUESTIONS: Question[] = [SOC_2B, PPJ_4B, ESTR_1B, PCL_4B]

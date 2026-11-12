@@ -6,15 +6,17 @@ export interface DocAudit {
   id: string; source: string; provision: string; pages: string; excerpt: string
   result: 'confere' | 'confere-apos-correcao' | 'confere-vigencia-nao-comprovada' | 'confere-parcial' | 'erro-demonstrado' | 'complementar' | 'inconclusivo'
   status: Validation; note?: string; pendencies?: string[]; lote?: string
-  /** 'automatizada': a conferência foi feita por execução de código/ferramenta (método 'calculo-automatizado'), não por leitura de texto de fonte. */
+  /** 'automatizada': execução de código/ferramenta (método 'calculo-automatizado'). Não é conferência com fonte normativa nem revisão humana. */
   how?: 'automatizada'
+  /** Data da conferência quando diferente de DOC_AUDIT_DATE (Fase 4C: 2026-11-12). */
+  date?: string
 }
 export const DOC_AUDIT_DATE = '2026-11-06'
 export const EDITAL_REF_DATE = '2026-10-19'
 const S850 = 'Res. TJSP 850/2021, texto compilado (portal TJSP: "Compilada At. 25/04/2022"; PDF impresso em 06/11/2026)'
 const S963 = 'Res. TJSP 963/2025 (DJE 29/05/2025; portal TJSP impresso em 06/11/2026; nota "Vide Provimento CSM nº 2.834/2026")'
 const SLC = 'LC SP 1.111/2010 (ALESP; "Última atualização: LC 1.441, de 05/05/2026"; impresso em 06/11/2026)'
-const P850 = ['Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência.']
+const P850 = ['Vigência após 25/04/2022 não comprovada de forma independente (compilação termina em 25/04/2022); manter Pendente até aceite do critério ou nova evidência. Fase 4C (12/11/2026): a compilação já incorpora a Res. 864/2022 (20/04/2022; notas "Redação dada/Acrescido pela Resolução nº 864/2022" no PDF; a notícia do TJSP confirma que ela altera, sem revogar, a 850/2021); buscas em fontes web (TJSP, Conjur, CNB/SP) não localizaram alteração ou revogação posterior, mas a ausência de resultado não prova a vigência.']
 const d = (id: string, source: string, provision: string, pages: string, excerpt: string, result: DocAudit['result'], status: Validation, note?: string, pendencies?: string[]): DocAudit => ({ id, source, provision, pages, excerpt, result, status, note, pendencies })
 export const LOTE01: DocAudit[] = [
   d('itt-1', S850, 'Art. 3º; arts. 4º e 5º', '3', '"assegurará ... os mesmos direitos do regime de trabalho presencial, inclusive auxílio-alimentação, exceção feita ao auxílio-transporte"; art. 5º: estrutura "às suas expensas".', 'confere-vigencia-nao-comprovada', 'pendente', 'Resposta única: D.', P850),
@@ -44,5 +46,6 @@ export const LOTE01: DocAudit[] = [
   d('ilr-5', SLC, 'Art. 21 (e arts. 13, 29 e 51)', '4; 3; 8', 'Art. 21: promoção é a passagem "para o de nível e grau imediatamente superior, dentro da mesma referência"; art. 13: progressão; art. 29: acesso; art. 51: remoção.', 'confere-apos-correcao', 'validada', 'COMPLEMENTAÇÃO aplicada (rev. 2): referência precisada.'),
 ]
 import { LOTES_EXTRA } from './audit-docs-extra'
-export const DOC_AUDIT: DocAudit[] = [...LOTE01, ...LOTES_EXTRA]
+import { LOTES_4C } from './audit-docs-4c'
+export const DOC_AUDIT: DocAudit[] = [...LOTE01, ...LOTES_EXTRA, ...LOTES_4C]
 export const DOC_AUDIT_BY_ID: Record<string, DocAudit> = Object.fromEntries(DOC_AUDIT.map(r => [r.id, r]))

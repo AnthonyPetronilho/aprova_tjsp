@@ -40,14 +40,14 @@ describe('integridade estrutural do banco', () => {
   })
   it('a IA não atribui validação humana; conferência normativa só onde há registro documental', () => {
     expect(Object.values(AUDIT).filter(a => a.methods.includes('validacao-humana'))).toEqual([])
-    expect(Object.values(AUDIT).filter(a => a.methods.includes('conferencia-normativa')).map(a => a.id).sort()).toEqual(DOC_AUDIT.filter(d => d.how !== 'automatizada').map(d => d.id).sort())
+    expect(Object.values(AUDIT).filter(a => a.methods.includes('conferencia-normativa')).map(a => a.id).sort()).toEqual(DOC_AUDIT.filter(d => !d.how).map(d => d.id).sort())
   })
   it('questão jurídica/legislação interna só é validada com registro documental completo (fonte, dispositivo, página, trecho)', () => {
     const jur = QUESTIONS.filter(q => /^(dpenal|dpp|dpc|dconst|dadm|dint|atual)/.test(q.topicId) && q.validation === 'validada')
     expect(jur.length).toBeGreaterThan(0)
     for (const q of jur) {
       const d = DOC_AUDIT_BY_ID[q.id]; expect(d, q.id).toBeTruthy()
-      expect(d.status).toBe('validada'); expect(d.source.length).toBeGreaterThan(10); expect(d.provision).toMatch(/\d/); expect(d.pages).toMatch(/\d|página web/); expect(d.excerpt.length).toBeGreaterThan(20)
+      expect(d.status).toBe('validada'); expect(d.source.length).toBeGreaterThan(10); expect(d.provision).toMatch(/\d/); expect(d.pages).toMatch(/\d|página web|texto-base/); expect(d.excerpt.length).toBeGreaterThan(20)
     }
   })
   it('lote 01: 25 questões auditadas; Res. 850 permanece Pendente por vigência não comprovada', () => {
@@ -93,7 +93,7 @@ describe('conferência computacional (exatas)', () => {
 describe('ampliação (lote autoral F4-A)', () => {
   it('questões novas de IA são autorais e nascem Pendente', () => {
     const novas = QUESTIONS.filter(q => q.origin === 'autoral')
-    expect(novas.length).toBe(10 + 3) // 10 do lote F4-A + soc-2b, ppj-4b e estr-1b (substitutas da Fase 4B)
+    expect(novas.length).toBe(10 + 4) // 10 do lote F4-A + soc-2b, ppj-4b e estr-1b (substitutas da Fase 4B)
     for (const q of novas) { expect(q.validation, q.id).toBe('pendente'); expect(AUDIT[q.id].proposed).toBe('pendente') }
   })
   it('os assuntos ampliados chegam a 10 questões, mas só 5 por assunto estão validadas', () => {

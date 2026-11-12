@@ -1,0 +1,91 @@
+// Fase 4C — Conferências adicionais (12/11/2026). Feitas por IA; NÃO são revisão humana.
+// Português: páginas web consultadas em 12/11/2026 (referências didáticas e dicionário online — não são gramática impressa nem o VOLP/Houaiss);
+// só a regra citada em cada registro foi confrontada.
+import type { DocAudit } from './audit-docs'
+import type { Validation } from '../types'
+const D4C = '2026-11-12'
+const d = (lote: string, id: string, source: string, provision: string, pages: string, excerpt: string, result: DocAudit['result'], status: Validation, note?: string): DocAudit => ({ id, source, provision, pages, excerpt, result, status, note, lote, date: D4C })
+const WEB = 'página web (sem paginação)'
+const TM_CRASE = 'Toda Matéria, "Crase: regras de uso" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/crase-regras-de-uso/'
+const DICIO_CRASE = 'Dicio, "Com crase ou sem crase: uso da crase em expressões" (Flávia Neves; sem data) — https://www.dicio.com.br/expressoes-que-se-escrevem-com-e-sem-crase/'
+const EE_NOM = 'Estude Grátis, "Concordância Nominal: o que é? Saiba todas as regras" (Diego Monteiro; sem data) — https://www.estudegratis.com.br/dicas/concordancia-nominal'
+const PE_DUV = 'PrePara Enem, "Dúvidas gramaticais recorrentes" (Vânia Maria do Nascimento Duarte; sem data) — https://www.preparaenem.com/portugues/duvidas-gramaticais-recorrentes.htm'
+const TJMG = 'Lição "Verbos impessoais e verbos pessoais" (lição 39), PDF hospedado em bd.tjmg.jus.br (autor, instituição e data não informados no texto) — https://bd.tjmg.jus.br/bitstreams/778fe1d0-3aad-48df-8588-91ea25b56395/download'
+const EST_COL = 'Estratégia Vestibulares, "Colocação pronominal: próclise, mesóclise, ênclise" (Kauane Elias; 28/02/2023, atualizado 02/04/2024) — https://vestibulares.estrategia.com/portal/materias/portugues/colocacao-pronominal/'
+const UNISANTOS = 'Maia & Nunes, "Regência verbal e nominal: uma análise em livros didáticos do ensino fundamental II", Leopoldianum 44(123), 2018, pp. 67-86 (Univ. Católica de Santos) — https://periodicos.unisantos.br/leopoldianum/article/download/821/691/2050'
+const TM_VIRG = 'Toda Matéria, "Usos da Vírgula" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/usos-da-virgula-aprenda-os-truques/'
+const TM_FIG = 'Toda Matéria, "Figuras de linguagem: resumo e exemplos" (Márcia Fernandes; sem data) — https://www.todamateria.com.br/figuras-de-linguagem/'
+const PE_CONJ = 'PrePara Enem, "Conjunção" — https://www.preparaenem.com/portugues/conjuncao.htm'
+const PE_QUE = 'PrePara Enem, "Funções morfossintáticas da palavra \'que\'" (Mariana Rigonatto) — https://www.preparaenem.com/portugues/funcoes-morfossintaticas-palavra-que.htm'
+const PE_PREP = 'PrePara Enem, "Combinação e contração das preposições" (Mariana Rigonatto) — https://www.preparaenem.com/portugues/combinacao-contracao-das-preposicoes.htm'
+const DIC = (w: string) => `Dicio, verbete "${w}" — https://www.dicio.com.br/${w.normalize('NFD').replace(/[̀-ͯ]/g, '')}/`
+const EV = 'Referência didática/lexical consultada na web em 12/11/2026 (não é gramática impressa nem VOLP/Houaiss); só a regra citada foi confrontada. Revisão humana não realizada.'
+const w = (id: string, source: string, provision: string, excerpt: string, note?: string) => d('4C-PT', id, source, provision, WEB, excerpt, 'confere-parcial', 'validada', (note ? note + ' ' : '') + EV)
+const MS_EV = 'Página oficial do fabricante consultada em 12/11/2026. Quando a página cita o escopo, ele consta no trecho; páginas da Microsoft sobre o produto atual não substituem a conferência na versão exata cobrada na prova. Revisão humana não realizada.'
+const inf = (id: string, source: string, provision: string, excerpt: string, note?: string) => d('4C-INF', id, source, provision, WEB, excerpt, 'confere', 'validada', (note ? note + ' ' : '') + MS_EV)
+const MS_WIN = 'Microsoft Support, "Atalhos de teclado no Windows" (aplica-se a Windows 10 e Windows 11) — https://support.microsoft.com/pt-br/windows/atalhos-do-teclado-no-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec'
+const MS_WORD_HF = 'Microsoft Support, "Inserir um cabeçalho ou rodapé" (Word 2016 a Microsoft 365) — https://support.microsoft.com/pt-pt/office/inserir-um-cabeçalho-ou-rodapé-b87ee4df-abc1-41f8-995b-b39f6d99c7ed'
+const MS_WORD_TOC = 'Microsoft Support, "Inserir um sumário" (Word 2021, 2024, Microsoft 365) — https://support.microsoft.com/pt-br/office/inserir-um-sumário-882e8564-0edb-435e-84b5-1d8552ccf0c0'
+const MS_WORD_TRK = 'Microsoft Support, "Controlar alterações no Word" (Word 2016 a Microsoft 365) — https://support.microsoft.com/pt-br/office/controlar-alterações-no-word-197ba630-0f5f-4a8e-9a77-3712475e806a'
+const MS_BCC = 'Microsoft Support, "Mostre, oculte e exiba o campo Cco (cópia oculta) no Outlook para Windows" (Outlook 2016 a Microsoft 365) — https://support.microsoft.com/pt-br/outlook/mail/show-hide-and-view-the-bcc-blind-carbon-copy-field-in-outlook-for-windows'
+const MS_REPLY = 'Microsoft Support, "Responder ou encaminhar uma mensagem de email no Outlook clássico" — https://support.microsoft.com/pt-br/outlook/reply-to-or-forward-an-email-message'
+const RFC5321 = 'IETF RFC 5321, Simple Mail Transfer Protocol (J. Klensin, 2008) — https://www.rfc-editor.org/rfc/rfc5321.html'
+const RFC1939 = 'IETF RFC 1939, Post Office Protocol - Version 3 (1996) — https://datatracker.ietf.org/doc/html/rfc1939.html'
+const RFC9051 = 'IETF RFC 9051, IMAP - Version 4rev2 (2021) — https://datatracker.ietf.org/doc/html/rfc9051'
+const CERT_GOLPES = 'CERT.br/NIC.br, Cartilha de Segurança para Internet, fascículo sobre golpes (março/2026) — https://cartilha.cert.br/fasciculos/golpes-evite-fraudes/fasciculo-golpes-evite-fraudes.pdf'
+const MS_INPRIVATE = 'Microsoft Support, "Procurar InPrivate no Microsoft Edge" — https://support.microsoft.com/pt-br/microsoft-edge/procurar-inprivate-no-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2'
+const GOOGLE_INCOG = 'Google Chrome Ajuda, "Como o modo de janela anônima do Chrome mantém sua navegação privada" — https://support.google.com/chrome/answer/9845881?hl=pt-BR'
+const MS_MENCAO = 'Microsoft Support, "Use @mentions para chamar a atenção de alguém no Microsoft Teams" — https://support.microsoft.com/pt-br/office/use-mentions-para-chamar-a-atenção-de-alguém-no-microsoft-teams-eb4f059d-320e-454e-b111-03361d4d6855'
+const MS_PRESENT = 'Microsoft Support, "Apresentar conteúdo em reuniões do Microsoft Teams" — https://support.microsoft.com/pt-br/teams/meetings/present-content-in-microsoft-teams-meetings'
+const MS_CANAIS = 'Microsoft Learn, "Visão geral de equipes e canais no Microsoft Teams" — https://learn.microsoft.com/pt-br/microsoftteams/teams-channels-overview'
+const MS_OD_SHARE = 'Microsoft Support, "Colaborar no Microsoft OneDrive: compartilhar, editar e gerenciar arquivos" — https://support.microsoft.com/pt-br/onedrive/collaborate-in-microsoft-onedrive-sharing-editing-and-managing-files'
+const MS_OD_VER = 'Microsoft Support, "Restore a previous version of a file stored in OneDrive" (en-us) — https://support.microsoft.com/en-us/onedrive/restore-a-previous-version-of-a-file-stored-in-onedrive'
+const MS_OD_REST = 'Microsoft Support, "Restaurar arquivos excluídos do seu OneDrive" — https://support.microsoft.com/pt-br/onedrive/restore-your-onedrive-files'
+export const LOTES_4C: DocAudit[] = [
+  // ---- Língua Portuguesa
+  w('crase-1', DICIO_CRASE, 'Crase: horas; locução masculina; antes de verbo; plural', 'Crase "Na indicação de horas, dias de semana e algumas quantidades" (exemplo "às vinte horas"); sem crase em "a pé", "Antes de verbos" e "Antes de palavras femininas no plural antecedidas pela preposição a".', 'A página não traz "à você" (cita só "a maior parte dos pronomes") nem "à partir".'),
+  w('crase-2', DICIO_CRASE, 'Crase: palavras repetidas; locução adverbial', 'Sem crase em palavras repetidas ("frente a frente"); com crase em locuções adverbiais femininas ("à noite").'),
+  w('crase-4', TM_CRASE, 'Crase: a + aquele(s)', 'Crase ocorre com "o artigo definido a, ou os pronomes aquela, aquele e aquilo, junto com a preposição a".'),
+  w('crase-5', TM_CRASE + ' ; ' + DICIO_CRASE, 'Crase: "daqui a"; masculino; verbo; a + artigo', '"as ações futuras são indicadas com \'a\' sem crase" ("Daqui a poucos anos"); "a pé" (masculino) e "Antes de verbos" sem crase; "Refiro-me à morena."', '"Pedir ajuda à vizinha" não aparece literalmente: aplica-se a regra geral (preposição "a" exigida por "pedir" + artigo "a").'),
+  w('conc-2', PE_DUV + ' ; ' + TJMG, 'Concordância com "se": apassivadora x indeterminação', '"Alugam-se apartamentos para temporada." (apassivadora concorda); "Precisa-se de funcionários qualificados." (singular); lição: "precisar-se de" e "tratar-se de" ficam sempre no singular (índice de indeterminação).'),
+  w('conc-3', EE_NOM, 'Concordância nominal: anexo; meio', '"anexo, incluso e obrigado" concordam com o substantivo ("Enviei anexas as fotos"); "em anexo" não varia; "meio" advérbio (= "um pouco") "é invariável".'),
+  w('conc-4', EE_NOM, 'Concordância nominal: "é proibida a entrada"; meio; bastante; em anexo', 'Com artigo a concordância é obrigatória ("É proibida a entrada"); "bastante" advérbio "é invariável"; "meio" advérbio invariável; "em anexo" não varia.', 'A inexistência de "menas" não aparece na página (fato lexical conhecido; não confrontado).'),
+  w('col-4', EST_COL, 'Colocação pronominal: imperativo; não iniciar frase com átono', 'Ênclise com "Verbos que estão no imperativo afirmativo" ("Cumprimentem-no"); "o pronome oblíquo não poderá estar como primeira palavra"; negação atrai o pronome.', 'A página não trata do imperativo negativo; a alternativa A é errada pela regra geral da negação.'),
+  w('col-5', EST_COL + ' ; UNIFAL-MG, minicurso "Pronomes Clíticos" (baseado em Cunha & Cintra e Cegalla)', 'Colocação pronominal: locução verbal; "quem"; negação', 'Locução verbal: o pronome é posto junto ao verbo auxiliar; "quem" e a negação atraem o pronome ("Quem te chamou aqui?").', 'O exemplo "Tinha-se esquecido" não consta literalmente nas fontes; aplica-se a regra da locução verbal.'),
+  w('pont-2', TM_VIRG, 'Vírgula: oração adjetiva explicativa x restritiva', 'Explicativa entre vírgulas ("Gregório de Matos, que é ..."); restritiva sem vírgula ("Os relatórios que ele preparou ..."); uso incorreto pode "alterar completamente o sentido".'),
+  w('reg-2', UNISANTOS, 'Regência de "assistir" (= ver)', 'p. 76: necessidade da preposição "a" para o sentido de "ver alguma coisa".', 'A exigência de preposição antes do relativo ("o filme a que assistimos") decorre da mesma regência; não há página que a cite literalmente.'),
+  w('reg-3', UNISANTOS, 'Regência de "preferir"', 'p. 69: "Preferir é transitivo direto e indireto, pois prefere-se alguma coisa a outra"; observa que o uso popular substitui o "a" por "do que".'),
+  w('reg-5', TM_CRASE, 'Regência de "referir-se" (a)', '"Refiro-me à morena." (referir-se pede a).', 'A fonte mostra a regência por exemplo com crase; a regra "preposição antes do relativo" (a que) não foi confrontada em página específica.'),
+  w('sin-1', DIC('mitigar'), 'Significado de "mitigar"', '"Tornar brando, tênue, menos intenso; atenuar."'),
+  w('sin-2', DIC('dirimir'), 'Significado de "dirimir"', 'Acepção 3: "Obter uma resolução sobre; resolver algo de modo a ter uma resposta" (exemplo: sanou as dúvidas).'),
+  w('sin-3', DIC('efêmero'), 'Antônimo de "efêmero"', 'Efêmero: "de curta duração, breve ou transitório"; sinônimos: breve, fugaz, passageiro; antônimos incluem "duradouro".'),
+  w('sin-4', DIC('prescindir'), 'Significado de "prescindir"', 'Verbo transitivo indireto ("de"): "Deixar de lado; pôr de parte; abrir mão de algo"; sinônimos incluem "dispensar".'),
+  w('fig-1', TM_FIG, 'Metáfora', 'Metáfora: "o conectivo de comparação (como, tal qual) fica subentendido na frase"; comparação usa conectivos explícitos.'),
+  w('fig-3', TM_FIG, 'Metonímia', 'Metonímia: relação "parte pelo todo, autor pela obra".'),
+  w('fig-4', TM_FIG, 'Hipérbole', 'Hipérbole: "exagero de uma ideia feito de maneira intencional".'),
+  w('clas-2', PE_QUE, 'Classe de "que": pronome relativo', 'O pronome relativo "refere-se a um termo anterior" ("Dê-me os livros que comprei"); conjunção integrante é "Subordinativa integrante".', 'A página não traz "o qual" nem o exemplo "O parecer que li".'),
+  w('clas-3', PE_QUE, 'Classe de "que": conjunção integrante', '"Subordinativa integrante" ("Falei que iria visitá-lo mais vezes").', 'A página não traz o exemplo "Espero que ..." nem a expressão "oração substantiva".'),
+  w('clas-5', PE_PREP, 'Combinação de preposição e artigo', 'a + o = ao é "combinação" (sem redução); de + o = do e em + o = no são contrações.', 'Fase 4C: a explicação da alternativa C dizia "contração"; corrigida para "combinação" (revisão v2).'),
+  w('coes-1', PE_CONJ, 'Conjunções: adversativas, condicionais, conformativas, conclusivas', 'Adversativas: "mas, porém, entretanto, no entanto, contudo, todavia"; condicionais "caso, se"; conformativas "conforme"; conclusivas "portanto"; causais "porque".'),
+  w('coes-2', PE_CONJ, 'Conjunções: concessivas', 'Concessivas: "embora, mesmo que, apesar de que, ainda que"; condicionais "se"; causais "porque"; conclusivas "portanto".', 'A classificação de "assim que" (tempo) não foi confrontada.'),
+  // ---- Informática (fontes de fabricantes; páginas consultadas em 12/11/2026)
+  inf('win-1', MS_WIN, 'Windows: Shift+Delete', 'Seção "Atalhos de teclado do Explorador de Arquivos": Shift+Delete "Eliminar permanentemente o item selecionado sem movê-lo para a Reciclagem"; Delete move o item para a Lixeira.', 'Ctrl+Delete aparece só como atalho de edição de texto (apagar palavra à direita), não como exclusão de arquivo.'),
+  inf('win-2', MS_WIN, 'Windows: Win+L, Win+D, Win+E, Win+R', 'Win+L "Bloquear o computador"; Win+D mostrar/ocultar a área de trabalho; Win+E abre o Explorador de Arquivos; Win+R abre a caixa Executar.'),
+  inf('win-3', MS_WIN, 'Windows: Ctrl+Shift+Esc', 'Ctrl+Shift+Esc "Abra o Gerenciador de Tarefas"; Win+I abre Configurações; Alt+Tab alterna janelas abertas.'),
+  inf('win-5', MS_WIN, 'Windows: Alt+Tab', 'Alt+Tab "Alternar entre janelas abertas"; Win+D mostra a área de trabalho; Win+L bloqueia; Ctrl+Alt+Del leva à tela de segurança.', 'Ctrl+Tab (alternar guias dentro de um programa) não foi confrontado nesta página.'),
+  inf('word-2', MS_WORD_HF, 'Word: cabeçalho e rodapé', '"Aceda a Inserir > Cabeçalho ou Rodapé." (aplica-se a Word 2016 a Microsoft 365).'),
+  inf('word-3', MS_WORD_TOC, 'Word: sumário automático', '"Os sumários no Word se baseiam nos títulos do documento"; posicionar o cursor, guia Referências e escolher um estilo automático (Word 2021, 2024 e Microsoft 365).'),
+  inf('word-5', MS_WORD_TRK, 'Word: Controlar Alterações', 'Guia Revisão > Controlar > Alterações; "Alterações de diferentes autores são indicadas com cores diferentes." (Word 2016 a Microsoft 365).'),
+  inf('mail-1', MS_BCC, 'Outlook: Cco', '"Outras pessoas que recebem a mensagem não veem o endereço de quem está na linha Cco." (Outlook 2016 a Microsoft 365 e novo Outlook).'),
+  inf('mail-2', MS_REPLY, 'Outlook: Responder a Todos', '"Responder a todos" envia ao "remetente original e a todos os outros destinatários nas linhas Para e Cc".'),
+  inf('mail-3', RFC5321 + ' ; ' + RFC1939 + ' ; ' + RFC9051, 'Protocolos de e-mail', 'RFC 5321 §1.1: "The objective of the Simple Mail Transfer Protocol (SMTP) is to transfer mail reliably and efficiently."; POP3 permite recuperar as mensagens da caixa no servidor; IMAP "allows a client to access and manipulate electronic mail messages on a server".', 'Protocolo-padrão de envio: SMTP; POP3 e IMAP servem ao acesso/recebimento. HTTPS e FTP não são protocolos de correio.'),
+  inf('mail-4', CERT_GOLPES, 'Phishing', '"phishing é um tipo de fraude na qual golpistas tentam obter informações pessoais e financeiras" (mensagens-isca com engenharia social).'),
+  inf('mail-5', RFC9051 + ' ; ' + RFC1939, 'IMAP x POP3', 'IMAP: acesso e manipulação de mensagens no servidor, com ressincronização de clientes e acesso simultâneo por múltiplos agentes (§5.2); POP3: "normally, mail is downloaded and then deleted".', 'POP3 pode ser configurado para manter cópia no servidor; "em geral" na alternativa A é adequado.'),
+  inf('net-4', MS_INPRIVATE + ' ; ' + GOOGLE_INCOG, 'Navegação InPrivate/anônima', 'Edge: evita salvar "o histórico de navegação, cookies, dados do site ou entradas de formulário em seu dispositivo"; Chrome: após a sessão não retém dados do site nem registro dos sites visitados e "não torna você invisível" (sites, escola/empregador e provedor podem observar a atividade).', 'As páginas não tratam de criptografia nem de malware; as alternativas A e E decorrem de o modo anônimo apenas limitar o que é salvo no dispositivo.'),
+  inf('teams-2', MS_MENCAO, 'Teams: @menção', '"Basta digitar @ antes do nome e selecioná-los no menu exibido."; a pessoa mencionada recebe notificação.'),
+  inf('teams-3', MS_PRESENT, 'Teams: compartilhar conteúdo em reunião', '"Para apresentar conteúdo em uma reunião, selecione o botão Compartilhar nos controles da reunião." (tela inteira ou janela).'),
+  inf('teams-4', MS_CANAIS, 'Teams: canais', '"Os canais são seções dedicadas dentro de uma equipe para manter as conversas organizadas por tópicos, projetos, disciplinas específicas".'),
+  inf('od-3', MS_OD_SHARE, 'OneDrive: permissões de link', 'Rótulos "Pode editar" e "Pode exibir"; "Desmarque Permitir edição se quiser que outras pessoas possam apenas visualizar o arquivo."', 'A questão usa "exibição" (= Pode exibir).'),
+  inf('od-4', MS_OD_VER, 'OneDrive: Histórico de versões', 'No OneDrive.com, "Version history"; no painel, escolher uma versão e "Restore" torna essa versão a atual (a página em inglês cita SharePoint na seção "Applies to"; histórico mantido por 30 dias).', 'Página consultada em inglês; o rótulo "Histórico de versões" é a tradução usada no OneDrive em português (não confrontado em página em português).'),
+  inf('od-5', MS_OD_REST, 'OneDrive: Lixeira', 'Itens excluídos podem ser restaurados da Lixeira do OneDrive: 30 dias (contas pessoais) ou 93 dias (trabalho/escola), "a menos que o administrador tenha alterado a configuração de retenção".'),
+]
