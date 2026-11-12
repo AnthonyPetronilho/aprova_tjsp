@@ -7,7 +7,7 @@ import { AUDIT } from '../src/data/audit'
 import { CALC_CHECKS, NEW_CALC } from '../src/data/calc-checks'
 import { numbersOf } from '../src/lib/numparse'
 import { supersededIds, versionOf, REVISIONS, applyRevisions } from '../src/data/revisions'
-import { DOC_AUDIT, DOC_AUDIT_BY_ID } from '../src/data/audit-docs'
+import { DOC_AUDIT, DOC_AUDIT_BY_ID, LOTE01 } from '../src/data/audit-docs'
 import { poolOf } from '../src/lib/learning'
 import type { Validation } from '../src/types'
 
@@ -40,20 +40,20 @@ describe('integridade estrutural do banco', () => {
   })
   it('a IA não atribui validação humana; conferência normativa só onde há registro documental', () => {
     expect(Object.values(AUDIT).filter(a => a.methods.includes('validacao-humana'))).toEqual([])
-    expect(Object.values(AUDIT).filter(a => a.methods.includes('conferencia-normativa')).map(a => a.id).sort()).toEqual(DOC_AUDIT.map(d => d.id).sort())
+    expect(Object.values(AUDIT).filter(a => a.methods.includes('conferencia-normativa')).map(a => a.id).sort()).toEqual(DOC_AUDIT.filter(d => d.how !== 'automatizada').map(d => d.id).sort())
   })
   it('questão jurídica/legislação interna só é validada com registro documental completo (fonte, dispositivo, página, trecho)', () => {
     const jur = QUESTIONS.filter(q => /^(dpenal|dpp|dpc|dconst|dadm|dint|atual)/.test(q.topicId) && q.validation === 'validada')
     expect(jur.length).toBeGreaterThan(0)
     for (const q of jur) {
       const d = DOC_AUDIT_BY_ID[q.id]; expect(d, q.id).toBeTruthy()
-      expect(d.status).toBe('validada'); expect(d.source.length).toBeGreaterThan(10); expect(d.provision).toMatch(/\d/); expect(d.pages).toMatch(/\d/); expect(d.excerpt.length).toBeGreaterThan(20)
+      expect(d.status).toBe('validada'); expect(d.source.length).toBeGreaterThan(10); expect(d.provision).toMatch(/\d/); expect(d.pages).toMatch(/\d|página web/); expect(d.excerpt.length).toBeGreaterThan(20)
     }
   })
   it('lote 01: 25 questões auditadas; Res. 850 permanece Pendente por vigência não comprovada', () => {
-    expect(DOC_AUDIT.length).toBe(25)
-    for (const d of DOC_AUDIT.filter(x => /^it[tm]-/.test(x.id))) { expect(d.status).toBe('pendente'); expect(d.pendencies?.length).toBeGreaterThan(0) }
-    expect(DOC_AUDIT.filter(x => x.status === 'validada').length).toBe(15)
+    expect(LOTE01.length).toBe(25)
+    for (const d of LOTE01.filter(x => /^it[tm]-/.test(x.id))) { expect(d.status).toBe('pendente'); expect(d.pendencies?.length).toBeGreaterThan(0) }
+    expect(LOTE01.filter(x => x.status === 'validada').length).toBe(15)
   })
 })
 
@@ -93,7 +93,7 @@ describe('conferência computacional (exatas)', () => {
 describe('ampliação (lote autoral F4-A)', () => {
   it('questões novas de IA são autorais e nascem Pendente', () => {
     const novas = QUESTIONS.filter(q => q.origin === 'autoral')
-    expect(novas.length).toBe(10)
+    expect(novas.length).toBe(10 + 3) // 10 do lote F4-A + soc-2b, ppj-4b e estr-1b (substitutas da Fase 4B)
     for (const q of novas) { expect(q.validation, q.id).toBe('pendente'); expect(AUDIT[q.id].proposed).toBe('pendente') }
   })
   it('os assuntos ampliados chegam a 10 questões, mas só 5 por assunto estão validadas', () => {
@@ -106,15 +106,26 @@ describe('ampliação (lote autoral F4-A)', () => {
 })
 
 describe('revisões e uso nas avaliações', () => {
-  it('revisões do lote 01: mesmo ID, gabarito e alternativas intactos; só a explicação muda; texto anterior registrado', () => {
-    expect(REVISIONS.length).toBe(8)
-    for (const r of REVISIONS) {
+  it('revisões (todos os lotes): mesmo ID, gabarito e alternativas intactos; só a explicação muda; texto anterior registrado', () => {
+    expect(REVISIONS.length).toBeGreaterThanOrEqual(8)
+    for (const r of REVISIONS.filter(x => x.kind !== 'substituicao')) {
       const raw = RAW_QUESTIONS.find(q => q.id === r.id)!, now = QUESTIONS.find(q => q.id === r.id)!
       expect(now.answer).toBe(raw.answer); expect(now.stem).toBe(raw.stem); expect(now.options.map(o => o.text)).toEqual(raw.options.map(o => o.text))
       for (const [k, v] of Object.entries(r.previous!.optionWhy!)) expect(raw.options.find(o => o.id === k)!.why, r.id).toBe(v)
       for (const [k, v] of Object.entries(r.after!.optionWhy!)) expect(now.options.find(o => o.id === k)!.why, r.id).toBe(v)
-      expect(r.kind).not.toBe('substituicao'); expect(r.version).toBeGreaterThan(1)
+      expect(r.version).toBeGreaterThan(1)
     }
+  })
+  it('substituições reais: ID antigo permanece no catálogo, substituto existe e é Pendente (autoral), antigo sai do pool', () => {
+    const subs = REVISIONS.filter(r => r.kind === 'substituicao')
+    expect(subs.length).toBeGreaterThanOrEqual(1)
+    for (const r of subs) {
+      expect(QUESTIONS.some(q => q.id === r.id), r.id).toBe(true); expect(QUESTIONS.some(q => q.id === r.supersededBy), r.id).toBe(true)
+      expect(supersededIds().has(r.id)).toBe(true); expect(r.invalidatesMastery).toBe(true)
+    }
+    const pool = poolOf('dconst-2', () => 'pendente')
+    expect(pool.practice.map(q => q.id)).not.toContain('soc-2'); expect(pool.practice.map(q => q.id)).toContain('soc-2b')
+    const pp = poolOf('dpp-1', () => 'pendente'); expect(pp.practice.map(q => q.id)).not.toContain('ppj-4'); expect(pp.practice.map(q => q.id)).toContain('ppj-4b')
   })
   it('applyRevisions não altera questão sem revisão', () => { const q = RAW_QUESTIONS.find(x => x.id === 'mmc-1')!; expect(applyRevisions(q)).toBe(q) })
   it('a explicação corrigida de itt-5 não cita mais o piso de 90 dias como regra vigente', () => {

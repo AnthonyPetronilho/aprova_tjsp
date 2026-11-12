@@ -18,7 +18,7 @@ export interface QuestionRevision {
 }
 const D = '2026-11-06'
 const LC = 'LC SP 1.111/2010 (ALESP, última atualização LC 1.441/2026), impresso em 06/11/2026'
-export const REVISIONS: QuestionRevision[] = [
+const REVISIONS_LOTE01: QuestionRevision[] = [
   { id: 'itt-5', version: 2, date: D, kind: 'correcao', invalidatesMastery: false,
     summary: 'Explicação da alternativa C citava um piso de 90 dias de revezamento que não existe mais.',
     reason: 'O piso "não inferior a 90 (noventa) dias" constava do art. 9º, V, na redação original; a Res. TJSP 864/2022 deu nova redação ao inciso V e o texto compilado não o contém. A alternativa continua errada e o gabarito (A) não muda.',
@@ -44,6 +44,8 @@ export const REVISIONS: QuestionRevision[] = [
   { id: 'ilr-5', version: 2, date: D, kind: 'complementacao', summary: 'Referência precisada: art. 21.', reason: 'A definição de Promoção consta do art. 21.', source: LC + ' — p. 4',
     previous: { optionWhy: { A: 'Correta: Arts. 21 a 28.' } }, after: { optionWhy: { A: 'Correta: art. 21: promoção é a passagem ao nível e grau imediatamente superiores, dentro da mesma referência.' } } },
 ]
+import { REVISIONS_EXTRA } from './revisions-extra'
+export const REVISIONS: QuestionRevision[] = [...REVISIONS_LOTE01, ...REVISIONS_EXTRA]
 export const supersededIds = (revs: QuestionRevision[] = REVISIONS): Set<string> => new Set(revs.filter(r => r.kind === 'substituicao' && r.supersededBy).map(r => r.id))
 export const versionOf = (id: string, revs: QuestionRevision[] = REVISIONS): number => revs.filter(r => r.id === id).reduce((m, r) => Math.max(m, r.version), 1)
 /** Aplica as revisões (somente explicações) por cima do texto-base. O gabarito, o enunciado e o texto das alternativas nunca mudam. */

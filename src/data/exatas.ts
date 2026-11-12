@@ -151,7 +151,7 @@ export const PORC_CARDS: Flashcard[] = [
 
 // ───────────── Estruturas lógicas
 export const ESTR_LESSON: Lesson = {
-  id: 'rl-estruturas', topicId: 'rl-1', title: 'Estruturas lógicas: proposições, conectivos e negação', questionIds: ['estr-1', 'estr-2', 'estr-3', 'estr-4', 'estr-5'],
+  id: 'rl-estruturas', topicId: 'rl-1', title: 'Estruturas lógicas: proposições, conectivos e negação', questionIds: ['estr-1b', 'estr-2', 'estr-3', 'estr-4', 'estr-5'],
   steps: [
     { title: 'Entenda',
       body: ['Proposição é uma frase declarativa que pode ser julgada como verdadeira (V) ou falsa (F), e não as duas. "Brasília é a capital do Brasil" é uma proposição (V). "Que horas são?" e "Feche a porta" não são proposições, porque não se pode dizer que são verdadeiras ou falsas.',

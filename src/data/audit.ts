@@ -4,8 +4,8 @@
 //  • Este registro NÃO é o histórico de respostas do aluno (isso fica em progress/events).
 //  • "revisao-ia-textual": leitura do enunciado, das alternativas, do gabarito e da explicação por IA, com base no conhecimento do modelo.
 //    NÃO é conferência com texto oficial e NÃO é revisão humana.
-//  • "conferencia-normativa": cotejo com a redação vigente de fonte oficial. Nesta fase NENHUMA questão a possui: Planalto, Câmara e TJSP
-//    não puderam ser acessados (bloqueio de rede). Por isso nenhuma questão jurídica é 'validada'.
+//  • "conferencia-normativa": cotejo, feito por IA (não humano), com o texto de fonte fornecido/compilado (Fase 4B); registro em audit-docs*.ts.
+//    Questão jurídica só é 'validada' com esse registro (fonte, dispositivo, página, trecho).
 //  • "calculo-automatizado": a resposta foi recalculada por código (src/data/calc-checks.ts) e o teste automatizado confere o gabarito.
 //  • "validacao-humana": reservada ao revisor humano; a IA nunca a atribui. Nenhuma questão a tem nesta fase.
 import type { Question, Validation } from '../types'
@@ -91,12 +91,15 @@ function build(q: Question): AuditRecord {
   const da = DOC_AUDIT_BY_ID[q.id]
   let corrections: string[] = []
   if (da) {
-    methods.push('conferencia-normativa'); proposed = da.status
-    verification = 'Conferência documental por IA (não humana) em ' + DOC_AUDIT_DATE + ' — ' + da.source + '; ' + da.provision + ', p. ' + da.pages + '. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).'
+    methods.push(da.how === 'automatizada' ? 'calculo-automatizado' : 'conferencia-normativa'); proposed = da.status
+    verification = (da.how === 'automatizada' ? 'Verificação automatizada (execução de ferramenta; não humana) em ' : 'Conferência documental por IA (não humana) em ') + DOC_AUDIT_DATE + ' — ' + da.source + '; ' + da.provision + ', p. ' + da.pages + '. Edital: referência temporal 19/10/2026 informada pelo proprietário (comprovação independente pendente).'
     reference = da.provision + ' (p. ' + da.pages + ')'
     justification = da.status === 'validada'
       ? 'Enunciado, alternativas, gabarito e explicação conferidos com o texto da fonte; resposta única.'
-      : 'Conferido com o texto compilado, mas a vigência na data do edital não está comprovada; permanece Pendente.'
+      : da.status === 'precisa-correcao' ? 'Erro demonstrado em confronto com a fonte (ver achados); fora das avaliações até a correção ser aplicada e conferida.'
+      : da.status === 'precisa-complementacao' ? 'Resposta essencialmente correta, mas explicação/referência insuficiente (ver achados).'
+      : da.result === 'confere-vigencia-nao-comprovada' ? 'Conferido com o texto da fonte, mas a vigência na data do edital não está comprovada; permanece Pendente.'
+      : 'Conferência inconclusiva ou parcial (ver achados e pendências); permanece Pendente.'
     if (da.note) issues.push(da.note)
     pendencies.length = 0; pendencies.push(...(da.pendencies ?? []), 'Revisão humana não realizada.')
     corrections = REVISIONS.filter(r => r.id === q.id).map(r => `v${r.version} (${r.kind}): ${r.summary}`)
