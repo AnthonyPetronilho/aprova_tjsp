@@ -3,6 +3,7 @@
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import { QUESTIONS } from '../data/questions'
 import { supersededIds } from '../data/revisions'
+import { catalogExcluded } from './catalog'
 import { FLASHCARDS } from '../data/cards'
 import { LESSONS } from '../data/lessons'
 import { addDays, todayStr } from './dates'
@@ -55,7 +56,7 @@ export const score = (items: AsmItem[]) => ({ n: items.length, ok: items.filter(
 
 // Conjunto de questões de um assunto. Avaliação usa só as validadas; prática usa tudo, menos as com erro confirmado.
 export function poolOf(topicId: string, vOf: VOf): { all: Question[]; validated: Question[]; practice: Question[]; excluded: Question[] } {
-  const old = supersededIds()
+  const old = new Set([...supersededIds(), ...catalogExcluded()])   // substituídas (Fase 4) e substituídas/arquivadas no catálogo editorial (Fase 5)
   const all = QUESTIONS.filter(q => q.topicId === topicId && !old.has(q.id))
   return { all, validated: all.filter(q => vOf(q.id) === 'validada'), practice: all.filter(q => vOf(q.id) !== 'precisa-correcao'), excluded: all.filter(q => vOf(q.id) === 'precisa-correcao') }
 }

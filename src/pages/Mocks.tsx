@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { QUESTIONS } from '../data/questions'
+import { activeQuestions } from '../lib/pool'
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import { AREAS, COMPLETE_LIMIT_SEC, analyze, availability, canStartComplete, fmtClock, pickComplete, pickQuick } from '../lib/mocks'
 import type { MockResult, OptId } from '../types'
@@ -42,8 +43,8 @@ function Result({ s, r, onBack, go }: { s: Store; r: MockResult; onBack: () => v
 }
 function Home({ s, open }: { s: Store; open: (id: string) => void }) {
   const { p } = s, [n, setN] = useState(10), [mode, setMode] = useState<'auto' | 'manual'>('auto'), [discs, setDiscs] = useState<string[]>([])
-  const withQ = DISCIPLINES.filter(d => QUESTIONS.some(q => topicDiscipline(q.topicId)?.id === d.id))
-  const pool = mode === 'auto' ? QUESTIONS.length : QUESTIONS.filter(q => discs.includes(topicDiscipline(q.topicId)?.id ?? '')).length, real = Math.min(n, pool), av = availability(), ok = canStartComplete()
+  const withQ = DISCIPLINES.filter(d => activeQuestions().some(q => topicDiscipline(q.topicId)?.id === d.id))
+  const pool = mode === 'auto' ? activeQuestions().length : activeQuestions().filter(q => discs.includes(topicDiscipline(q.topicId)?.id ?? '')).length, real = Math.min(n, pool), av = availability(), ok = canStartComplete()
   const start = (kind: 'rapido' | 'completo') => { const qids = kind === 'completo' ? pickComplete() : pickQuick(p, n, mode === 'auto' ? 'auto' : discs); if (!qids?.length) return; s.startMock({ id: `r${Date.now()}`, kind, startedAt: Date.now(), limitSec: kind === 'completo' ? COMPLETE_LIMIT_SEC : undefined, qids, answers: {}, idx: 0 }) }
   return <div className="space-y-4 max-w-3xl"><h1 className="text-2xl font-bold">🧪 Simulados</h1>
     <div className="card space-y-3"><h2 className="font-bold">Simulado rápido</h2>

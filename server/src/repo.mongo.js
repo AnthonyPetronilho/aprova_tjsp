@@ -7,6 +7,13 @@ export async function createMongoRepo(uri, dbName = 'aprova_tjsp') {
   await users.createIndex({ email: 1 }, { unique: true })
   await docs.createIndex({ userId: 1, kind: 1 }, { unique: true })
   await hist.createIndex({ userId: 1, kind: 1, version: -1 })
+  // Fase 5 — catálogo editorial: ed_items (um registro por conteúdo), ed_history (um registro por versão), ed_meta (contador de publicação)
+  const items = db.collection('ed_items'), eh = db.collection('ed_history'), em = db.collection('ed_meta')
+  await items.createIndex({ kind: 1, id: 1 }, { unique: true })
+  await eh.createIndex({ kind: 1, id: 1, rev: -1 }, { unique: true })
+  await eh.createIndex({ at: -1 })
+  const strip = d => { if (!d) return null; const { _id, ...r } = d; return r }
+  const bump = () => em.updateOne({ _id: 'catalog' }, { $inc: { rev: 1 } }, { upsert: true })
   const oid = id => { try { return new ObjectId(id) } catch { return null } }
   const pubUser = u => u && { id: String(u._id), email: u.email, passHash: u.passHash, createdAt: u.createdAt }
   return {
@@ -34,6 +41,31 @@ export async function createMongoRepo(uri, dbName = 'aprova_tjsp') {
     },
     async listHistory(userId, kind) { return (await hist.find({ userId, kind }).sort({ version: -1 }).toArray()).map(h => ({ json: h.json, version: h.version, updatedAt: h.updatedAt, savedAt: h.savedAt })) },
     async deleteUser(id) { const o = oid(id); if (!o) return; await users.deleteOne({ _id: o }); await docs.deleteMany({ userId: id }); await hist.deleteMany({ userId: id }) },
+    async edInit(entries) {
+      if (!entries.length) return 0
+      const r = await items.bulkWrite(entries.map(({ kind, id, ...rest }) => ({ updateOne: { filter: { kind, id }, update: { $setOnInsert: rest }, upsert: true } })), { ordered: false })
+      return r.upsertedCount
+    },
+    async edGet(kind, id) { return strip(await items.findOne({ kind, id })) },
+    async edList() { return (await items.find({}).toArray()).map(strip) },
+    async edCreate(rec, hist) {
+      try { await items.insertOne({ ...rec }) } catch (e) { if (e?.code === 11000) return { dup: true, current: await this.edGet(rec.kind, rec.id) }; throw e }
+      try { await eh.insertOne({ ...hist }) } catch (e) { if (e?.code !== 11000) throw e }
+      if (hist.affectsCatalog) await bump()
+      return { rec }
+    },
+    // findOneAndUpdate com filtro por rev: operação atômica de comparar-e-trocar (dois administradores nunca gravam sobre a mesma versão)
+    async edUpdate(kind, id, expectedRev, fields, hist) {
+      const r = await items.findOneAndUpdate({ kind, id, rev: expectedRev }, { $set: fields, $inc: { rev: 1 } }, { returnDocument: 'after' })
+      if (!r) { const cur = await this.edGet(kind, id); return cur ? { conflict: true, current: cur } : { missing: true } }
+      const rec = strip(r)
+      try { await eh.insertOne({ ...hist, rev: rec.rev }) } catch (e) { if (e?.code !== 11000) throw e }
+      if (hist.affectsCatalog) await bump()
+      return { rec }
+    },
+    async edHistory(kind, id) { return (await eh.find({ kind, id }).sort({ rev: -1 }).toArray()).map(strip) },
+    async edRecent(limit = 50) { return (await eh.find({ type: { $ne: 'importacao' } }).sort({ at: -1 }).limit(limit).toArray()).map(strip) },
+    async edCatalogRev() { return (await em.findOne({ _id: 'catalog' }))?.rev ?? 0 },
     async close() { await client.close() },
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { QUESTIONS } from '../data/questions'
+import { activeQuestions } from '../lib/pool'
 import { LESSONS } from '../data/lessons'
 import { FLASHCARDS } from '../data/cards'
 import { DISCIPLINES, BLOCKS, topicDiscipline } from '../data/edital'
@@ -14,7 +15,7 @@ export default function Lesson({ s, lessonId, onPick }: { s: Store; lessonId: st
   const { p, answer, complete, setLast, toggleFav, saveNote } = s, xp = p.settings.xp
   const L = LESSONS.find(l => l.id === lessonId) ?? LESSONS[0]
   const [i, setI] = useState(0), [alt, setAlt] = useState(false)
-  const qs = QUESTIONS.filter(q => L.questionIds.includes(q.id)), all = qs.every(q => p.answers[q.id]), isDone = !!p.completed[L.id]
+  const qs = activeQuestions().filter(q => L.questionIds.includes(q.id)), all = qs.every(q => p.answers[q.id]), isDone = !!p.completed[L.id]
   const cards = FLASHCARDS.filter(c => c.lessonId === L.id)
   const topic = DISCIPLINES.flatMap(d => d.topics).find(t => t.id === L.topicId), disc = topicDiscipline(L.topicId)
   const init = saved && matches(L.topicId, saved.blk, saved.dsc) ? saved : { blk: String(disc?.block ?? 'all'), dsc: disc?.id ?? 'all' }

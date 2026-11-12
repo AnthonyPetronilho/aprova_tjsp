@@ -1,4 +1,5 @@
 import { QUESTIONS } from '../data/questions'
+import { activeQuestions } from './pool'
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import type { MockResult, Progress, Question } from '../types'
 // Distribuição real do edital (cap. IX/Anexo VIII): 16 + 30 + 4 + 4 + 9 + 7 = 70 questões.
@@ -12,16 +13,16 @@ export const AREAS = [
 ]
 export const COMPLETE_LIMIT_SEC = 5 * 3600 // objetiva + redação: 5 horas
 export const areaOf = (q: Question) => AREAS.find(a => a.discs.includes(topicDiscipline(q.topicId)?.id ?? ''))
-export const availability = () => AREAS.map(a => ({ ...a, have: QUESTIONS.filter(q => areaOf(q)?.id === a.id).length }))
+export const availability = () => AREAS.map(a => ({ ...a, have: activeQuestions().filter(q => areaOf(q)?.id === a.id).length }))
 export const canStartComplete = () => availability().every(a => a.have >= a.n)
 export const shuffle = <T,>(a: T[]): T[] => { const r = [...a]; for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]] } return r }
 export function pickComplete(): string[] | null {
   if (!canStartComplete()) return null
-  return AREAS.flatMap(a => shuffle(QUESTIONS.filter(q => areaOf(q)?.id === a.id)).slice(0, a.n).map(q => q.id))
+  return AREAS.flatMap(a => shuffle(activeQuestions().filter(q => areaOf(q)?.id === a.id)).slice(0, a.n).map(q => q.id))
 }
 // Rápido: manual (matérias escolhidas) ou automático (prioriza erros em aberto e questões ainda não respondidas).
 export function pickQuick(p: Progress, n: number, discIds: string[] | 'auto'): string[] {
-  const pool = QUESTIONS.filter(q => discIds === 'auto' || discIds.includes(topicDiscipline(q.topicId)?.id ?? ''))
+  const pool = activeQuestions().filter(q => discIds === 'auto' || discIds.includes(topicDiscipline(q.topicId)?.id ?? ''))
   const score = (q: Question) => (p.errors[q.id] && !p.errors[q.id].resolved ? 3 : 0) + (p.answers[q.id] ? 0 : 2) + Math.random() * 0.9
   return (discIds === 'auto' ? [...pool].sort((a, b) => score(b) - score(a)) : shuffle(pool)).slice(0, n).map(q => q.id)
 }

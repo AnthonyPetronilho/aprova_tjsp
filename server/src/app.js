@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { VALIDATORS } from './validate.js'
+import { mountEditorial, loadSeed } from './editorial.js'
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/
 const KINDS = new Set(['progress', 'content'])
@@ -14,7 +15,7 @@ const LIMIT = { progress: 4_500_000, content: 4_000_000 }  // bytes: o progresso
 // a cada requisição o servidor confere o e-mail do usuário contra esta lista. Nenhum estado do frontend concede acesso.
 export const parseAdmins = s => new Set(String(s ?? '').split(',').map(x => x.trim().toLowerCase()).filter(Boolean))
 
-export function createApp({ repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLimitMax = 20, dataLimitMax = 600, adminEmails = '', trustProxy = undefined }) {
+export function createApp({ seed = loadSeed(), adminWriteMax = 300, repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLimitMax = 20, dataLimitMax = 600, adminEmails = '', trustProxy = undefined }) {
   if (!jwtSecret || jwtSecret.length < 32) throw new Error('JWT_SECRET precisa ter pelo menos 32 caracteres.')
   const app = express()
   app.disable('x-powered-by')
@@ -68,6 +69,9 @@ export function createApp({ repo, jwtSecret, corsOrigin, bcryptCost = 12, rateLi
   // Rotas administrativas: sempre autenticadas E autorizadas no servidor. As rotas de conteúdo entram na Fase 5.
   const requireAdmin = [auth, (req, res, next) => (isAdmin(req.user) ? next() : res.status(403).json({ error: 'Acesso restrito a administradores.' }))]
   app.get('/api/admin/whoami', ...requireAdmin, (req, res) => res.json({ admin: true, email: req.user.email }))
+  // Fase 5: catálogo editorial (rotas /api/admin/* só para administradores; /api/catalog entrega aos clientes apenas o publicado)
+  const adminLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: adminWriteMax, standardHeaders: true, legacyHeaders: false, keyGenerator: req => `adm:${req.user?.id ?? req.ip}`, message: { error: 'Muitas operações administrativas. Aguarde alguns minutos.' } })
+  mountEditorial(app, { repo, requireAdmin, auth, wrap, seed, limiter: adminLimiter })
 
   // Documentos do usuário (progresso e conteúdo). O servidor guarda o JSON como o app enviou, depois de validar o formato.
   // Atualização com controle de versão (baseVersion): se outro aparelho salvou antes, responde 409 com o documento atual

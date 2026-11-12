@@ -155,7 +155,7 @@ export function createSync(cfg: SyncConfig) {
   return {
     getState: () => st, subscribe: (f: () => void) => { subs.add(f); return () => { subs.delete(f) } }, version: () => ver,
     setAdapters: (a: Partial<Record<Kind, Adapter>>) => { adapters = a }, authenticate, verifySession, reload, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn: () => !!saved.token,
-    idle: () => chain, dispose: () => { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])) },
+    idle: () => chain, request: (method: string, path: string, body?: unknown) => req(method, path, body), dispose: () => { clearTimeout(retryTimer); KINDS.forEach(k => clearTimeout(timers[k])) },
   }
 }
 
@@ -163,4 +163,5 @@ export function createSync(cfg: SyncConfig) {
 const API = ((import.meta as { env?: Record<string, string> }).env?.VITE_API_URL ?? '')
 export const sync = createSync({ api: API })
 export const useSyncState = () => { useSyncExternalStore(sync.subscribe, sync.version); return sync.getState() }
+export const api = (method: string, path: string, body?: unknown) => sync.request(method, path, body)
 export const { setAdapters, authenticate, verifySession, reload, logout, deleteAccount, syncNow, scheduleSync, startAutoSync, isLoggedIn } = sync

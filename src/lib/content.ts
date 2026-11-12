@@ -5,6 +5,7 @@ import { QUESTIONS } from '../data/questions'
 import { FLASHCARDS } from '../data/cards'
 import { DISCIPLINES } from '../data/edital'
 import { parseVideo } from './video'
+import { overlayQuestions, overlayLessons, overlayCards, catalogValidation, loadCatalog, onCatalogChange } from './catalog'
 
 // Conteúdo embutido (somente leitura) + conteúdo do editor (localStorage). Os arrays LESSONS/QUESTIONS/FLASHCARDS
 // continuam sendo os mesmos objetos usados pelo app inteiro; aqui eles são reconstruídos no lugar (embutido + publicados).
@@ -26,10 +27,11 @@ export const topicsFlat = DISCIPLINES.flatMap(d => d.topics.map(t => ({ id: t.id
 const topicIds = new Set(topicsFlat.map(t => t.id))
 
 function rebuild() {
-  const vids = state.videos
-  LESSONS.length = 0; LESSONS.push(...BUILTIN.lessons.map(l => vids[l.id] ? { ...l, video: vids[l.id] } : l), ...state.lessons.filter(l => l.status === 'publicado'))
-  QUESTIONS.length = 0; QUESTIONS.push(...BUILTIN.questions, ...state.questions.filter(q => q.status === 'publicado'))
-  FLASHCARDS.length = 0; FLASHCARDS.push(...BUILTIN.cards, ...state.cards.filter(c => c.status === 'publicado'))
+  // base embutida + catálogo editorial publicado (servidor, Fase 5) + conteúdo local antigo publicado (legado)
+  const vids = state.videos, lessons = overlayLessons(BUILTIN.lessons)
+  LESSONS.length = 0; LESSONS.push(...lessons.map(l => vids[l.id] ? { ...l, video: vids[l.id] } : l), ...state.lessons.filter(l => l.status === 'publicado'))
+  QUESTIONS.length = 0; QUESTIONS.push(...overlayQuestions(BUILTIN.questions), ...state.questions.filter(q => q.status === 'publicado'))
+  FLASHCARDS.length = 0; FLASHCARDS.push(...overlayCards(BUILTIN.cards, new Set(LESSONS.map(l => l.id))), ...state.cards.filter(c => c.status === 'publicado'))
 }
 const emit = () => { version++; rebuild(); try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* sem armazenamento: segue em memória */ } subs.forEach(f => f()) }
 export function sanitize(raw: unknown): ContentState | null {
@@ -45,14 +47,17 @@ export function sanitize(raw: unknown): ContentState | null {
   for (const [k, v] of Object.entries((r as { validations?: Record<string, unknown> }).validations ?? {})) { const x = v as { v?: unknown; at?: unknown }; if (k.length < 200 && x && VALS.includes(x.v as Validation) && typeof x.at === 'string') validations[k] = { v: x.v as Validation, at: x.at } }
   return { editor: !!r.editor, lessons: clean(r.lessons as CLesson[]), questions: clean(r.questions as CQuestion[]), cards: clean(r.cards as CCard[]), videos, deleted, validations }
 }
+onCatalogChange(() => { rebuild(); version++; subs.forEach(f => f()) })
 export function loadContent() {
+  loadCatalog()
   try { const r = localStorage.getItem(KEY); if (r) state = sanitize(JSON.parse(r)) ?? empty() } catch { state = empty() }
   rebuild()
 }
 export const getContent = () => state
 // Situação de validação da questão: o que o editor registrou; sem registro vale o campo da própria questão e, por fim, 'pendente'.
 // Nunca é promovida automaticamente para 'validada'.
-export const validationOf = (qid: string): Validation => state.validations[qid]?.v ?? QUESTIONS.find(q => q.id === qid)?.validation ?? 'pendente'
+// Precedência: situação registrada no servidor (revisão do administrador) > ajuste local legado desta conta > auditoria embutida. Nunca é promovida automaticamente.
+export const validationOf = (qid: string): Validation => catalogValidation(qid) ?? state.validations[qid]?.v ?? QUESTIONS.find(q => q.id === qid)?.validation ?? 'pendente'
 export function setValidation(qid: string, v: Validation) { if (!VALS.includes(v)) return; state = { ...state, validations: { ...state.validations, [qid]: { v, at: new Date().toISOString() } } }; emit() }
 export function useContent(): ContentState { useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => version); return state }
 const now = () => new Date().toISOString()

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { QUESTIONS } from '../data/questions'
+import { activeQuestions } from '../lib/pool'
 import { DISCIPLINES, topicDiscipline } from '../data/edital'
 import { LESSONS } from '../data/lessons'
 import QuestionCard from '../components/QuestionCard'
@@ -12,7 +13,7 @@ export default function Bank({ s }: { s: Store }) {
   const { p, answer, toggleFav, saveNote } = s
   useContent()
   const [topic, setTopic] = useState('all'), [disc, setDisc] = useState('all'), [dif, setDif] = useState('all'), [st, setSt] = useState('all'), [vf, setVf] = useState('all')
-  const list = QUESTIONS.filter(q => (disc === 'all' || topicDiscipline(q.topicId)?.id === disc) && (topic === 'all' || q.topicId === topic) && (dif === 'all' || q.difficulty === dif) && (vf === 'all' || validationOf(q.id) === vf) && (st === 'all' || (st === 'wrong' ? p.answers[q.id] && !p.answers[q.id].correct : st === 'new' ? !p.answers[q.id] : p.favorites.includes(q.id))))
+  const list = activeQuestions().filter(q => (disc === 'all' || topicDiscipline(q.topicId)?.id === disc) && (topic === 'all' || q.topicId === topic) && (dif === 'all' || q.difficulty === dif) && (vf === 'all' || validationOf(q.id) === vf) && (st === 'all' || (st === 'wrong' ? p.answers[q.id] && !p.answers[q.id].correct : st === 'new' ? !p.answers[q.id] : p.favorites.includes(q.id))))
   return <div className="space-y-4 max-w-3xl"><h1 className="text-2xl font-bold">✏️ Banco de Questões</h1>
     <p className="text-sm text-slate-500">O banco tem {QUESTIONS.length} questões inéditas, 5 por aula, em {LESSONS.length} aulas.</p>
     <div className="flex flex-wrap gap-2"><select className={sel} value={disc} onChange={e => setDisc(e.target.value)}><option value="all">Todas as matérias</option>{DISCIPLINES.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}</select>

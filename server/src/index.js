@@ -13,6 +13,7 @@ if (STORE === 'memory') {
 if (!JWT_SECRET || /cole-aqui|troque|exemplo|changeme/i.test(JWT_SECRET)) { console.error('JWT_SECRET ausente ou ainda é o texto de exemplo. Gere um segredo de verdade (veja .env.example) e salve o .env.'); process.exit(1) }
 if (!ADMIN_EMAILS.trim()) console.warn('ℹ️  ADMIN_EMAILS vazio: ninguém terá acesso às rotas administrativas.')
 const app = createApp({ repo, jwtSecret: JWT_SECRET, corsOrigin: CORS_ORIGIN, adminEmails: ADMIN_EMAILS, trustProxy: TRUST_PROXY })
+await app.locals.editorialReady   // importação idempotente do catálogo base (só insere o que não existe)
 const server = app.listen(Number(PORT), () => console.log(`API do Aprova TJSP em http://localhost:${PORT} (armazenamento: ${repo.kind})`))
 const stop = () => server.close(() => repo.close().then(() => process.exit(0)))
 process.on('SIGINT', stop); process.on('SIGTERM', stop)
